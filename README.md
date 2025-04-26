@@ -76,23 +76,6 @@ O APK será gerado em `build/app/outputs/flutter-apk/app-debug.apk`
 
 ### Gerar APK de Release
 
-1. Crie uma chave para assinar o APK (se ainda não tiver):
-
-```bash
-keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
-```
-
-2. Crie um arquivo `key.properties` na pasta `android/` com o seguinte conteúdo:
-
-```
-storePassword=<senha do keystore>
-keyPassword=<senha da chave>
-keyAlias=upload
-storeFile=<caminho para o arquivo upload-keystore.jks>
-```
-
-3. Gere o APK de release:
-
 ```bash
 flutter build apk --release
 ```
