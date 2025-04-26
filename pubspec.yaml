@@ -1,0 +1,67 @@
+name: alcoolize
+description: "A new Flutter project."
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.0.6
+  
+  flutter_localizations:
+    sdk: flutter
+  path_provider: ^2.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
+
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/images/
+    - assets/paranoia/questions.txt
+    - assets/who_is_more_likely/questions.txt
+    - assets/never_have_i_ever/questions.txt
+    - assets/forbidden_word/words.txt
+    - assets/tibitar/verbs.txt
+    - assets/cards/challenges.txt
+
+  fonts:
+    - family: RabbidHighwaySignII
+      fonts:
+        - asset: assets/fonts/RabbidHighwaySignII.otf
+
+    - family: Mesmerize
+      fonts:
+        - asset: assets/fonts/Mesmerize-Eb.otf
+          weight: 800
+        - asset: assets/fonts/Mesmerize-Bd.otf
+          weight: 700
+        - asset: assets/fonts/Mesmerize-Sb.otf
+          weight: 600
+        - asset: assets/fonts/Mesmerize-Rg.otf
+          weight: 500
+        - asset: assets/fonts/Mesmerize-Bk.otf
+          weight: 400
+        - asset: assets/fonts/Mesmerize-Lt.otf
+          weight: 300
+        - asset: assets/fonts/Mesmerize-El.otf
+          weight: 200
+        - asset: assets/fonts/Mesmerize-Ui.otf
+          weight: 100
+          
