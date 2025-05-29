@@ -75,7 +75,7 @@ Escolha alguém e faça uma 'pose ridícula' para uma foto (ou beba 2 doses),tru
 Todos que têm um sonho maluco bebem 1 dose,false
 Escolha 1 pessoa para fazer uma 'performance de stand-up' por 1 minuto (ou beba 3 doses),true
 Escolha alguém para compartilhar uma 'experiência de festa' engraçada (ou beba 2 doses),true
-Todos que têm um 'nickname' devem beber 1 dose,false
+Todos que têm um apelido devem beber 1 dose,false
 Escolha 2 pessoas para fazerem um 'duelo de dança' (ou beba 2 doses),true
 Usuários de Iphone bebem,false
 Usuários de Android bebem,false

@@ -11,7 +11,26 @@ class PlayersScreen extends StatefulWidget {
 class _PlayersScreenState extends State<PlayersScreen> {
   int playerCount = 1; // Valor inicial do contador
   final _formKey = GlobalKey<FormState>(); // Chave do formulário
-  List<String> playersList = []; // Lista para armazenar os nomes dos jogadores
+  List<String> playersList = List.filled(30, ''); // Pre-initialize with empty strings
+  List<TextEditingController> controllers = []; // Add controllers for text fields
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize controllers for all possible players
+    for (int i = 0; i < 30; i++) {
+      controllers.add(TextEditingController());
+    }
+  }
+  
+  @override
+  void dispose() {
+    // Dispose all controllers
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +91,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                         ),
                         IconButton(
                           icon: const Icon(Icons.add, color: Colors.white),
-                          onPressed: playerCount < 18
+                          onPressed: playerCount < 30
                               ? () {
                                   setState(() {
                                     playerCount++;
@@ -95,6 +114,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
+                        controller: controllers[index], // Use the controller
                         decoration: InputDecoration(
                           hintText: '${index + 1}° vítima',
                           hintStyle: const TextStyle(color: Colors.white),
@@ -117,11 +137,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                           return null;
                         },
                         onChanged: (value) {
-                          if (index < playersList.length) {
-                            playersList[index] = value; // Atualiza o nome do jogador
-                          } else {
-                            playersList.add(value); // Adiciona novo nome à lista
-                          }
+                          playersList[index] = value; // Update the player name
                         },
                       ),
                     );
@@ -138,17 +154,15 @@ class _PlayersScreenState extends State<PlayersScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Se o formulário for válido, exiba a mensagem
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Jogo iniciado com $playerCount ${playerCount > 1 ? 'jogadores' : 'jogador'}!'),
-                        ),
-                      );
+                      // Trim the playersList to the actual number of players
+                      List<String> actualPlayers = playersList.sublist(0, playerCount);
+                      
+                      // Rest of your code
                       GameHandler.resetUsedWords();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GameHandler.chooseRandomGame(context, playersList), // Chama a função que escolhe aleatoriamente o jogo
+                          builder: (context) => GameHandler.chooseRandomGame(context, actualPlayers),
                         ),
                       );
                     }

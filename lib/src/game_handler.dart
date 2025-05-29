@@ -172,7 +172,7 @@ class GameHandler {
   static Widget chooseRandomGame(BuildContext context, List<String> playersList) {
     // Verifica se há jogos disponíveis
     if (activeGamesList.isEmpty) {
-      throw Exception("Nenhum jogo está ativo.");
+      _updateActiveGamesList();
     }
 
     // Filtra os jogos ativos para garantir que não seja o mesmo tipo que o último jogo

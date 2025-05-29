@@ -185,7 +185,6 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
               ),
             ),
 
-            const SizedBox(height: 40),
             canSpinAgain 
             ? ElevatedButton(
               onPressed: spinWheel,
@@ -196,7 +195,7 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
               child: const Text('Girar a roleta', style: TextStyle(fontSize: 18)),
             )
           : const SizedBox(height: 55),
-          const SizedBox(height: 80),
+          const SizedBox(height: 160),
           ],
         ),
       ),
