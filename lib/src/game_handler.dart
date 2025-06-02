@@ -27,11 +27,35 @@ class GameHandler {
     'CARTAS': (context, players) => CardsScreen(playersList: players),
   };
 
+  // Descrições detalhadas de cada jogo
+  static final Map<String, String> gameDescriptions = {
+    'TIBITAR': 'A roda deve fazer perguntas para o jogador sobre o verbo usando "tibitar" para substituí-lo. '
+               'Exemplo: "É fácil tibitar?", "Onde se tibita com frequência?". '
+               'Revele o verbo escondido ao final. A roda tem 3 chances de adivinhar o verbo, cada um que errar bebe uma dose, '
+               'caso alguém acerte, o jogador da vez deve beber 1 dose.',
+    'EU NUNCA': 'Para jogar Eu Nunca, o host deve ler a afirmação. Quem já fez a ação deve beber uma dose.',
+    'ROLETINHA': 'Rode a roleta e veja o que o destino te aguarda.',
+    'PARANOIA': 'Para jogar Paranoia, o jogador deve ler a pergunta revelada e '
+                'apontar para quem acha que é a resposta. Se a pessoa apontada '
+                'quiser saber a pergunta, ela deve beber duas doses. Caso a pessoa '
+                'se recuse a responder, ela deve beber três doses.',
+    'QUEM É MAIS PROVÁVEL': 'Para jogar Mais Provável, o host deve ler a pergunta e, '
+                            'todos apontarem para quem eles acham que é a resposta certa, '
+                            'a pessoa mais apontada bebe uma dose, em caso de empate, ambos bebem.',
+    'PALAVRA PROIBIDA': 'Para jogar Palavra Proibida, sorteie uma palavra. Quem falar a palavra proibida durante a rodada, '
+                        'deve beber uma dose. As palavras são removidas da lista até o fim do jogo.',
+    'MEDUSA': 'No jogo Medusa, todos os jogadores devem abaixar a cabeça e, '
+              'ao sinal, levantar. Se você fizer contato visual com outro jogador, '
+              'ambos devem beber uma dose.',
+    'CARTAS': 'Neste jogo, uma carta com um desafio será revelada. Se o desafio for individual, o jogador da vez deve realizá-lo.',
+  };
+
   // Lista de palavras para o jogo 'Palavra Proibida'
   static List<String> usedWords = [];
 
-  // Pesos de cada jogo
-  static Map<String, double> gameWeights = {
+  // Define os pesos padrão para cada jogo.
+  // Estes são os valores que serão usados quando as probabilidades forem resetadas.
+  static final Map<String, double> _defaultGameWeights = {
     'PARANOIA': 9.0,
     'QUEM É MAIS PROVÁVEL': 21.0,
     'EU NUNCA': 22.0,
@@ -41,6 +65,9 @@ class GameHandler {
     'ROLETINHA': 12.0,
     'CARTAS': 24.0,
   };
+
+  // Pesos de cada jogo (este é o mapa que será modificado e salvo)
+  static Map<String, double> gameWeights = {};
 
   static void resetUsedWords() {
     usedWords.clear(); // Esvazia a lista de palavras
@@ -69,6 +96,7 @@ class GameHandler {
         
         _initialized = true;
       } catch (e) {
+        // Handle initialization error
       }
     }
   }
@@ -87,11 +115,27 @@ class GameHandler {
       _canRepeat = prefs.getBool('canRepeat') ?? false;
       
       // Carrega os pesos dos jogos
+      // Primeiro, inicializa gameWeights com os valores padrão
+      gameWeights = Map.from(_defaultGameWeights);
+      
+      // Em seguida, sobrescreve com os valores salvos, se existirem
       for (var gameName in allGames.keys) {
-        double savedWeight = prefs.getDouble('weight_$gameName') ?? gameWeights[gameName] ?? 0.0;
-        gameWeights[gameName] = savedWeight;
+        double? savedWeight = prefs.getDouble('weight_$gameName');
+        if (savedWeight != null) {
+          gameWeights[gameName] = savedWeight;
+        } else {
+          // Se não houver peso salvo, usa o peso padrão, mas considera se o jogo está desativado.
+          // Isso garante que, mesmo sem um peso salvo, o peso padrão seja definido.
+          gameWeights[gameName] = _defaultGameWeights[gameName] ?? 0.0;
+        }
+
+        // IMPORTANTE: Se um jogo estiver desativado no momento, seu peso DEVE ser 0.0
+        if (!isGameEnabled(gameName)) {
+          gameWeights[gameName] = 0.0;
+        }
       }
     } catch (e) {
+      // Handle loading error
     }
   }
 
@@ -158,6 +202,7 @@ class GameHandler {
         prefs.setDouble('weight_$gameName', weight);
       });
     } catch (e) {
+      // Handle saving error
     }
   }
 
@@ -165,6 +210,24 @@ class GameHandler {
   static Future<void> updateGameWeights(Map<String, double> newWeights) async {
     gameWeights = Map.from(newWeights);
     await _saveSettings();
+  }
+
+  static void resetGameWeightsToDefault() {
+    // Cria um novo mapa para armazenar os pesos resetados
+    Map<String, double> newGameWeights = {};
+
+    // Itera por todos os jogos conhecidos
+    for (var gameName in allGames.keys) {
+      if (isGameEnabled(gameName)) {
+        // Se o jogo estiver atualmente habilitado, reseta seu peso para o valor padrão
+        newGameWeights[gameName] = _defaultGameWeights[gameName] ?? 0.0;
+      } else {
+        // Se o jogo estiver atualmente desabilitado, garante que seu peso permaneça 0.0
+        newGameWeights[gameName] = 0.0;
+      }
+    }
+
+    gameWeights = newGameWeights;
   }
 
   static Type? lastGameType;
