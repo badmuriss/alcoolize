@@ -104,7 +104,6 @@ open ios/Runner.xcworkspace
 flutter build ios --release
 ```
 
-
 ## Personalização
 
 ### Edição de Perguntas e Palavras
