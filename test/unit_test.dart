@@ -1,15 +1,13 @@
-// This is an example unit test.
-//
-// A unit test tests a single function, method, or class. To learn more about
-// writing unit tests, visit
-// https://flutter.dev/to/unit-testing
+// Main test suite that imports all unit tests
+// Run with: flutter test
 
-import 'package:flutter_test/flutter_test.dart';
+import 'game_handler_test.dart' as game_handler_tests;
+import 'questions_manager_test.dart' as questions_manager_tests;  
+import 'player_utils_test.dart' as player_utils_tests;
 
 void main() {
-  group('Plus Operator', () {
-    test('should add two numbers together', () {
-      expect(1 + 1, 2);
-    });
-  });
+  // Run all unit tests
+  game_handler_tests.main();
+  questions_manager_tests.main();
+  player_utils_tests.main();
 }
