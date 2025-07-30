@@ -10,28 +10,28 @@ class TibitarScreen extends StatefulWidget {
   const TibitarScreen({super.key, required this.playersList});
 
   @override
-  _TibitarScreenState createState() => _TibitarScreenState();
+  TibitarScreenState createState() => TibitarScreenState();
 }
 
-class _TibitarScreenState extends State<TibitarScreen> {
-  String? hiddenVerb; // Armazena o verbo escondido
-  String? currentPlayer; // Armazena o jogador da vez
-  static const tibitarColor = Colors.pink; // Cor de fundo azul
+class TibitarScreenState extends State<TibitarScreen> {
+  String? hiddenVerb;
+  String? currentPlayer;
+  static const tibitarColor = Colors.pink;
 
   @override
   void initState() {
     super.initState();
-    getVerb(); // Carrega um verbo ao iniciar
-    choosePlayer(); // Escolhe um jogador ao iniciar
+    getVerb();
+    choosePlayer();
   }
 
 
   Future<void> getVerb() async {
     List<String> verbs = await QuestionsManager.loadQuestions('TIBITAR');    
     setState(() {
-      hiddenVerb = (verbs..shuffle()).first; // Seleciona um verbo aleatoriamente
+      hiddenVerb = (verbs..shuffle()).first;
        while(hiddenVerb!.trim().isEmpty){
-           hiddenVerb = (verbs..shuffle()).first; // Seleciona um verbo aleatoriamente
+           hiddenVerb = (verbs..shuffle()).first;
         }
     
     });
@@ -84,16 +84,15 @@ class _TibitarScreenState extends State<TibitarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tibitarColor, // Fundo azul
+      backgroundColor: tibitarColor,
       appBar: AppBar(
         backgroundColor: tibitarColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -101,7 +100,7 @@ class _TibitarScreenState extends State<TibitarScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -119,15 +118,15 @@ class _TibitarScreenState extends State<TibitarScreen> {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   SizedBox(height: 10),
-                  Icon(Icons.question_mark, size: 80, color: Colors.white), // Ícone
+                  Icon(Icons.question_mark, size: 80, color: Colors.white),
                 ],
               ),
             ),
             const SizedBox(height: 40),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60.0), // Define o padding desejado
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
                 child: Text(
-                  'Jogador da vez: $currentPlayer', // Nome do jogador aleatório
+                  'Jogador da vez: $currentPlayer',
                   style: const TextStyle(fontSize: 24, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -136,7 +135,6 @@ class _TibitarScreenState extends State<TibitarScreen> {
             ElevatedButton(
               onPressed: () {
                 if (hiddenVerb != null) {
-                  // Mostra o verbo revelado em um AlertDialog
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -151,7 +149,7 @@ class _TibitarScreenState extends State<TibitarScreen> {
                           TextButton(
                             child: const Text('Fechar'),
                             onPressed: () {
-                              Navigator.of(context).pop(); // Fecha o diálogo
+                              Navigator.of(context).pop();
                             },
                           ),
                         ],
@@ -161,7 +159,7 @@ class _TibitarScreenState extends State<TibitarScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: tibitarColor, backgroundColor: Colors.white, // Cor do texto do botão
+                foregroundColor: tibitarColor, backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               ),
@@ -175,14 +173,14 @@ class _TibitarScreenState extends State<TibitarScreen> {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Localização do botão
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20), // Margem inferior
+        margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton(
-          onPressed: nextRound, // Ícone para o botão
+          onPressed: nextRound,
           backgroundColor: Colors.white,
-          foregroundColor: tibitarColor, // Chama a função para ir para a próxima rodada
-          child: const Icon(Icons.arrow_forward), // Cor do ícone
+          foregroundColor: tibitarColor,
+          child: const Icon(Icons.arrow_forward),
         ),
       ),
     );

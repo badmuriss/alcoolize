@@ -38,7 +38,7 @@ class EditQuestionsScreen extends StatelessWidget {
           }
           
           return Card(
-            color: Colors.white.withOpacity(0.1),
+            color: Colors.white.withValues(alpha: 0.1),
             margin: const EdgeInsets.only(bottom: 12),
             child: ListTile(
               leading: Icon(gameIcon, color: Colors.white),

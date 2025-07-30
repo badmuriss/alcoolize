@@ -8,10 +8,10 @@ class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  SettingsScreenState createState() => SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreenState extends State<SettingsScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   Map<String, bool> gamesEnabled = {}; // Inicializa como um Map vazio
   bool isLoading = true; // Estado para controle de carregamento
@@ -49,6 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // Carrega o valor de canRepeat
       canRepeat = prefs.getBool('canRepeat') ?? false;
     } catch (e) {
+      // Handle error loading settings - use default values
     } finally {
       setState(() {
         isLoading = false; // Atualiza o estado de carregamento
@@ -66,6 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // Salva o valor de canRepeat
       prefs.setBool('canRepeat', canRepeat);
     } catch (e) {
+      // Handle error loading settings - use default values
     }
   }
 

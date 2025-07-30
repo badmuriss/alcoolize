@@ -10,30 +10,29 @@ class CardsScreen extends StatefulWidget {
   const CardsScreen({super.key, required this.playersList});
 
   @override
-  _CardsScreenState createState() => _CardsScreenState();
+  CardsScreenState createState() => CardsScreenState();
 }
 
-class _CardsScreenState extends State<CardsScreen> {
+class CardsScreenState extends State<CardsScreen> {
   String? currentPlayer;
   String? challenge;
-  bool? isSinglePlayerChallenge; // Indica se o desafio é para um único jogador
-  static const cardsColor = Color.fromARGB(255, 0, 189, 196); // Cor do fundo
+  bool? isSinglePlayerChallenge; // Indicates if the challenge is for a single player
+  static const cardsColor = Color.fromARGB(255, 0, 189, 196);
 
   @override
   void initState() {
     super.initState();
     _chooseRandomPlayer();
-    getChallenge(); // Carrega um desafio ao iniciar
+    getChallenge();
   }
 
-  // Carrega os desafios a partir de um arquivo .txt
   Future<List<Map<String, dynamic>>> loadChallenges() async {
     List<String> questions = await QuestionsManager.loadQuestions('CARTAS');
     return questions.map((line) {
-      var parts = line.split(','); // Separa a linha pelo separador ","
+      var parts = line.split(',');
       return {
         'challenge': parts[0],
-        'isSinglePlayer': parts[1].trim() == 'true', // Verifica se o desafio é individual
+        'isSinglePlayer': parts[1].trim() == 'true',
       };
     }).toList();
   }
@@ -57,7 +56,7 @@ class _CardsScreenState extends State<CardsScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList), // Reinicia a tela com novo desafio
+        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList),
       ),
     );
   }
@@ -87,16 +86,15 @@ class _CardsScreenState extends State<CardsScreen> {
  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: cardsColor, // Cor do fundo
+      backgroundColor: cardsColor,
       appBar: AppBar(
         backgroundColor: cardsColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -104,7 +102,7 @@ class _CardsScreenState extends State<CardsScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -114,7 +112,7 @@ class _CardsScreenState extends State<CardsScreen> {
           children: [
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(bottom: 20), // Espaçamento inferior
+              margin: const EdgeInsets.only(bottom: 20),
               child: const Column(
                 children: [
                   Text(
@@ -125,14 +123,12 @@ class _CardsScreenState extends State<CardsScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            // Mostra o nome do jogador da vez se o desafio for individual
             isSinglePlayerChallenge == true ? 
               Text(
                 'Jogador da vez: $currentPlayer',
                 style: const TextStyle(fontSize: 24, color: Colors.white),
               ) : const SizedBox(height: 10),
             const SizedBox(height: 20),
-            // Exibe o desafio como uma "carta"
             Container(
               width: 280,
               height: 420,
@@ -157,14 +153,14 @@ class _CardsScreenState extends State<CardsScreen> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Localização do botão
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20), // Margem inferior
+        margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton(
-          onPressed: nextRound, // Ícone para o botão
+          onPressed: nextRound,
           backgroundColor: Colors.white,
-          foregroundColor: cardsColor, // Chama a função para ir para a próxima rodada
-          child: const Icon(Icons.arrow_forward), // Cor do ícone
+          foregroundColor: cardsColor,
+          child: const Icon(Icons.arrow_forward),
         ),
       ),
     );

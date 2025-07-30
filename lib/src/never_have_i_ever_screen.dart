@@ -9,40 +9,38 @@ class NeverHaveIEverScreen extends StatefulWidget {
   const NeverHaveIEverScreen({super.key, required this.playersList});
 
   @override
-  _NeverHaveIEverScreenState createState() => _NeverHaveIEverScreenState();
+  NeverHaveIEverScreenState createState() => NeverHaveIEverScreenState();
 }
 
-class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
-  String? question; // Para armazenar a pergunta revelada
-  static const neverColor = Color.fromARGB(255, 85, 0, 0); // Fundo vermelho
+class NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
+  String? question;
+  static const neverColor = Color.fromARGB(255, 85, 0, 0);
 
   @override
   void initState() {
     super.initState();
-    getQuestion(); // Carregar perguntas ao iniciar
+    getQuestion();
   }
 
   Future<void> getQuestion() async {
     List<String> questions = await QuestionsManager.loadQuestions('EU NUNCA');
     if (questions.isNotEmpty) {
       setState(() {
-        question = (questions..shuffle()).first; // Seleciona uma pergunta aleatória
+        question = (questions..shuffle()).first;
       });
     }
   }
 
   void nextRound() {
-    // Chama um handler que escolhe aleatoriamente entre jogos
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList), // Chama a função que escolhe aleatoriamente o jogo
+        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList),
       ),
     );
   }
 
   void _showInfoDialog() {
-    // Exibe um diálogo com informações sobre o jogo
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -67,16 +65,15 @@ class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: neverColor, // Fundo vermelho
+      backgroundColor: neverColor,
       appBar: AppBar(
         backgroundColor: neverColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -84,7 +81,7 @@ class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -92,26 +89,25 @@ class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container com o texto "Eu Nunca" e o ícone
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(bottom: 20), // Espaçamento inferior
+              margin: const EdgeInsets.only(bottom: 20),
               child: const Column(
                 children: [
                   Text(
                     'EU NUNCA',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
-                  SizedBox(height: 10), // Espaçamento entre texto e ícone
-                  Icon(Icons.adjust_sharp, size: 80, color: Colors.white), // Ícone
+                  SizedBox(height: 10),
+                  Icon(Icons.adjust_sharp, size: 80, color: Colors.white),
                 ],
               ),
             ),
             const SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0), // Define o padding desejado
+              padding: const EdgeInsets.symmetric(horizontal: 60.0),
               child: Text(
-                question ?? 'Carregando...', // Exibe "Carregando..." enquanto a pergunta não está disponível
+                question ?? 'Carregando...',
                 style: const TextStyle(fontSize: 24, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
@@ -121,14 +117,14 @@ class _NeverHaveIEverScreenState extends State<NeverHaveIEverScreen> {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Localização do botão
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20), // Margem inferior
+        margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton(
-          onPressed: question != null ? nextRound : null, // Ícone para o botão
+          onPressed: question != null ? nextRound : null,
           backgroundColor: Colors.white,
-          foregroundColor: neverColor, // Habilita o botão apenas se a pergunta não for nula
-          child: const Icon(Icons.arrow_forward), // Cor do ícone
+          foregroundColor: neverColor,
+          child: const Icon(Icons.arrow_forward),
         ),
       ),
     );

@@ -5,10 +5,10 @@ class PlayersScreen extends StatefulWidget {
   const PlayersScreen({super.key});
 
   @override
-  _PlayersScreenState createState() => _PlayersScreenState();
+  PlayersScreenState createState() => PlayersScreenState();
 }
 
-class _PlayersScreenState extends State<PlayersScreen> {
+class PlayersScreenState extends State<PlayersScreen> {
   int playerCount = 1; // Valor inicial do contador
   final _formKey = GlobalKey<FormState>(); // Chave do formulário
   List<String> playersList = List.filled(30, ''); // Pre-initialize with empty strings

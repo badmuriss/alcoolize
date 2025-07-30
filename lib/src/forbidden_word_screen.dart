@@ -10,18 +10,18 @@ class ForbiddenWordScreen extends StatefulWidget {
   const ForbiddenWordScreen({super.key, required this.playersList, required this.usedWords});
 
   @override
-  _ForbiddenWordScreenState createState() => _ForbiddenWordScreenState();
+  ForbiddenWordScreenState createState() => ForbiddenWordScreenState();
 }
 
-class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
-  String? forbiddenWord; // Para armazenar a palavra proibida
+class ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
+  String? forbiddenWord;
   List<String>? remainingWords;
-  static const forbiddenColor = Color.fromARGB(255, 221, 15, 0); // Fundo vermelho
+  static const forbiddenColor = Color.fromARGB(255, 221, 15, 0);
 
   @override
   void initState() {
     super.initState();
-    getWord(); // Carregar palavras ao iniciar
+    getWord();
   }
 
   Future<void> getWord() async {
@@ -34,24 +34,22 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
     }
 
     setState(() {
-      forbiddenWord = (remainingWords?..shuffle())?.first; // Seleciona uma palavra aleatória
+      forbiddenWord = (remainingWords?..shuffle())?.first;
     });
 
     GameHandler.usedWords.add(forbiddenWord!);
     }
 
   void nextRound() {
-    // Chama um handler que escolhe aleatoriamente entre jogos
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList), // Chama a função que escolhe aleatoriamente o jogo
+        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList),
       ),
     );
   }
 
   void _showInfoDialog() {
-    // Exibe um diálogo com informações sobre o jogo
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -77,16 +75,15 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: forbiddenColor, // Fundo vermelho
+      backgroundColor: forbiddenColor,
       appBar: AppBar(
         backgroundColor: forbiddenColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -94,7 +91,7 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -102,18 +99,17 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container com o texto "Palavra Proibida" e o ícone
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(bottom: 20), // Espaçamento inferior
+              margin: const EdgeInsets.only(bottom: 20),
               child: const Column(
                 children: [
                   Text(
                     'PALAVRA PROIBIDA',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
-                  SizedBox(height: 10), // Espaçamento entre texto e ícone
-                  Icon(Icons.not_interested, size: 80, color: Colors.white), // Mesmo ícone do "Eu Nunca"
+                  SizedBox(height: 10),
+                  Icon(Icons.not_interested, size: 80, color: Colors.white),
                 ],
               ),
             ),
@@ -121,7 +117,7 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
             const SizedBox(height: 40),
             if (forbiddenWord != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60.0), // Define o padding desejado
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
                 child: Text(
                   "Nova palavra proibida: ${forbiddenWord!}",
                   style: const TextStyle(fontSize: 24, color: Colors.white),
@@ -133,14 +129,14 @@ class _ForbiddenWordScreenState extends State<ForbiddenWordScreen> {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Localização do botão
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20), // Margem inferior
+        margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton(
-          onPressed: nextRound, // Ícone para o botão
+          onPressed: nextRound,
           backgroundColor: Colors.white,
-          foregroundColor: forbiddenColor, // Chama a função para ir para a próxima rodada
-          child: const Icon(Icons.arrow_forward), // Cor do ícone
+          foregroundColor: forbiddenColor,
+          child: const Icon(Icons.arrow_forward),
         ),
       ),
     );

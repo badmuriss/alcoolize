@@ -8,10 +8,10 @@ class GameWeightsScreen extends StatefulWidget {
   const GameWeightsScreen({super.key});
 
   @override
-  _GameWeightsScreenState createState() => _GameWeightsScreenState();
+  GameWeightsScreenState createState() => GameWeightsScreenState();
 }
 
-class _GameWeightsScreenState extends State<GameWeightsScreen> {
+class GameWeightsScreenState extends State<GameWeightsScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   late Map<String, double> weights;
   double totalWeight = 0;
@@ -175,7 +175,7 @@ class _GameWeightsScreenState extends State<GameWeightsScreen> {
 
     // Remove todos os pesos salvos do SharedPreferences para os jogos ativos
     for (var gameName in activeGames) {
-      await prefs.remove('weight_${gameName}');
+      await prefs.remove('weight_$gameName');
     }
 
     // Reseta os pesos do GameHandler para o estado padrão inicial
@@ -217,7 +217,7 @@ class _GameWeightsScreenState extends State<GameWeightsScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: !isWeightValid ? Colors.red.withOpacity(0.3) : null,
+                  color: !isWeightValid ? Colors.red.withValues(alpha: 0.3) : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -261,7 +261,7 @@ class _GameWeightsScreenState extends State<GameWeightsScreen> {
                                   max: 100,
                                   divisions: 99, // 1 a 100 em incrementos de 1
                                   activeColor: Colors.white,
-                                  inactiveColor: Colors.white.withOpacity(0.3),
+                                  inactiveColor: Colors.white.withValues(alpha: 0.3),
                                   onChanged: (value) {
                                     setState(() {
                                       weights[gameName] = value;

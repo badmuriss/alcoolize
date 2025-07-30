@@ -9,16 +9,16 @@ class RouletteScreen extends StatefulWidget {
   const RouletteScreen({super.key, required this.playersList});
 
   @override
-  _RouletteScreenState createState() => _RouletteScreenState();
+  RouletteScreenState createState() => RouletteScreenState();
 }
 
-class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProviderStateMixin {
+class RouletteScreenState extends State<RouletteScreen> with SingleTickerProviderStateMixin {
   String? currentPlayer;
   String? result;
   late AnimationController _controller;
   late Animation<double> _animation;
   bool canSpinAgain = true;
-  bool showFab = false; // Nova variável para controlar a visibilidade do FAB
+  bool showFab = false;
   static const rouletteColor = Colors.black;
 
   final List<String> options = [
@@ -58,13 +58,13 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
 
   void spinWheel() {
     setState(() {
-      result = null; // Limpa o resultado anterior
+      result = null;
       canSpinAgain = false;
-      showFab = false; // Oculta o FAB durante a animação
+      showFab = false;
     });
 
-    final randomSpin = ((Random().nextInt(25) + 25) * (1 * pi / 3)) + (2 * pi); // Define um giro aleatório
-    final animationSpin = randomSpin / (2 * pi); // Adiciona rotação extra
+    final randomSpin = ((Random().nextInt(25) + 25) * (1 * pi / 3)) + (2 * pi);
+    final animationSpin = randomSpin / (2 * pi);
 
     _controller.reset();
     _animation = Tween<double>(begin: 0, end: animationSpin).animate(
@@ -72,25 +72,22 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
     );
 
     _controller.forward().then((_) {
-      // O ângulo final após a rotação
-      double endAngle = randomSpin % (2 * pi); // ângulo final
+      double endAngle = randomSpin % (2 * pi);
 
-      // Defina os ângulos estáticos
+      // Static segment angles
       List<double> segmentAngles = [
-        0,              // 0 graus
-        (1 * pi / 3),  // 60 graus
-        (2 * pi / 3),  // 120 graus
-        (3 * pi / 3),  // 180 graus
-        (4 * pi / 3),  // 240 graus
-        (5 * pi / 3),  // 300 graus
+        0,
+        (1 * pi / 3),
+        (2 * pi / 3),
+        (3 * pi / 3),
+        (4 * pi / 3),
+        (5 * pi / 3),
       ];
 
-      // Encontre o segmento correspondente
       int selectedIndex = segmentAngles.indexWhere((angle) => endAngle < angle);
       
-      // Se o endAngle estiver em um segmento, ele será o último índice
       if (selectedIndex == -1) {
-        selectedIndex = segmentAngles.length - 1; // Último segmento
+        selectedIndex = segmentAngles.length - 1;
       }
 
       setState(() {
@@ -98,7 +95,7 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
         if (result == "Beba e gire de novo") {
           canSpinAgain = true;
         }
-        showFab = true; // Mostra o FAB após a animação
+        showFab = true;
       });
     });
   }
@@ -116,12 +113,11 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
       appBar: AppBar(
         backgroundColor: rouletteColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -129,7 +125,7 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -143,21 +139,20 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0), // Define o padding desejado
+              padding: const EdgeInsets.symmetric(horizontal: 60.0),
               child: Text(
-                'Jogador da vez: $currentPlayer', // Nome do jogador aleatório
+                'Jogador da vez: $currentPlayer',
                 style: const TextStyle(fontSize: 24, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 20),
-           Container(
-              width: 300, // Largura do container
-              height: 400, // Altura do container
+           SizedBox(
+              width: 300,
+              height: 400,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Camada da roleta
                   Center(
                     child: SizedBox(
                       height: 300,
@@ -169,16 +164,15 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
                             turns: _animation,
                             child: CustomPaint(
                               painter: RoletaPainter(options.length, options.reversed.toList()),
-                              child: Container(width: 300, height: 300),
+                              child: const SizedBox(width: 300, height: 300),
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  // Seta na parte superior da roleta
                   const Positioned(
-                    top: -5, // Ajuste a posição da seta conforme necessário
+                    top: -5,
                     child: Icon(Icons.arrow_drop_down, size: 100, color: Colors.white),
                   ),
                 ],
@@ -200,7 +194,7 @@ class _RouletteScreenState extends State<RouletteScreen> with SingleTickerProvid
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, 
-      floatingActionButton: showFab && !canSpinAgain // Exibe o FAB somente se showFab for true
+      floatingActionButton: showFab && !canSpinAgain
       ? Container(
         margin: const EdgeInsets.only(bottom: 20), 
         child: FloatingActionButton(
@@ -249,7 +243,6 @@ class RoletaPainter extends CustomPainter {
     final double radius = size.width / 2;
     final Paint paint = Paint();
 
-    // Desenhar os segmentos da roleta
     for (int i = 0; i < numOptions; i++) {
       paint.color = i.isEven ? Colors.red : Colors.black;
       canvas.drawArc(
@@ -261,7 +254,6 @@ class RoletaPainter extends CustomPainter {
       );
     }
 
-    // Agora desenhe o texto em cima dos segmentos
     for (int i = 0; i < numOptions; i++) {
       final String optionText = options[i].toUpperCase();
       final TextSpan textSpan = TextSpan(
@@ -296,22 +288,17 @@ class RoletaPainter extends CustomPainter {
         maxWidth: radius * 0.45,
       );
 
-      // Salva o estado do canvas antes da transformação
       canvas.save();
-      // Translada o canvas para o centro da roleta
       canvas.translate(radius, radius);
-      // Rotaciona o canvas para posicionar o texto corretamente
       canvas.rotate(i * anglePerSegment + anglePerSegment);
 
-      // Define o deslocamento para o texto
       double textRadius = radius * 0.65; 
       Offset textOffset = Offset(
         -textPainter.width / 2,
-        -textPainter.height / 2 - textRadius, // Ajuste para evitar sobreposição
+        -textPainter.height / 2 - textRadius,
       );
 
       textPainter.paint(canvas, textOffset);
-      // Restaura o estado do canvas
       canvas.restore();
     }
   }

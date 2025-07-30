@@ -10,10 +10,10 @@ class QuestionsEditorScreen extends StatefulWidget {
   });
 
   @override
-  _QuestionsEditorScreenState createState() => _QuestionsEditorScreenState();
+  QuestionsEditorScreenState createState() => QuestionsEditorScreenState();
 }
 
-class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
+class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   List<String> questions = [];
   // Para o jogo CARTAS, armazenamos separadamente a pergunta e o tipo
@@ -138,23 +138,27 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     });
     
     if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Alterações salvas com sucesso!'),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Alterações salvas com sucesso!'),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
+          ),
+        );
+      }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Erro ao salvar alterações.'),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Erro ao salvar alterações.'),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
         ),
       );
+      }
     }
   }
   
@@ -187,23 +191,27 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
       if (success) {
         await _loadQuestions();
         
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Perguntas restauradas para o padrão original.'),
-            backgroundColor: Colors.green,
-          ),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Perguntas restauradas para o padrão original.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
       } else {
         setState(() {
           isLoading = false;
         });
         
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Erro ao restaurar perguntas.'),
-            backgroundColor: Colors.red,
-          ),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Erro ao restaurar perguntas.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }
@@ -315,7 +323,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
       itemCount: questions.length,
       itemBuilder: (context, index) {
         return Card(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -328,7 +336,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                   height: 30,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Text(
@@ -344,7 +352,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Digite a $itemLabel aqui',
-                      hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+                      hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
                       border: InputBorder.none,
                     ),
                     maxLines: null,
@@ -372,7 +380,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
         final isPersonal = cardsQuestions[index]['isPersonal'] as bool;
         
         return Card(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -388,7 +396,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                       height: 30,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
@@ -404,7 +412,7 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Digite a pergunta aqui',
-                          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+                          hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
                           border: InputBorder.none,
                         ),
                         maxLines: null,
@@ -442,8 +450,8 @@ class _QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                         value: isPersonal,
                         activeColor: Colors.orange,
                         inactiveThumbColor: Colors.blue,
-                        activeTrackColor: Colors.orange.withOpacity(0.5),
-                        inactiveTrackColor: Colors.blue.withOpacity(0.5),
+                        activeTrackColor: Colors.orange.withValues(alpha: 0.5),
+                        inactiveTrackColor: Colors.blue.withValues(alpha: 0.5),
                         onChanged: (value) => _updateCardQuestionType(index, value),
                       ),
                     ],

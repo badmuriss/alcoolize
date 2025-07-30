@@ -9,40 +9,38 @@ class WhoIsMoreLikelyScreen extends StatefulWidget {
   const WhoIsMoreLikelyScreen({super.key, required this.playersList});
 
   @override
-  _WhoIsMoreLikelyScreenState createState() => _WhoIsMoreLikelyScreenState();
+  WhoIsMoreLikelyScreenState createState() => WhoIsMoreLikelyScreenState();
 }
 
-class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
-  String? question; // Para armazenar a pergunta revelada
-  static const likelyColor = Color.fromARGB(255, 49, 110, 51); // Fundo verde
+class WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
+  String? question;
+  static const likelyColor = Color.fromARGB(255, 49, 110, 51);
 
   @override
   void initState() {
     super.initState();
-    getQuestion(); // Carregar perguntas ao iniciar
+    getQuestion();
   }
 
   Future<void> getQuestion() async {
     List<String> questions = await QuestionsManager.loadQuestions('QUEM É MAIS PROVÁVEL');
     if (questions.isNotEmpty) {
       setState(() {
-        question = (questions..shuffle()).first; // Seleciona uma pergunta aleatória
+        question = (questions..shuffle()).first;
       });
     }
   }
 
   void nextRound() {
-    // Chama um handler que escolhe aleatoriamente entre jogos
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList), // Chama a função que escolhe aleatoriamente o jogo
+        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList),
       ),
     );
   }
 
   void _showInfoDialog() {
-    // Exibe um diálogo com informações sobre o jogo
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -68,16 +66,15 @@ class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: likelyColor, // Fundo verde
+      backgroundColor: likelyColor,
       appBar: AppBar(
         backgroundColor: likelyColor,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,), // Cor do ícone de voltar
+          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
           onPressed: () {
-            // Navega para a Home Screen e remove todas as outras telas da pilha
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()), // Substitua pela sua tela inicial
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
               (Route<dynamic> route) => false,
             );
           },
@@ -85,7 +82,7 @@ class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog, // Botão de informações
+            onPressed: _showInfoDialog,
           ),
         ],
       ),
@@ -93,18 +90,17 @@ class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container com o texto "Mais Provável" e o ícone
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(bottom: 20), // Espaçamento inferior
+              margin: const EdgeInsets.only(bottom: 20),
               child: const Column(
                 children: [
                   Text(
                     'MAIS PROVAVÉL',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
-                  SizedBox(height: 10), // Espaçamento entre texto e ícone
-                  Icon(Icons.question_mark, size: 80, color: Colors.white), // Ícone
+                  SizedBox(height: 10),
+                  Icon(Icons.question_mark, size: 80, color: Colors.white),
                 ],
               ),
             ),
@@ -112,7 +108,7 @@ class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
             const SizedBox(height: 40),
             if (question != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60.0), // Define o padding desejado
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
                 child: Text(
                   question!,
                   style: const TextStyle(fontSize: 24, color: Colors.white),
@@ -124,14 +120,14 @@ class _WhoIsMoreLikelyScreenState extends State<WhoIsMoreLikelyScreen> {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Localização do botão
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20), // Margem inferior
+        margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton(
-          onPressed: nextRound, // Ícone para o botão
+          onPressed: nextRound,
           backgroundColor: Colors.white,
-          foregroundColor: likelyColor, // Chama a função para ir para a próxima rodada
-          child: const Icon(Icons.arrow_forward), // Cor do ícone
+          foregroundColor: likelyColor,
+          child: const Icon(Icons.arrow_forward),
         ),
       ),
     );
