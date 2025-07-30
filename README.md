@@ -9,7 +9,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web-lightgrey?style=for-the-badge)
 
-**O seu drinking game** - A collection of interactive party games to spice up your gatherings!
+**Your drinking game** - A collection of interactive party games to spice up your gatherings!
 
 [📱 Try it now](#-getting-started) • [🎮 Games](#-available-games) • [🛠️ Contributing](#-contributing) • [📄 License](#-license)
 
