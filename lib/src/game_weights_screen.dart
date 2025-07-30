@@ -36,8 +36,8 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
     // Create a copy of the weights from GameHandler
     weights = Map.from(GameHandler.gameWeights);
 
-    // Garantir que todos os jogos ativos tenham pelo menos 1% de peso
-    // Usamos o activeGamesList para determinar quais jogos estão ativos
+    // Ensure all active games have at least 1% weight
+    // Use activeGamesList to determine which games are active
     Set<String> activeGames = _getActiveGameNames();
 
     for (var gameName in activeGames) {
@@ -48,23 +48,23 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
 
     _calculateTotalWeight(); // Calculate total initially
 
-    // Normaliza para 100%
+    // Normalize to 100%
     if (totalWeight != 100.0) {
-      // Normaliza proporcionalmente
+      // Normalize proportionally
       double factor = 100.0 / totalWeight;
       weights.updateAll((key, value) => value * factor);
 
-      // Arredonda para o inteiro mais próximo e garante 1.0 mínimo
+      // Round to nearest whole number and ensure 1.0 minimum
       weights.updateAll((key, value) {
         double roundedValue = value.roundToDouble(); // Round to nearest whole number
         return max(1.0, roundedValue); // Ensure it's at least 1.0
       });
 
-      // Recalcula o total após arredondamento
+      // Recalculate total after rounding
       _calculateTotalWeight();
 
-      // Ajuste final no jogo com maior peso para garantir 100.0
-      // Este ajuste só deve ocorrer se o total ainda não for 100.0
+      // Final adjustment on game with highest weight to ensure 100.0
+      // This adjustment should only occur if total is still not 100.0
       if (totalWeight != 100.0) {
         // Encontra o jogo ativo com maior peso para ajustar
         String? gameToAdjust;
@@ -95,11 +95,11 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
     }
   }
 
-  // Método para obter os nomes dos jogos ativos
+  // Method to get active game names
   Set<String> _getActiveGameNames() {
     Set<String> activeGames = {};
 
-    // Percorre a lista de jogos ativos e obtém seus nomes
+    // Iterate through active games list and get their names
     for (var gameFunction in GameHandler.activeGamesList) {
       for (var entry in GameHandler.allGames.entries) {
         if (entry.value == gameFunction) {
@@ -114,14 +114,14 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
 
   void _calculateTotalWeight() {
     totalWeight = weights.values.fold(0, (sum, weight) => sum + weight);
-    // Não é necessário chamar setState aqui, pois este método é frequentemente chamado dentro de outro setState
-    // ou antes de um setState final em _initWeights.
-    // Se você precisar atualizar a UI imediatamente após isso, chame setState explicitamente.
+    // No need to call setState here, as this method is frequently called within another setState
+    // or before a final setState in _initWeights.
+    // If you need to update UI immediately after this, call setState explicitly.
     isWeightValid = totalWeight == 100;
   }
 
   Future<void> _saveWeights() async {
-    // Não permite salvar se o peso total for maior que 100
+    // Don't allow saving if total weight is greater than 100
     if (totalWeight > 100) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -137,16 +137,16 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
     });
 
     try {
-      // Salva no SharedPreferences
+      // Save to SharedPreferences
       final prefs = await SharedPreferences.getInstance();
       for (var entry in weights.entries) {
         await prefs.setDouble('weight_${entry.key}', entry.value);
       }
 
-      // Atualiza os pesos no GameHandler
+      // Update weights in GameHandler
       GameHandler.gameWeights = Map.from(weights);
     } catch (e) {
-      // Lida com erros, por exemplo, mostrando uma SnackBar
+      // Handle errors, for example by showing a SnackBar
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -157,13 +157,13 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
       }
     } finally {
       if (mounted) {
-        Navigator.pop(context); // Volta para a tela anterior após salvar
+        Navigator.pop(context); // Return to previous screen after saving
       }
     }
   }
 
   Future<void> _resetWeights() async {
-    // Define isLoading como true imediatamente para mostrar feedback
+    // Set isLoading to true immediately to show feedback
     if (mounted) {
       setState(() {
         isLoading = true;
@@ -173,17 +173,17 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
     final prefs = await SharedPreferences.getInstance();
     Set<String> activeGames = _getActiveGameNames();
 
-    // Remove todos os pesos salvos do SharedPreferences para os jogos ativos
+    // Remove all saved weights from SharedPreferences for active games
     for (var gameName in activeGames) {
       await prefs.remove('weight_$gameName');
     }
 
-    // Reseta os pesos do GameHandler para o estado padrão inicial
+    // Reset GameHandler weights to initial default state
     GameHandler.resetGameWeightsToDefault();
 
-    // Chama _initWeights() que irá carregar os pesos padrão do GameHandler,
-    // aplicar o mínimo de 1%, normalizar e, finalmente, definir isLoading como false.
-    await _initWeights(); // Aguarda _initWeights para garantir que ele seja concluído e atualize o estado
+    // Call _initWeights() which will load default weights from GameHandler,
+    // apply 1% minimum, normalize and finally set isLoading to false.
+    await _initWeights(); // Wait for _initWeights to ensure it completes and updates state
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -241,7 +241,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                         top: 16,
                         bottom: 80), // Margem inferior para o botão
                     children: _getActiveGameNames().map((gameName) {
-                      // Garantir que o peso nunca seja menor que 1
+                      // Ensure weight is never less than 1
                       // This check is also in _initWeights, but good to have here for slider display
                       if (weights[gameName] == null || weights[gameName]! < 1.0) {
                         weights[gameName] = 1.0;
@@ -257,9 +257,9 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                               Expanded(
                                 child: Slider(
                                   value: weights[gameName] ?? 1.0,
-                                  min: 1.0, // Mínimo de 1%
+                                  min: 1.0, // Minimum of 1%
                                   max: 100,
-                                  divisions: 99, // 1 a 100 em incrementos de 1
+                                  divisions: 99, // 1 to 100 in increments of 1
                                   activeColor: Colors.white,
                                   inactiveColor: Colors.white.withValues(alpha: 0.3),
                                   onChanged: (value) {
@@ -286,7 +286,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                     }).toList(),
                   ),
                 ),
-                // Espaço adicional para garantir que os botões não fiquem sob o botão flutuante
+                // Additional space to ensure buttons don't stay under floating button
                 const SizedBox(height: 100),
               ],
             ),

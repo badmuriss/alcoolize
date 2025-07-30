@@ -9,8 +9,8 @@ class PlayersScreen extends StatefulWidget {
 }
 
 class PlayersScreenState extends State<PlayersScreen> {
-  int playerCount = 1; // Valor inicial do contador
-  final _formKey = GlobalKey<FormState>(); // Chave do formulário
+  int playerCount = 1; // Initial counter value
+  final _formKey = GlobalKey<FormState>(); // Form key
   List<String> playersList = List.filled(30, ''); // Pre-initialize with empty strings
   List<TextEditingController> controllers = []; // Add controllers for text fields
 
@@ -48,7 +48,7 @@ class PlayersScreenState extends State<PlayersScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form( // Adicionando o Form
+        child: Form( // Adding the Form
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

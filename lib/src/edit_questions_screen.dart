@@ -28,7 +28,7 @@ class EditQuestionsScreen extends StatelessWidget {
           IconData gameIcon;
           String subtitle;
           
-          // Define ícone e subtítulo com base no tipo de jogo
+          // Define icon and subtitle based on game type
           if (gameName == 'TIBITAR' || gameName == 'PALAVRA PROIBIDA') {
             gameIcon = Icons.text_fields;
             subtitle = 'Editar palavras';

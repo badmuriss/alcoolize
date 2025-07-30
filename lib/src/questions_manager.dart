@@ -11,12 +11,12 @@ class QuestionsManager {
     'CARTAS': 'assets/cards/challenges.txt',
   };
 
-  // Cache para armazenar as perguntas modificadas
+  // Cache to store modified questions
   static final Map<String, List<String>> _questionsCache = {};
   
-  // Carrega as perguntas de um jogo específico
+  // Load questions for a specific game
   static Future<List<String>> loadQuestions(String gameName) async {
-    // Verifica se já está em cache
+    // Check if already in cache
     if (_questionsCache.containsKey(gameName)) {
       return _questionsCache[gameName]!;
     }
@@ -24,7 +24,7 @@ class QuestionsManager {
     final prefs = await SharedPreferences.getInstance();
     final String? customQuestions = prefs.getString('custom_${gameName.toLowerCase()}');
     
-    // Se existirem perguntas personalizadas, use-as
+    // If custom questions exist, use them
     if (customQuestions != null && customQuestions.isNotEmpty) {
       final questions = customQuestions.split('\n')
           .where((q) => q.trim().isNotEmpty)
@@ -33,7 +33,7 @@ class QuestionsManager {
       return questions;
     }
     
-    // Caso contrário, carregue do arquivo de assets
+    // Otherwise, load from assets file
     try {
       final String filePath = gameFiles[gameName]!;
       final String content = await rootBundle.loadString(filePath);
@@ -47,7 +47,7 @@ class QuestionsManager {
     }
   }
   
-  // Salva as perguntas personalizadas
+  // Save custom questions
   static Future<bool> saveQuestions(String gameName, List<String> questions) async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -60,7 +60,7 @@ class QuestionsManager {
     }
   }
   
-  // Restaura as perguntas originais
+  // Restore original questions
   static Future<bool> resetToDefault(String gameName) async {
     try {
       final prefs = await SharedPreferences.getInstance();

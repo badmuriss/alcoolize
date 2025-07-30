@@ -27,7 +27,7 @@ class GameHandler {
     'CARTAS': (context, players) => CardsScreen(playersList: players),
   };
 
-  // Descrições detalhadas de cada jogo
+  // Detailed descriptions of each game
   static final Map<String, String> gameDescriptions = {
     'TIBITAR': 'A roda deve fazer perguntas para o jogador sobre o verbo usando "tibitar" para substituí-lo. '
                'Exemplo: "É fácil tibitar?", "Onde se tibita com frequência?". '
@@ -50,11 +50,11 @@ class GameHandler {
     'CARTAS': 'Neste jogo, uma carta com um desafio será revelada. Se o desafio for individual, o jogador da vez deve realizá-lo.',
   };
 
-  // Lista de palavras para o jogo 'Palavra Proibida'
+  // Word list for 'Palavra Proibida' game
   static List<String> usedWords = [];
 
-  // Define os pesos padrão para cada jogo.
-  // Estes são os valores que serão usados quando as probabilidades forem resetadas.
+  // Define default weights for each game.
+  // These are the values that will be used when probabilities are reset.
   static final Map<String, double> _defaultGameWeights = {
     'PARANOIA': 9.0,
     'QUEM É MAIS PROVÁVEL': 21.0,
@@ -66,14 +66,14 @@ class GameHandler {
     'CARTAS': 24.0,
   };
 
-  // Pesos de cada jogo (este é o mapa que será modificado e salvo)
+  // Weight of each game (this is the map that will be modified and saved)
   static Map<String, double> gameWeights = {};
 
   static void resetUsedWords() {
-    usedWords.clear(); // Esvazia a lista de palavras
+    usedWords.clear(); // Empty the word list
   }
 
-  // Método para verificar se um jogo está habilitado
+  // Method to check if a game is enabled
   static bool isGameEnabled(String gameName) {
     return _enabledGames.containsKey(gameName) && _enabledGames[gameName] == true;
   }

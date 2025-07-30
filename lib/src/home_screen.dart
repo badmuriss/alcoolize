@@ -26,7 +26,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             icon: const Icon(Icons.settings, size: 40, color: Colors.white,),
             onPressed: () {
-              // Navega para a tela de configurações
+              // Navigate to settings screen
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsScreen()),
@@ -34,7 +34,7 @@ class HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
-      ),// Fundo roxo
+      ),// Purple background
       body: Center(
         child: Container(
           width: 300,
@@ -46,7 +46,7 @@ class HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Container para imagem
+              // Container for image
               Container(
                 width: 120,
                 height: 120,
@@ -55,14 +55,14 @@ class HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: const Icon(
-                  Icons.no_drinks, // Ícone temporário, pode ser uma imagem também
-                  color: Colors.white, // Ícone roxo
+                  Icons.no_drinks, // Temporary icon, can also be an image
+                  color: Colors.white, // Purple icon
                   size: 120,
                 ),
               ),
-              const SizedBox(height: 30), // Espaço entre a imagem e o botão
+              const SizedBox(height: 30), // Space between image and button
               
-              // Botão "Alcoolize-se"
+              // "Alcoolize-se" button
               GestureDetector(
                 onTapDown: (_) {
                   setState(() {

@@ -13,9 +13,9 @@ class SettingsScreen extends StatefulWidget {
 
 class SettingsScreenState extends State<SettingsScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
-  Map<String, bool> gamesEnabled = {}; // Inicializa como um Map vazio
-  bool isLoading = true; // Estado para controle de carregamento
-  bool canRepeat = false; // Valor inicial para canRepeat
+  Map<String, bool> gamesEnabled = {}; // Initialize as empty Map
+  bool isLoading = true; // State for loading control
+  bool canRepeat = false; // Initial value for canRepeat
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _initializeGamesEnabled() async {
-    // Defina os valores padrão aqui
+    // Define default values here
     gamesEnabled = {
       'TIBITAR': true,
       'EU NUNCA': true,
@@ -43,16 +43,16 @@ class SettingsScreenState extends State<SettingsScreen> {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       gamesEnabled.forEach((game, _) {
-        gamesEnabled[game] = prefs.getBool(game) ?? true; // Carrega o valor armazenado
+        gamesEnabled[game] = prefs.getBool(game) ?? true; // Load stored value
       });
       
-      // Carrega o valor de canRepeat
+      // Load canRepeat value
       canRepeat = prefs.getBool('canRepeat') ?? false;
     } catch (e) {
       // Handle error loading settings - use default values
     } finally {
       setState(() {
-        isLoading = false; // Atualiza o estado de carregamento
+        isLoading = false; // Update loading state
       });
     }
   }
@@ -64,7 +64,7 @@ class SettingsScreenState extends State<SettingsScreen> {
         prefs.setBool(game, enabled);
       });
       
-      // Salva o valor de canRepeat
+      // Save canRepeat value
       prefs.setBool('canRepeat', canRepeat);
     } catch (e) {
       // Handle error loading settings - use default values
@@ -90,14 +90,14 @@ class SettingsScreenState extends State<SettingsScreen> {
             icon: const Icon(Icons.info, color: Colors.white, size: 33),
             onPressed: () {
               _showGameInfoDialog(context);
-            }, // Botão de informações
+            }, // Information button
           ),
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
         children: [
-          // Lista de jogos (seu código existente)
+          // Games list (your existing code)
           ...isLoading
               ? [const Center(child: Padding(
                   padding: EdgeInsets.all(20.0),
@@ -127,10 +127,10 @@ class SettingsScreenState extends State<SettingsScreen> {
                       );
                     }).toList(),
 
-          // Espaço aumentado entre a lista e os botões
+          // Increased space between list and buttons
           const SizedBox(height: 30),
 
-          // Botão de repetição (canRepeat)
+          // Repeat button (canRepeat)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
@@ -157,7 +157,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          // Botão de probabilidades (seu código existente)
+          // Probabilities button (your existing code)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
@@ -184,7 +184,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          // Botão de editar perguntas (seu código existente)
+          // Edit questions button (your existing code)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
@@ -211,7 +211,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          // Espaço adicional para garantir que os botões não fiquem sob o botão flutuante
+          // Additional space to ensure buttons don't stay under floating button
           const SizedBox(height: 100),
         ],
       ),
@@ -237,7 +237,7 @@ class SettingsScreenState extends State<SettingsScreen> {
       context: context,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          backgroundColor: settingsColor, // Fundo do AlertDialog
+          backgroundColor: settingsColor, // AlertDialog background
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           title: const Text(
             'Informações dos Jogos',
@@ -256,7 +256,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       const SizedBox(height: 15),
                       Text(
-                        entry.key, // Nome do jogo
+                        entry.key, // Game name
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -265,7 +265,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        entry.value, // Descrição do jogo
+                        entry.value, // Game description
                         style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
                     ],

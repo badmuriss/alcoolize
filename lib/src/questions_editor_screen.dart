@@ -16,7 +16,7 @@ class QuestionsEditorScreen extends StatefulWidget {
 class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   List<String> questions = [];
-  // Para o jogo CARTAS, armazenamos separadamente a pergunta e o tipo
+  // For CARTAS game, we store the question and type separately
   List<Map<String, dynamic>> cardsQuestions = [];
   bool isLoading = true;
   bool hasChanges = false;
@@ -36,7 +36,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     
     setState(() {
       if (widget.gameName == 'CARTAS') {
-        // Para CARTAS, parseamos o formato especial
+        // For CARTAS, we parse the special format
         cardsQuestions = loadedQuestions.map((q) {
           final parts = q.split(',');
           final questionText = parts[0];
@@ -116,13 +116,13 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     List<String> questionsToSave;
     
     if (widget.gameName == 'CARTAS') {
-      // Converte de volta para o formato "pergunta,boolean"
+      // Convert back to "question,boolean" format
       questionsToSave = cardsQuestions
           .where((q) => q['text'].trim().isNotEmpty)
           .map((q) => "${q['text']},${q['isPersonal']}")
           .toList();
     } else {
-      // Filtra perguntas vazias
+      // Filter empty questions
       questionsToSave = questions.where((q) => q.trim().isNotEmpty).toList();
     }
     
@@ -291,7 +291,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Botão para adicionar nova pergunta
+            // Button to add new question
             FloatingActionButton(
               heroTag: 'add',
               onPressed: _addNewQuestion,
@@ -299,7 +299,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
               foregroundColor: settingsColor,
               child: const Icon(Icons.add),
             ),
-            // Botão para salvar alterações
+            // Button to save changes
             FloatingActionButton(
               heroTag: 'save',
               onPressed: hasChanges ? _saveQuestions : null,
@@ -330,7 +330,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Número da pergunta
+                // Question number
                 Container(
                   width: 30,
                   height: 30,
@@ -345,7 +345,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                   ),
                 ),
                 const SizedBox(width: 15),
-                // Campo de texto para editar a pergunta
+                // Text field to edit the question
                 Expanded(
                   child: TextFormField(
                     initialValue: questions[index],
@@ -359,7 +359,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                     onChanged: (value) => _updateQuestion(index, value),
                   ),
                 ),
-                // Botão para remover a pergunta
+                // Button to remove the question
                 IconButton(
                   icon: const Icon(Icons.delete, color: Colors.white70),
                   onPressed: () => _removeQuestion(index),
@@ -390,7 +390,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Número da pergunta
+                    // Question number
                     Container(
                       width: 30,
                       height: 30,
@@ -405,7 +405,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                       ),
                     ),
                     const SizedBox(width: 15),
-                    // Campo de texto para editar a pergunta
+                    // Text field to edit the question
                     Expanded(
                       child: TextFormField(
                         initialValue: cardsQuestions[index]['text'] as String,
@@ -419,14 +419,14 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                         onChanged: (value) => _updateQuestion(index, value),
                       ),
                     ),
-                    // Botão para remover a pergunta
+                    // Button to remove the question
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.white70),
                       onPressed: () => _removeQuestion(index),
                     ),
                   ],
                 ),
-                // Switch para alternar entre pergunta pessoal e geral
+                // Switch to toggle between personal and general question
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, right: 10.0),
                   child: Row(

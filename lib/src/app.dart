@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   
   const MyApp({
     super.key,
-    required this.settingsController, // Parâmetro obrigatório
+    required this.settingsController, // Required parameter
   });
  
   final SettingsController settingsController;
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Alcoolize',
       theme: ThemeData(
-        fontFamily: 'Mesmerize', // Definindo fonte padrão
+        fontFamily: 'Mesmerize', // Setting default font
         primarySwatch: Colors.purple,
       ),
       home: const HomeScreen(),
