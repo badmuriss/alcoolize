@@ -1,0 +1,81 @@
+Cante uma música escolhida por outro jogador (ou beba 2 doses),true
+Todos devem beber um gole de suas bebidas,false
+Troque de lugar com o jogador à sua esquerda (ou beba 1 dose),true
+Imite um animal à escolha dos outros jogadores (ou beba 2 doses),true
+Dance sem música por 30 segundos (ou beba 2 doses),true
+Escolha alguém para beber no seu lugar (ou beba 2 doses),true
+Todos os jogadores devem dizer algo embaraçoso sobre si mesmos (ou beba 2 doses),false
+Finja que está atendendo uma ligação falsa (ou beba 1 dose),true
+Todos devem levantar e fazer uma pose de herói (ou beba 1 dose),false
+Troque de roupa com alguém por um turno (ou beba 3 doses),true
+Tente contar uma piada e faça os outros rirem (ou beba 2 doses),true
+Todos os jogadores devem trocar de lugar entre si (ou beba 1 dose),false
+Deixe alguém enviar uma mensagem de texto do seu telefone (ou beba 3 doses),true
+Beba um copo d'água sem usar as mãos (ou beba 1 dose),true
+Todos devem dançar como se estivessem em uma festa falsa (ou beba 2 doses),false
+Coma um pedaço de limão sem fazer careta (ou beba 2 doses),true
+Todos os jogadores devem beber duas doses (ou beba 2 doses),false
+Dê um selinho em alguém da roda (ou beba 2 doses),true
+Escolha uma pessoa para dançar com você por 1 minuto (ou beba 2 doses),true
+Quem já deu um beijo em alguém na festa deve beber 2 doses,false
+Escolha alguém para fazer um 'passo de dança' ridículo (ou beba 1 dose),true
+Faça uma piada e, se ninguém rir, beba 2 doses,true
+Todos que estão usando roupa vermelha bebem 1 dose,false
+Todos que têm irmãos bebem 1 doses,false
+Escolha alguém para cantar a música que está tocando (ou beba 3 doses),true
+Todos que têm alguma tatuagem bebem 2 doses,false
+Faça uma dança maluca e escolha alguém para se juntar a você (ou beba 2 doses),true
+Escolha alguém para contar uma história embaraçosa (ou beba 2 doses),true
+Escolha uma pessoa e imite-a por 30 segundos (ou beba 2 doses),true
+Diga um segredo que você nunca contou a ninguém (ou beba 3 doses),true
+Todos que estão usando boné bebem 1 dose,false
+Escolha 1 pessoa para fazer uma 'roda de elogios' (ou beba 2 doses),true
+Faça uma imitação de uma celebridade e faça alguém adivinhar (ou beba 2 doses),true
+Escolha 2 pessoas para fazerem um 'desafio de dublagem' (ou beba 2 doses),true
+Quem já ficou com alguém na festa deve beber 2 doses,false
+Escolha alguém e finja que vocês estão em um comercial (ou beba 2 doses),true
+Todos que usam óculos bebem 1 dose,false
+Diga algo que você gostaria de mudar em sua vida (ou beba 2 doses),true
+Todos que estão de chinelos bebem 1 dose,false
+Faça uma 'declaração de amor' exagerada para alguém (ou beba 2 doses),true
+Escolha 2 pessoas para fazerem um 'desafio de selfies' (ou beba 1 dose),true
+Escolha alguém para fazer uma 'pose de modelo' (ou beba 2 doses),true
+Todos que estão usando roupa nova bebem 1 dose,false
+Escolha uma pessoa para dar um 'carinho' em você (ou beba 1 dose),true
+Faça uma 'serenata' para alguém escolhido (ou beba 2 doses),true
+Quem já se esqueceu de uma data importante deve beber 2 doses,false
+Escolha 2 pessoas para dançar como se estivessem em um clipe musical (ou beba 2 doses),true
+Todos que têm um animal de estimação bebem 1 dose,false
+Escolha alguém para fazer uma 'imitação de sotaque' (ou beba 2 doses),true
+Diga o que você mais admira em alguém na roda (ou beba 2 doses),true
+Todos que têm o cabelo encaracolado bebem 1 dose,false
+Escolha 1 pessoa para fazer uma 'cena de filme' com você (ou beba 2 doses),true
+Escolha alguém e faça uma 'competição de risadas' (quem rir primeiro bebe 1 dose),true
+Escolha uma pessoa para fazer uma 'demonstração de talento' (ou beba 2 doses),true
+Quem nunca dançou em casa sozinho deve beber 2 doses,false
+Escolha 1 pessoa e diga uma frase engraçada sobre ela (ou beba 1 dose),true
+Todos que têm um vício em redes sociais bebem 1 dose,false
+Escolha 2 pessoas para contarem a pior experiência de festa que já tiveram (ou beba 2 doses),true
+Faça um 'desafio de dança' e escolha 1 pessoa para competir com você (ou beba 2 doses),true
+Todos que têm um hobby inusitado bebem 1 dose,false
+Escolha alguém para fazer uma 'declaração de amor' falsa (ou beba 2 doses),true
+Diga algo que você gostaria de realizar antes do final do ano (ou beba 2 doses),true
+Todos que estão usando a mesma cor de roupa bebem 1 dose,false
+Escolha 1 pessoa para fazer uma 'cena de ciúmes' (ou beba 2 doses),true
+Quem já teve um sonho estranho com alguém da roda deve beber 2 doses,false
+Escolha alguém e faça uma 'imitação de um personagem de filme' (ou beba 2 doses),true
+Todos que têm mais de uma rede social bebem 1 dose,false
+Escolha 2 pessoas para contarem uma mentira e uma verdade sobre si mesmas (ou beba 2 doses),true
+Escolha 1 pessoa para fazer uma 'mímica' e adivinhar o que é (ou beba 2 doses),true
+Todos que estão usando perfume ou colônia bebem 1 dose,false
+Escolha alguém para dar um 'beijo no ar' para todos (ou beba 1 dose),true
+Escolha 1 pessoa para fazer um 'jogo de perguntas' com você (ou beba 2 doses),true
+Escolha 2 pessoas para dançar como se estivessem em uma competição (ou beba 2 doses),true
+Escolha alguém e faça uma 'pose ridícula' para uma foto (ou beba 2 doses),true
+Todos que têm um sonho maluco bebem 1 dose,false
+Escolha 1 pessoa para fazer uma 'performance de stand-up' por 1 minuto (ou beba 3 doses),true
+Escolha alguém para compartilhar uma 'experiência de festa' engraçada (ou beba 2 doses),true
+Todos que têm um apelido devem beber 1 dose,false
+Escolha 2 pessoas para fazerem um 'duelo de dança' (ou beba 2 doses),true
+Usuários de Iphone bebem,false
+Usuários de Android bebem,false
