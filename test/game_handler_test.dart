@@ -18,23 +18,16 @@ void main() {
     test('should have all expected games defined', () {
       expect(GameHandler.allGames.length, equals(8));
       expect(GameHandler.allGames.keys, contains('PARANOIA'));
-      expect(GameHandler.allGames.keys, contains('QUEM É MAIS PROVÁVEL'));
-      expect(GameHandler.allGames.keys, contains('EU NUNCA'));
+      expect(GameHandler.allGames.keys, contains('MOST_LIKELY_TO'));
+      expect(GameHandler.allGames.keys, contains('NEVER_HAVE_I_EVER'));
       expect(GameHandler.allGames.keys, contains('MEDUSA'));
-      expect(GameHandler.allGames.keys, contains('PALAVRA PROIBIDA'));
-      expect(GameHandler.allGames.keys, contains('TIBITAR'));
-      expect(GameHandler.allGames.keys, contains('ROLETINHA'));
-      expect(GameHandler.allGames.keys, contains('CARTAS'));
+      expect(GameHandler.allGames.keys, contains('FORBIDDEN_WORD'));
+      expect(GameHandler.allGames.keys, contains('MYSTERY_VERB'));
+      expect(GameHandler.allGames.keys, contains('ROULETTE'));
+      expect(GameHandler.allGames.keys, contains('CARDS'));
     });
 
-    test('should have game descriptions for all games', () {
-      for (String gameName in GameHandler.allGames.keys) {
-        expect(GameHandler.gameDescriptions.containsKey(gameName), isTrue,
-            reason: 'Missing description for game: $gameName');
-        expect(GameHandler.gameDescriptions[gameName]!.isNotEmpty, isTrue,
-            reason: 'Empty description for game: $gameName');
-      }
-    });
+    // Game descriptions are now handled through localization
 
     test('should have default weights for all games', () {
       expect(GameHandler.allGames.length, equals(8));

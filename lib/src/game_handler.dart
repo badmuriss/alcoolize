@@ -2,12 +2,13 @@ import 'dart:math';
 import 'package:alcoolize/src/cards_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'localization/generated/app_localizations.dart';
 import 'paranoia_screen.dart';
-import 'who_is_more_likely_screen.dart';
+import 'most_likely_to_screen.dart';
 import 'never_have_i_ever_screen.dart';
 import 'medusa_screen.dart';
 import 'forbidden_word_screen.dart';
-import 'tibitar_screen.dart';
+import 'mystery_verb_screen.dart';
 import 'roulette_screen.dart';
 
 class GameHandler {
@@ -18,52 +19,76 @@ class GameHandler {
 
   static final Map<String, Widget Function(BuildContext, List<String>)> allGames = {
     'PARANOIA': (context, players) => ParanoiaScreen(playersList: players),
-    'QUEM É MAIS PROVÁVEL': (context, players) => WhoIsMoreLikelyScreen(playersList: players), 
-    'EU NUNCA': (context, players) => NeverHaveIEverScreen(playersList: players),
+    'MOST_LIKELY_TO': (context, players) => MostLikelyToScreen(playersList: players), 
+    'NEVER_HAVE_I_EVER': (context, players) => NeverHaveIEverScreen(playersList: players),
     'MEDUSA': (context, players) => MedusaScreen(playersList: players),
-    'PALAVRA PROIBIDA': (context, players) => ForbiddenWordScreen(playersList: players, usedWords: GameHandler.usedWords),
-    'TIBITAR': (context, players) => TibitarScreen(playersList: players),
-    'ROLETINHA': (context, players) => RouletteScreen(playersList: players),
-    'CARTAS': (context, players) => CardsScreen(playersList: players),
+    'FORBIDDEN_WORD': (context, players) => ForbiddenWordScreen(playersList: players, usedWords: GameHandler.usedWords),
+    'MYSTERY_VERB': (context, players) => MysteryVerbScreen(playersList: players),
+    'ROULETTE': (context, players) => RouletteScreen(playersList: players),
+    'CARDS': (context, players) => CardsScreen(playersList: players),
   };
 
-  // Detailed descriptions of each game
-  static final Map<String, String> gameDescriptions = {
-    'TIBITAR': 'A roda deve fazer perguntas para o jogador sobre o verbo usando "tibitar" para substituí-lo. '
-               'Exemplo: "É fácil tibitar?", "Onde se tibita com frequência?". '
-               'Revele o verbo escondido ao final. A roda tem 3 chances de adivinhar o verbo, cada um que errar bebe uma dose, '
-               'caso alguém acerte, o jogador da vez deve beber 1 dose.',
-    'EU NUNCA': 'Para jogar Eu Nunca, o host deve ler a afirmação. Quem já fez a ação deve beber uma dose.',
-    'ROLETINHA': 'Rode a roleta e veja o que o destino te aguarda.',
-    'PARANOIA': 'Para jogar Paranoia, o jogador deve ler a pergunta revelada e '
-                'apontar para quem acha que é a resposta. Se a pessoa apontada '
-                'quiser saber a pergunta, ela deve beber duas doses. Caso a pessoa '
-                'se recuse a responder, ela deve beber três doses.',
-    'QUEM É MAIS PROVÁVEL': 'Para jogar Mais Provável, o host deve ler a pergunta e, '
-                            'todos apontarem para quem eles acham que é a resposta certa, '
-                            'a pessoa mais apontada bebe uma dose, em caso de empate, ambos bebem.',
-    'PALAVRA PROIBIDA': 'Para jogar Palavra Proibida, sorteie uma palavra. Quem falar a palavra proibida durante a rodada, '
-                        'deve beber uma dose. As palavras são removidas da lista até o fim do jogo.',
-    'MEDUSA': 'No jogo Medusa, todos os jogadores devem abaixar a cabeça e, '
-              'ao sinal, levantar. Se você fizer contato visual com outro jogador, '
-              'ambos devem beber uma dose.',
-    'CARTAS': 'Neste jogo, uma carta com um desafio será revelada. Se o desafio for individual, o jogador da vez deve realizá-lo.',
-  };
+  // Game names and descriptions are now handled through localization
+  static String getGameName(BuildContext context, String gameKey) {
+    switch (gameKey) {
+      case 'MYSTERY_VERB':
+        return AppLocalizations.of(context)!.mysteryVerb;
+      case 'NEVER_HAVE_I_EVER':
+        return AppLocalizations.of(context)!.neverHaveIEver;
+      case 'ROULETTE':
+        return AppLocalizations.of(context)!.roulette;
+      case 'PARANOIA':
+        return AppLocalizations.of(context)!.paranoia;
+      case 'MOST_LIKELY_TO':
+        return AppLocalizations.of(context)!.mostLikelyTo;
+      case 'FORBIDDEN_WORD':
+        return AppLocalizations.of(context)!.forbiddenWord;
+      case 'MEDUSA':
+        return AppLocalizations.of(context)!.medusa;
+      case 'CARDS':
+        return AppLocalizations.of(context)!.cards;
+      default:
+        return gameKey;
+    }
+  }
 
-  // Word list for 'Palavra Proibida' game
+  static String getGameDescription(BuildContext context, String gameKey) {
+    switch (gameKey) {
+      case 'MYSTERY_VERB':
+        return AppLocalizations.of(context)!.mysteryVerbGameInfo;
+      case 'NEVER_HAVE_I_EVER':
+        return AppLocalizations.of(context)!.neverHaveIEverGameInfo;
+      case 'ROULETTE':
+        return AppLocalizations.of(context)!.rouletteGameInfo;
+      case 'PARANOIA':
+        return AppLocalizations.of(context)!.paranoiaGameInfo;
+      case 'MOST_LIKELY_TO':
+        return AppLocalizations.of(context)!.mostLikelyGameInfo;
+      case 'FORBIDDEN_WORD':
+        return AppLocalizations.of(context)!.forbiddenWordGameInfo;
+      case 'MEDUSA':
+        return AppLocalizations.of(context)!.medusaGameInfo;
+      case 'CARDS':
+        return AppLocalizations.of(context)!.cardsGameInfo;
+      default:
+        return '';
+    }
+  }
+
+  // Word list for 'Forbidden Word' game
   static List<String> usedWords = [];
 
   // Define default weights for each game.
   // These are the values that will be used when probabilities are reset.
   static final Map<String, double> _defaultGameWeights = {
     'PARANOIA': 9.0,
-    'QUEM É MAIS PROVÁVEL': 21.0,
-    'EU NUNCA': 22.0,
+    'MOST_LIKELY_TO': 21.0,
+    'NEVER_HAVE_I_EVER': 22.0,
     'MEDUSA': 8.0,
-    'PALAVRA PROIBIDA': 2.0,
-    'TIBITAR': 2.0,
-    'ROLETINHA': 12.0,
-    'CARTAS': 24.0,
+    'FORBIDDEN_WORD': 2.0,
+    'MYSTERY_VERB': 2.0,
+    'ROULETTE': 12.0,
+    'CARDS': 24.0,
   };
 
   // Weight of each game (this is the map that will be modified and saved)
@@ -78,20 +103,20 @@ class GameHandler {
     return _enabledGames.containsKey(gameName) && _enabledGames[gameName] == true;
   }
 
-  // Método para inicializar o GameHandler com dados do SharedPreferences
+  // Method to initialize GameHandler with SharedPreferences data
   static Future<void> initialize() async {
     if (!_initialized) {
       try {
-        // Inicializa o mapa de jogos habilitados com valores padrão
+        // Initialize enabled games map with default values
         _enabledGames = {};
         for (var gameName in allGames.keys) {
           _enabledGames[gameName] = true;
         }
 
-        // Carrega as configurações salvas
+        // Load saved settings
         await _loadSettings();
         
-        // Atualiza a lista de jogos ativos
+        // Update active games list
         _updateActiveGamesList();
         
         _initialized = true;
@@ -101,35 +126,35 @@ class GameHandler {
     }
   }
 
-  // Método para carregar configurações do SharedPreferences
+  // Method to load settings from SharedPreferences
   static Future<void> _loadSettings() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       
-      // Carrega os jogos habilitados
+      // Load enabled games
       _enabledGames.forEach((game, _) {
         _enabledGames[game] = prefs.getBool(game) ?? true;
       });
       
-      // Carrega o valor de canRepeat
+      // Load canRepeat value
       _canRepeat = prefs.getBool('canRepeat') ?? false;
       
-      // Carrega os pesos dos jogos
-      // Primeiro, inicializa gameWeights com os valores padrão
+      // Load game weights
+      // First, initialize gameWeights with default values
       gameWeights = Map.from(_defaultGameWeights);
       
-      // Em seguida, sobrescreve com os valores salvos, se existirem
+      // Then, overwrite with saved values, if they exist
       for (var gameName in allGames.keys) {
         double? savedWeight = prefs.getDouble('weight_$gameName');
         if (savedWeight != null) {
           gameWeights[gameName] = savedWeight;
         } else {
-          // Se não houver peso salvo, usa o peso padrão, mas considera se o jogo está desativado.
-          // Isso garante que, mesmo sem um peso salvo, o peso padrão seja definido.
+          // If there's no saved weight, use default weight, but consider if the game is disabled.
+          // This ensures that, even without a saved weight, the default weight is set.
           gameWeights[gameName] = _defaultGameWeights[gameName] ?? 0.0;
         }
 
-        // IMPORTANTE: Se um jogo estiver desativado no momento, seu peso DEVE ser 0.0
+        // IMPORTANT: If a game is currently disabled, its weight MUST be 0.0
         if (!isGameEnabled(gameName)) {
           gameWeights[gameName] = 0.0;
         }
@@ -139,7 +164,7 @@ class GameHandler {
     }
   }
 
-  // Método para atualizar a lista de jogos ativos com base nos jogos habilitados
+  // Method to update active games list based on enabled games
   static void _updateActiveGamesList() {
     activeGamesList.clear();
     
@@ -149,7 +174,7 @@ class GameHandler {
       }
     });
 
-    // Se nenhum jogo estiver ativo, ativa todos
+    // If no games are active, enable all
     if (activeGamesList.isEmpty) {
       for (var gameName in _enabledGames.keys) {
         if (allGames.containsKey(gameName)) {
@@ -160,44 +185,44 @@ class GameHandler {
     }
   }
 
-  // Método para atualizar a lista de jogos e salvar configurações
+  // Method to update games list and save settings
   static Future<void> updateGamesList(Map<String, bool> enabledGames, [bool? canRepeat]) async {
-    // Atualiza o mapa de jogos habilitados
+    // Update enabled games map
     _enabledGames = Map.from(enabledGames);
     
-    // Atualiza o valor de canRepeat se fornecido
+    // Update canRepeat value if provided
     if (canRepeat != null) {
       _canRepeat = canRepeat;
     }
     
-    // Atualiza a lista de jogos ativos
+    // Update active games list
     _updateActiveGamesList();
     
-    // Atualiza os pesos dos jogos desabilitados para 0
+    // Update disabled games weights to 0
     gameWeights.forEach((gameName, weight) {
       if (_enabledGames[gameName] != true) {
         gameWeights[gameName] = 0.0;
       }
     });
     
-    // Salva as configurações
+    // Save settings
     await _saveSettings();
   }
 
-  // Método para salvar configurações no SharedPreferences
+  // Method to save settings to SharedPreferences
   static Future<void> _saveSettings() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       
-      // Salva os jogos habilitados
+      // Save enabled games
       _enabledGames.forEach((game, enabled) {
         prefs.setBool(game, enabled);
       });
       
-      // Salva o valor de canRepeat
+      // Save canRepeat value
       prefs.setBool('canRepeat', _canRepeat);
       
-      // Salva os pesos dos jogos
+      // Save game weights
       gameWeights.forEach((gameName, weight) {
         prefs.setDouble('weight_$gameName', weight);
       });
@@ -206,23 +231,23 @@ class GameHandler {
     }
   }
 
-  // Método para atualizar os pesos dos jogos
+  // Method to update game weights
   static Future<void> updateGameWeights(Map<String, double> newWeights) async {
     gameWeights = Map.from(newWeights);
     await _saveSettings();
   }
 
   static void resetGameWeightsToDefault() {
-    // Cria um novo mapa para armazenar os pesos resetados
+    // Create a new map to store reset weights
     Map<String, double> newGameWeights = {};
 
-    // Itera por todos os jogos conhecidos
+    // Iterate through all known games
     for (var gameName in allGames.keys) {
       if (isGameEnabled(gameName)) {
-        // Se o jogo estiver atualmente habilitado, reseta seu peso para o valor padrão
+        // If the game is currently enabled, reset its weight to default value
         newGameWeights[gameName] = _defaultGameWeights[gameName] ?? 0.0;
       } else {
-        // Se o jogo estiver atualmente desabilitado, garante que seu peso permaneça 0.0
+        // If the game is currently disabled, ensure its weight remains 0.0
         newGameWeights[gameName] = 0.0;
       }
     }
@@ -233,12 +258,24 @@ class GameHandler {
   static Type? lastGameType;
 
   static Widget chooseRandomGame(BuildContext context, List<String> playersList) {
-    // Verifica se há jogos disponíveis
+    // Check if there are available games
     if (activeGamesList.isEmpty) {
       _updateActiveGamesList();
     }
 
-    // Filtra os jogos ativos para garantir que não seja o mesmo tipo que o último jogo
+    // Additional safety: if still empty after update, enable all games
+    if (activeGamesList.isEmpty) {
+      // Emergency fallback: enable all games with default weights
+      for (var gameName in allGames.keys) {
+        _enabledGames[gameName] = true;
+        gameWeights[gameName] = _defaultGameWeights[gameName] ?? 10.0;
+      }
+      _updateActiveGamesList();
+      // Save the emergency settings
+      _saveSettings();
+    }
+
+    // Filter active games to ensure it's not the same type as the last game
     final availableGames = activeGamesList.where((game) {
       final gameType = game(context, playersList).runtimeType;
       return gameType != lastGameType || _canRepeat;
@@ -246,24 +283,27 @@ class GameHandler {
 
     Widget Function(BuildContext, List<String>) randomGame;
 
-    // Escolhe um jogo aleatoriamente, garantindo que o tipo não se repita
+    // Choose a game randomly, ensuring the type doesn't repeat
     if (availableGames.isNotEmpty) {
-      // Escolhe aleatoriamente com base nos pesos
+      // Choose randomly based on weights
       final weightedGames = _getWeightedGames(availableGames);
       randomGame = weightedGames[Random().nextInt(weightedGames.length)];
-    } else {
-      // Se não houver mais opções, permite repetir jogos
+    } else if (activeGamesList.isNotEmpty) {
+      // If there are no more options, allow repeating games
       randomGame = activeGamesList[Random().nextInt(activeGamesList.length)];
+    } else {
+      // Final fallback: this should never happen after the safety checks above
+      throw StateError('Critical error: No games available after emergency activation. Please check game initialization.');
     }
 
-    // Atualiza o tipo do último jogo escolhido
+    // Update the type of the last chosen game
     lastGameType = randomGame(context, playersList).runtimeType;
 
-    // Retorna o widget do jogo escolhido
+    // Return the chosen game widget
     return randomGame(context, playersList);
   }
 
-  // Função para obter jogos baseados nos pesos
+  // Function to get games based on weights
   static List<Widget Function(BuildContext, List<String>)> _getWeightedGames(List<Widget Function(BuildContext, List<String>)> availableGames) {
     List<Widget Function(BuildContext, List<String>)> weightedGames = [];
 
@@ -271,10 +311,15 @@ class GameHandler {
       String gameName = allGames.entries.firstWhere((entry) => entry.value == game).key;
       double weight = gameWeights[gameName] ?? 0.0;
 
-      // Adiciona o jogo à lista de acordo com seu peso
+      // Add the game to the list according to its weight
       for (int i = 0; i < weight; i++) {
         weightedGames.add(game);
       }
+    }
+
+    // If no games were added based on weights (all weights < 1), add all available games once
+    if (weightedGames.isEmpty && availableGames.isNotEmpty) {
+      weightedGames.addAll(availableGames);
     }
 
     return weightedGames;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'questions_editor_screen.dart';
 import 'questions_manager.dart';
+import 'game_handler.dart';
+import 'localization/generated/app_localizations.dart';
 
 class EditQuestionsScreen extends StatelessWidget {
   final Color settingsColor = const Color(0xFF6A0DAD);
@@ -14,7 +16,7 @@ class EditQuestionsScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 60,
         backgroundColor: settingsColor,
-        title: const Text('Editar Perguntas/Palavras', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.editQuestions, style: const TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -23,18 +25,18 @@ class EditQuestionsScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+        padding: const EdgeInsets.all(20),
         children: QuestionsManager.gameFiles.keys.map((String gameName) {
           IconData gameIcon;
           String subtitle;
           
           // Define icon and subtitle based on game type
-          if (gameName == 'TIBITAR' || gameName == 'PALAVRA PROIBIDA') {
+          if (gameName == 'MYSTERY_VERB' || gameName == 'FORBIDDEN_WORD') {
             gameIcon = Icons.text_fields;
-            subtitle = 'Editar palavras';
+            subtitle = AppLocalizations.of(context)!.editWords;
           } else {
             gameIcon = Icons.question_answer;
-            subtitle = 'Editar perguntas';
+            subtitle = AppLocalizations.of(context)!.editQuestionsSubtitle;
           }
           
           return Card(
@@ -42,7 +44,7 @@ class EditQuestionsScreen extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 12),
             child: ListTile(
               leading: Icon(gameIcon, color: Colors.white),
-              title: Text(gameName, style: const TextStyle(color: Colors.white)),
+              title: Text(GameHandler.getGameName(context, gameName), style: const TextStyle(color: Colors.white)),
               subtitle: Text(subtitle, style: const TextStyle(color: Colors.white70)),
               trailing: const Icon(Icons.edit, color: Colors.white),
               onTap: () async {

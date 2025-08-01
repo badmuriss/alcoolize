@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/base_game_screen.dart';
 import 'package:flutter/material.dart';
+import 'localization/generated/app_localizations.dart';
 
 class MedusaScreen extends BaseGameScreen {
   const MedusaScreen({super.key, required super.playersList});
@@ -15,30 +16,30 @@ class MedusaScreenState extends BaseGameScreenState<MedusaScreen> {
   Color get gameColor => medusaColor;
 
   @override
-  String get gameTitle => 'MEDUSA';
+  String get gameTitle => AppLocalizations.of(context)!.medusa;
 
   @override
   IconData get gameIcon => Icons.remove_red_eye;
 
   @override
-  String get gameInstructions => 'No jogo Medusa, todos os jogadores devem abaixar a cabeça e, '
-      'ao sinal, levantar. Se você fizer contato visual com outro jogador, '
-      'ambos devem beber uma dose.';
+  String get gameInstructions => AppLocalizations.of(context)!.medusaGameInfo;
 
   @override
   Widget buildGameContent() {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 60.0),
-          child: Text(
-            'Abaixe a cabeça e prepare-se!',
-            style: TextStyle(fontSize: 28, color: Colors.white),
-            textAlign: TextAlign.center,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60.0),
+            child: Text(
+              AppLocalizations.of(context)!.medusaGameText,
+              style: const TextStyle(fontSize: 28, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-        const SizedBox(height: 120),
-      ],
+        ],
+      ),
     );
   }
 }

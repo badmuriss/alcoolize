@@ -24,6 +24,7 @@ Alcoolize is a **cross-platform Flutter app** featuring a curated collection of 
 ### ✨ Key Features
 
 - 🎲 **8 Different Games** - From classic "Never Have I Ever" to unique "Medusa" 
+- 🌍 **Multi-Language Support** - English, Spanish, Portuguese with automatic app restart
 - ⚙️ **Game Probability Control** - Adjust how often each game appears
 - ✏️ **Custom Content Editor** - Edit questions and words for each game
 - 🎨 **Modern UI/UX** - Clean, responsive design that works on all devices

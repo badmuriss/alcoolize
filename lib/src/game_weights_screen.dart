@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'game_handler.dart';
+import 'localization/generated/app_localizations.dart';
 
 class GameWeightsScreen extends StatefulWidget {
   const GameWeightsScreen({super.key});
@@ -66,7 +67,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
       // Final adjustment on game with highest weight to ensure 100.0
       // This adjustment should only occur if total is still not 100.0
       if (totalWeight != 100.0) {
-        // Encontra o jogo ativo com maior peso para ajustar
+        // Find the active game with highest weight to adjust
         String? gameToAdjust;
         double maxWeight = -1.0;
 
@@ -124,8 +125,8 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
     // Don't allow saving if total weight is greater than 100
     if (totalWeight > 100) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('O peso total não pode exceder 100%'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.weightExceedError),
           backgroundColor: Colors.red,
         ),
       );
@@ -150,7 +151,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Erro ao salvar pesos: $e'),
+            content: Text(AppLocalizations.of(context)!.saveWeightsError(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -187,8 +188,8 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Probabilidades resetadas para as configurações padrão!'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.probabilitiesReset),
           backgroundColor: Colors.green,
         ),
       );
@@ -203,7 +204,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
         toolbarHeight: 60,
         backgroundColor: settingsColor,
         title:
-            const Text('Configurar Probabilidades', style: TextStyle(color: Colors.white)),
+            Text(AppLocalizations.of(context)!.configureProbabilities, style: const TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -222,13 +223,13 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Peso Total: ${totalWeight.toStringAsFixed(1)}%',
+                        AppLocalizations.of(context)!.totalWeight(totalWeight.toStringAsFixed(1)),
                         style: const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       if (!isWeightValid)
-                        const Text(
-                          'Deve ser 100%',
-                          style: TextStyle(fontSize: 16, color: Colors.white70),
+                        Text(
+                          AppLocalizations.of(context)!.mustBe100Percent,
+                          style: const TextStyle(fontSize: 16, color: Colors.white70),
                         ),
                     ],
                   ),
@@ -250,7 +251,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(gameName,
+                          Text(GameHandler.getGameName(context, gameName),
                               style: const TextStyle(color: Colors.white, fontSize: 16)),
                           Row(
                             children: [

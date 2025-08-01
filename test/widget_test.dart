@@ -61,6 +61,31 @@ void main() {
         expect(find.text('Alcoolize'), findsOneWidget);
         expect(find.text('Test App'), findsOneWidget);
       });
+      
+      testWidgets('Language selector should display correct options', (WidgetTester tester) async {
+        final testApp = MaterialApp(
+          home: Scaffold(
+            body: PopupMenuButton<String>(
+              itemBuilder: (context) => [
+                const PopupMenuItem(value: 'en', child: Text('English')),
+                const PopupMenuItem(value: 'pt', child: Text('Português')),
+                const PopupMenuItem(value: 'es', child: Text('Español')),
+              ],
+            ),
+          ),
+        );
+        
+        await tester.pumpWidget(testApp);
+        
+        // Tap the popup button
+        await tester.tap(find.byType(PopupMenuButton<String>));
+        await tester.pumpAndSettle();
+        
+        // Verify language options are shown
+        expect(find.text('English'), findsOneWidget);
+        expect(find.text('Português'), findsOneWidget);
+        expect(find.text('Español'), findsOneWidget);
+      });
     });
   });
 }

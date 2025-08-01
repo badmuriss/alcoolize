@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/game_handler.dart';
 import 'package:flutter/material.dart';
+import 'localization/generated/app_localizations.dart';
 
 class PlayersScreen extends StatefulWidget {
   const PlayersScreen({super.key});
@@ -41,7 +42,7 @@ class PlayersScreenState extends State<PlayersScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // Voltar para a tela inicial
+            Navigator.pop(context); // Return to initial screen
           },
         ),
         backgroundColor: const Color(0xFF6A0DAD),
@@ -56,15 +57,15 @@ class PlayersScreenState extends State<PlayersScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Colors.transparent, // Cor transparente para o container
-                  borderRadius: BorderRadius.circular(12), // Bordas arredondadas
+                  color: Colors.transparent, // Transparent color for the container
+                  borderRadius: BorderRadius.circular(12), // Rounded borders
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Texto "Quantidade de Jogadores"
-                    const Text(
-                      'Quantos Jogadores?',
+                    // "Number of Players" text
+                    Text(
+                      AppLocalizations.of(context)!.playersQuestion,
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
@@ -72,7 +73,7 @@ class PlayersScreenState extends State<PlayersScreen> {
                       ),
                     ),
 
-                    // Contador de jogadores
+                    // Player counter
                     Row(
                       children: [
                         IconButton(
@@ -106,22 +107,23 @@ class PlayersScreenState extends State<PlayersScreen> {
               ),
               const SizedBox(height: 20),
 
-              // Gerar campos de input com base no contador
+              // Generate input fields based on the counter
               Expanded(
                 child: ListView.builder(
                   itemCount: playerCount,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                       child: TextFormField(
                         controller: controllers[index], // Use the controller
                         decoration: InputDecoration(
-                          hintText: '${index + 1}° vítima',
+                          hintText: AppLocalizations.of(context)!.victimPlaceholder(index + 1),
                           hintStyle: const TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(12),
@@ -132,7 +134,7 @@ class PlayersScreenState extends State<PlayersScreen> {
                         style: const TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Por favor, insira um nome';
+                            return AppLocalizations.of(context)!.pleaseEnterName;
                           }
                           return null;
                         },
@@ -145,12 +147,12 @@ class PlayersScreenState extends State<PlayersScreen> {
                 ),
               ),
 
-              // Adicionar espaçamento entre os campos de texto e o botão
-              const SizedBox(height: 40), // Aumentar o espaçamento acima do botão
+              // Add spacing between text fields and button
+              const SizedBox(height: 40), // Increase spacing above the button
 
-              // Botão "Começar o Jogo" alinhado mais acima
+              // "Start Game" button aligned higher
               Align(
-                alignment: Alignment.bottomCenter, // Alinha o botão na parte inferior
+                alignment: Alignment.bottomCenter, // Aligns the button at the bottom
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -171,10 +173,10 @@ class PlayersScreenState extends State<PlayersScreen> {
                     foregroundColor: const Color(0xFF6A0DAD), 
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                   ),
-                  child: const Text(
-                    'Começar o Jogo',
+                  child: Text(
+                    AppLocalizations.of(context)!.startGame,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

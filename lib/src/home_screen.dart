@@ -1,6 +1,8 @@
 import 'package:alcoolize/src/players_screen.dart';
 import 'package:alcoolize/src/settings_screen.dart';
+import 'package:alcoolize/src/language_selector.dart';
 import 'package:flutter/material.dart';
+import 'localization/generated/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +24,8 @@ class HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: homeColor, 
         actions: [
+          const LanguageSelector(),
+          const SizedBox(width: 8),
           IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             icon: const Icon(Icons.settings, size: 40, color: Colors.white,),
@@ -99,7 +103,7 @@ class HomeScreenState extends State<HomeScreen> {
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 70),
-                  width: 200,
+                  width: 250,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   decoration: BoxDecoration(
                     color: _isPressed ? Colors.white : Colors.transparent,
@@ -108,7 +112,7 @@ class HomeScreenState extends State<HomeScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'ALCOOLIZE-SE',
+                      AppLocalizations.of(context)!.alcoolizeSe,
                       style: TextStyle(
                         color: _isPressed ? homeColor : Colors.white,
                         fontSize: 20,

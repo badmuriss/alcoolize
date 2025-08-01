@@ -24,6 +24,7 @@ Alcoolize é um **app multiplataforma em Flutter** com uma coleção curada de j
 ### ✨ Principais Recursos
 
 - 🎲 **8 Jogos Diferentes** - Do clássico "Eu Nunca" ao único "Medusa" 
+- 🌍 **Suporte Multilíngue** - Inglês, Espanhol, Português com reinício automático do app
 - ⚙️ **Controle de Probabilidade** - Ajuste a frequência com que cada jogo aparece
 - ✏️ **Editor de Conteúdo** - Edite perguntas e palavras de cada jogo
 - 🎨 **UI/UX Moderna** - Design limpo e responsivo que funciona em todos os dispositivos

@@ -1,18 +1,16 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:alcoolize/src/game_handler.dart';
-import 'package:alcoolize/src/home_screen.dart';
+import 'package:alcoolize/src/base_game_screen.dart';
+import 'localization/generated/app_localizations.dart';
 
-class RouletteScreen extends StatefulWidget {
-  final List<String> playersList;
-
-  const RouletteScreen({super.key, required this.playersList});
+class RouletteScreen extends BaseGameScreen {
+  const RouletteScreen({super.key, required super.playersList});
 
   @override
   RouletteScreenState createState() => RouletteScreenState();
 }
 
-class RouletteScreenState extends State<RouletteScreen> with SingleTickerProviderStateMixin {
+class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with SingleTickerProviderStateMixin {
   String? currentPlayer;
   String? result;
   late AnimationController _controller;
@@ -21,13 +19,25 @@ class RouletteScreenState extends State<RouletteScreen> with SingleTickerProvide
   bool showFab = false;
   static const rouletteColor = Colors.black;
 
-  final List<String> options = [
-    "Beba uma dose",
-    "Beba com um amigo",
-    "Passe a vez",
-    "Beba e gire de novo",
-    "Beba em dobro",
-    "Escolha alguém para beber"
+  @override
+  Color get gameColor => rouletteColor;
+
+  @override
+  String get gameTitle => AppLocalizations.of(context)!.roulette;
+
+  @override
+  IconData? get gameIcon => null;
+
+  @override
+  String get gameInstructions => AppLocalizations.of(context)!.rouletteGameInfo;
+
+  List<String> get options => [
+    AppLocalizations.of(context)!.drinkOneShot,
+    AppLocalizations.of(context)!.drinkWithFriend,
+    AppLocalizations.of(context)!.passTurn,
+    AppLocalizations.of(context)!.drinkAndSpinAgain,
+    AppLocalizations.of(context)!.drinkDouble,
+    AppLocalizations.of(context)!.chooseSomeoneToDrink
   ];
 
   @override
@@ -40,15 +50,6 @@ class RouletteScreenState extends State<RouletteScreen> with SingleTickerProvide
     );
     _animation = Tween<double>(begin: 0, end: 0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut)
-    );
-  }
-
-  void nextRound() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GameHandler.chooseRandomGame(context, widget.playersList),
-      ),
     );
   }
 
@@ -92,7 +93,7 @@ class RouletteScreenState extends State<RouletteScreen> with SingleTickerProvide
 
       setState(() {
         result = options[selectedIndex];
-        if (result == "Beba e gire de novo") {
+        if (result == AppLocalizations.of(context)!.drinkAndSpinAgain) {
           canSpinAgain = true;
         }
         showFab = true;
@@ -107,126 +108,78 @@ class RouletteScreenState extends State<RouletteScreen> with SingleTickerProvide
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: rouletteColor,
-      appBar: AppBar(
-        backgroundColor: rouletteColor,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 33,),
-          onPressed: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-              (Route<dynamic> route) => false,
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info, color: Colors.white, size: 33),
-            onPressed: _showInfoDialog,
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'ROLETINHA',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+  Widget buildFloatingActionButton() {
+    return showFab && !canSpinAgain
+        ? Container(
+            margin: const EdgeInsets.only(bottom: 20),
+            child: FloatingActionButton(
+              onPressed: nextRound,
+              backgroundColor: Colors.white,
+              foregroundColor: rouletteColor,
+              child: const Icon(Icons.arrow_forward),
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0),
-              child: Text(
-                'Jogador da vez: $currentPlayer',
-                style: const TextStyle(fontSize: 24, color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 20),
-           SizedBox(
-              width: 300,
-              height: 400,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Center(
-                    child: SizedBox(
-                      height: 300,
-                      width: 300,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          RotationTransition(
-                            turns: _animation,
-                            child: CustomPaint(
-                              painter: RoletaPainter(options.length, options.reversed.toList()),
-                              child: const SizedBox(width: 300, height: 300),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Positioned(
-                    top: -5,
-                    child: Icon(Icons.arrow_drop_down, size: 100, color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-
-            canSpinAgain 
-            ? ElevatedButton(
-              onPressed: spinWheel,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.red,
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              ),
-              child: const Text('Girar a roleta', style: TextStyle(fontSize: 18)),
-            )
-          : const SizedBox(height: 55),
-          const SizedBox(height: 160),
-          ],
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, 
-      floatingActionButton: showFab && !canSpinAgain
-      ? Container(
-        margin: const EdgeInsets.only(bottom: 20), 
-        child: FloatingActionButton(
-          onPressed: nextRound,
-          backgroundColor: Colors.white,
-          foregroundColor: rouletteColor, 
-          child: const Icon(Icons.arrow_forward), 
-        ),
-      ) 
-      : const SizedBox(height: 20),
-    );
+          )
+        : const SizedBox.shrink();
   }
 
-  void _showInfoDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: const Text(
-            'Rode a roleta e veja o que o destino te aguarda.',
-            style: TextStyle(fontSize: 18),
-          ),
-          actions: [
-            TextButton(
-              child: const Text('Fechar'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+  @override
+  Widget buildGameContent() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60.0),
+            child: Text(
+              AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
+              textAlign: TextAlign.center,
             ),
-          ],
-        );
-      },
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: 300,
+            height: 400,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Center(
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        RotationTransition(
+                          turns: _animation,
+                          child: CustomPaint(
+                            painter: RoletaPainter(options.length, options.reversed.toList()),
+                            child: const SizedBox(width: 300, height: 300),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Positioned(
+                  top: -5,
+                  child: Icon(Icons.arrow_drop_down, size: 100, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          canSpinAgain 
+              ? ElevatedButton(
+                onPressed: spinWheel,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                ),
+                child: Text(AppLocalizations.of(context)!.spinRoulette, style: const TextStyle(fontSize: 18)),
+              )
+            : const SizedBox(height: 50),
+        ],
+      ),
     );
   }
 }

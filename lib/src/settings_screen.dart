@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'game_handler.dart';
 import 'game_weights_screen.dart';
+import 'localization/generated/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -24,16 +25,16 @@ class SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _initializeGamesEnabled() async {
-    // Define default values here
+    // Define default values here using English game keys
     gamesEnabled = {
-      'TIBITAR': true,
-      'EU NUNCA': true,
-      'ROLETINHA': true,
+      'MYSTERY_VERB': true,
+      'NEVER_HAVE_I_EVER': true,
+      'ROULETTE': true,
       'PARANOIA': true,
-      'QUEM É MAIS PROVÁVEL': true,
-      'PALAVRA PROIBIDA': true,
+      'MOST_LIKELY_TO': true,
+      'FORBIDDEN_WORD': true,
       'MEDUSA': true,
-      'CARTAS': true,
+      'CARDS': true,
     };
 
     await _loadGameSettings();
@@ -78,7 +79,7 @@ class SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         toolbarHeight: 60,
         backgroundColor: settingsColor,
-        title: const Text('Ativar/Desativar jogos', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.activateDeactivateGames, style: const TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -104,14 +105,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                   child: CircularProgressIndicator(color: Colors.white),
                 ))]
               : gamesEnabled.isEmpty
-                  ? [const Center(child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text('Nenhum jogo disponível.', style: TextStyle(color: Colors.white)),
+                  ? [Center(child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(AppLocalizations.of(context)!.noGamesAvailable, style: const TextStyle(color: Colors.white)),
                     ))]
                   : gamesEnabled.keys.map((String game) {
                       return SwitchListTile(
                         activeTrackColor: const Color.fromARGB(255, 29, 255, 9),
-                        title: Text(game, style: const TextStyle(color: Colors.white)),
+                        title: Text(GameHandler.getGameName(context, game), style: const TextStyle(color: Colors.white)),
                         value: gamesEnabled[game]!,
                         onChanged: (bool value) {
                           setState(() {
@@ -139,14 +140,14 @@ class SettingsScreenState extends State<SettingsScreen> {
                 color: canRepeat ? Colors.green : settingsColor,
               ),
               label: Text(
-                canRepeat ? 'Repetir Seguidamente ON' : 'Repetir Seguidamente OFF',
+                canRepeat ? (AppLocalizations.of(context)!.repeatContinuouslyOn) : (AppLocalizations.of(context)!.repeatContinuouslyOff),
                 style: TextStyle(
                   color: settingsColor,
                 ),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 minimumSize: const Size.fromHeight(50),
               ),
               onPressed: () {
@@ -162,13 +163,13 @@ class SettingsScreenState extends State<SettingsScreen> {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
               icon: const Icon(Icons.percent, color: Color(0xFF6A0DAD)),
-              label: const Text(
-                'Ajustar Probabilidades',
+              label: Text(
+                AppLocalizations.of(context)!.adjustProbabilities,
                 style: TextStyle(color: Color(0xFF6A0DAD)),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 minimumSize: const Size.fromHeight(50),
               ),
               onPressed: () {
@@ -189,13 +190,13 @@ class SettingsScreenState extends State<SettingsScreen> {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
               icon: const Icon(Icons.edit_note, color: Color(0xFF6A0DAD)),
-              label: const Text(
-                'Editar Perguntas/Palavras',
+              label: Text(
+                AppLocalizations.of(context)!.editQuestions,
                 style: TextStyle(color: Color(0xFF6A0DAD)),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 minimumSize: const Size.fromHeight(50),
               ),
               onPressed: () {
@@ -239,8 +240,8 @@ class SettingsScreenState extends State<SettingsScreen> {
         return AlertDialog(
           backgroundColor: settingsColor, // AlertDialog background
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          title: const Text(
-            'Informações dos Jogos',
+          title: Text(
+            AppLocalizations.of(context)!.gameInformation,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
@@ -248,7 +249,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: GameHandler.gameDescriptions.entries.map((entry) {
+              children: GameHandler.allGames.keys.map((gameKey) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: Column(
@@ -256,7 +257,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       const SizedBox(height: 15),
                       Text(
-                        entry.key, // Game name
+                        GameHandler.getGameName(context, gameKey), // Game name
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -265,7 +266,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        entry.value, // Game description
+                        GameHandler.getGameDescription(context, gameKey), // Game description
                         style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
                     ],
@@ -276,7 +277,7 @@ class SettingsScreenState extends State<SettingsScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Fechar', style: TextStyle(color: Colors.white)),
+              child: Text(AppLocalizations.of(context)!.close, style: const TextStyle(color: Colors.white)),
               onPressed: () {
                 Navigator.of(dialogContext).pop();
               },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'questions_manager.dart';
+import 'game_handler.dart';
+import 'localization/generated/app_localizations.dart';
 
 class QuestionsEditorScreen extends StatefulWidget {
   final String gameName;
@@ -16,7 +18,7 @@ class QuestionsEditorScreen extends StatefulWidget {
 class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   List<String> questions = [];
-  // For CARTAS game, we store the question and type separately
+  // For CARDS game, we store the question and type separately
   List<Map<String, dynamic>> cardsQuestions = [];
   bool isLoading = true;
   bool hasChanges = false;
@@ -35,8 +37,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     final loadedQuestions = await QuestionsManager.loadQuestions(widget.gameName);
     
     setState(() {
-      if (widget.gameName == 'CARTAS') {
-        // For CARTAS, we parse the special format
+      if (widget.gameName == 'CARDS') {
+        // For CARDS, we parse the special format
         cardsQuestions = loadedQuestions.map((q) {
           final parts = q.split(',');
           final questionText = parts[0];
@@ -55,7 +57,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   
   void _addNewQuestion() {
     setState(() {
-      if (widget.gameName == 'CARTAS') {
+      if (widget.gameName == 'CARDS') {
         cardsQuestions.add({
           'text': '',
           'isPersonal': false,
@@ -70,7 +72,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   void _updateQuestion(int index, String newText) {
     if (index >= 0) {
       setState(() {
-        if (widget.gameName == 'CARTAS') {
+        if (widget.gameName == 'CARDS') {
           if (index < cardsQuestions.length) {
             cardsQuestions[index]['text'] = newText;
           }
@@ -95,7 +97,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   
   void _removeQuestion(int index) {
     setState(() {
-      if (widget.gameName == 'CARTAS') {
+      if (widget.gameName == 'CARDS') {
         if (index >= 0 && index < cardsQuestions.length) {
           cardsQuestions.removeAt(index);
         }
@@ -115,7 +117,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     
     List<String> questionsToSave;
     
-    if (widget.gameName == 'CARTAS') {
+    if (widget.gameName == 'CARDS') {
       // Convert back to "question,boolean" format
       questionsToSave = cardsQuestions
           .where((q) => q['text'].trim().isNotEmpty)
@@ -132,7 +134,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
       isLoading = false;
       hasChanges = !success;
       
-      if (success && widget.gameName != 'CARTAS') {
+      if (success && widget.gameName != 'CARDS') {
         questions = questionsToSave;
       }
     });
@@ -140,8 +142,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     if (success) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Alterações salvas com sucesso!'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.changesSavedSuccess),
             backgroundColor: Colors.green,
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
@@ -151,8 +153,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Erro ao salvar alterações.'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.saveChangesError),
             backgroundColor: Colors.red,
             behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.only(bottom: 80, left: 20, right: 20),
@@ -166,16 +168,16 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Restaurar padrão'),
-        content: const Text('Tem certeza que deseja restaurar todas as perguntas para o padrão original? Esta ação não pode ser desfeita.'),
+        title: Text(AppLocalizations.of(context)!.restoreDefault),
+        content: Text(AppLocalizations.of(context)!.restoreConfirmation),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancelar'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Restaurar'),
+            child: Text(AppLocalizations.of(context)!.restore),
           ),
         ],
       ),
@@ -193,8 +195,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
         
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Perguntas restauradas para o padrão original.'),
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.questionsRestoredDefault),
               backgroundColor: Colors.green,
             ),
           );
@@ -206,8 +208,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
         
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Erro ao restaurar perguntas.'),
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.restoreQuestionsError),
               backgroundColor: Colors.red,
             ),
           );
@@ -219,15 +221,15 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   @override
   Widget build(BuildContext context) {
     final String itemLabel = widget.gameName == 'TIBITAR' || widget.gameName == 'PALAVRA PROIBIDA' 
-        ? 'palavra' 
-        : 'pergunta';
+        ? AppLocalizations.of(context)!.word 
+        : AppLocalizations.of(context)!.question;
     
     return Scaffold(
       backgroundColor: settingsColor,
       appBar: AppBar(
         toolbarHeight: 60,
         backgroundColor: settingsColor,
-        title: Text('Editar ${widget.gameName}', style: const TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.editGameName(GameHandler.getGameName(context, widget.gameName)), style: const TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -235,19 +237,19 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text('Alterações não salvas'),
-                  content: const Text('Você tem alterações não salvas. Deseja sair sem salvar?'),
+                  title: Text(AppLocalizations.of(context)!.unsavedChanges),
+                  content: Text(AppLocalizations.of(context)!.unsavedChangesMessage),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancelar'),
+                      child: Text(AppLocalizations.of(context)!.cancel),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: const Text('Sair sem salvar'),
+                      child: Text(AppLocalizations.of(context)!.exitWithoutSaving),
                     ),
                   ],
                 ),
@@ -260,7 +262,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.restore, color: Colors.white),
-            tooltip: 'Restaurar padrão',
+            tooltip: AppLocalizations.of(context)!.restoreDefaultTooltip,
             onPressed: _resetToDefault,
           ),
         ],
@@ -272,14 +274,14 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                widget.gameName == 'CARTAS'
-                    ? 'Total: ${cardsQuestions.length} ${itemLabel}s'
-                    : 'Total: ${questions.length} ${itemLabel}s',
+                widget.gameName == 'CARDS'
+                    ? AppLocalizations.of(context)!.totalItems(cardsQuestions.length, itemLabel)
+                    : AppLocalizations.of(context)!.totalItems(questions.length, itemLabel),
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
             Expanded(
-              child: widget.gameName == 'CARTAS'
+              child: widget.gameName == 'CARDS'
                   ? _buildCardsQuestionsList()
                   : _buildRegularQuestionsList(),
             ),
@@ -315,8 +317,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   
   Widget _buildRegularQuestionsList() {
     final String itemLabel = widget.gameName == 'TIBITAR' || widget.gameName == 'PALAVRA PROIBIDA' 
-        ? 'palavra' 
-        : 'pergunta';
+        ? AppLocalizations.of(context)!.word 
+        : AppLocalizations.of(context)!.question;
         
     return ListView.builder(
       padding: const EdgeInsets.only(bottom: 80),
@@ -351,7 +353,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                     initialValue: questions[index],
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      hintText: 'Digite a $itemLabel aqui',
+                      hintText: AppLocalizations.of(context)!.typeItemHere(itemLabel),
                       hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
                       border: InputBorder.none,
                     ),
@@ -411,7 +413,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                         initialValue: cardsQuestions[index]['text'] as String,
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          hintText: 'Digite a pergunta aqui',
+                          hintText: AppLocalizations.of(context)!.typeQuestionHere,
                           hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
                           border: InputBorder.none,
                         ),
@@ -439,7 +441,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        isPersonal ? 'Pessoal' : 'Geral',
+                        isPersonal ? AppLocalizations.of(context)!.personal : AppLocalizations.of(context)!.general,
                         style: TextStyle(
                           color: isPersonal ? Colors.orange : Colors.blue,
                           fontWeight: FontWeight.bold,

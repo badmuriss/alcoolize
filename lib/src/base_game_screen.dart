@@ -1,6 +1,7 @@
 import 'package:alcoolize/src/game_handler.dart';
 import 'package:alcoolize/src/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'localization/generated/app_localizations.dart';
 
 abstract class BaseGameScreen extends StatefulWidget {
   final List<String> playersList;
@@ -12,7 +13,7 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
   
   Color get gameColor;
   String get gameTitle; 
-  IconData get gameIcon;
+  IconData? get gameIcon => null;
   String get gameInstructions;
 
   void nextRound() {
@@ -43,7 +44,7 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
           ),
           actions: [
             TextButton(
-              child: const Text('Fechar'),
+              child: Text(AppLocalizations.of(context)!.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -71,18 +72,24 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
   }
 
   Widget buildGameHeader() {
-    return Container(
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        children: [
-          Text(
-            gameTitle,
-            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          const SizedBox(height: 10),
-          Icon(gameIcon, size: 80, color: Colors.white),
-        ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              gameTitle,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            if (gameIcon != null) ...[  
+              const SizedBox(height: 10),
+              Icon(gameIcon!, size: 80, color: Colors.white),
+            ],
+          ],
+        ),
       ),
     );
   }
@@ -106,16 +113,17 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
     return Scaffold(
       backgroundColor: gameColor,
       appBar: buildAppBar(),
-      body: Center(
+      body: Center( 
+        child: Transform.translate(
+        offset: const Offset(0, -70), 
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,  
           children: [
             buildGameHeader(),
-            const SizedBox(height: 40),
-            Expanded(
-              child: buildGameContent(),
-            ),
-          ],
+            const SizedBox(height: 20),
+            buildGameContent(),
+          ], 
+        )
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

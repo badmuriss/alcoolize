@@ -1,0 +1,20 @@
+Canta una canción elegida por otro jugador (o bebe 2 tragos),true
+Todos deben beber un sorbo de sus bebidas,false
+Intercambia lugares con el jugador a tu izquierda (o bebe 1 trago),true
+Imita un animal elegido por otros jugadores (o bebe 2 tragos),true
+Baila sin música por 30 segundos (o bebe 2 tragos),true
+Elige a alguien para que beba en tu lugar (o bebe 2 tragos),true
+Todos los jugadores deben decir algo vergonzoso sobre sí mismos (o bebe 2 tragos),false
+Finge que estás contestando una llamada falsa (o bebe 1 trago),true
+Todos deben levantarse y hacer una pose de superhéroe (o bebe 1 trago),false
+Intercambia ropa con alguien por un turno (o bebe 3 tragos),true
+Cuenta un chiste que haga reír a al menos una persona (o bebe 2 tragos),true
+Haz 10 flexiones (o bebe 2 tragos),true
+Habla con acento hasta tu próximo turno (o bebe 1 trago),true
+Dibújate algo en la cara con un marcador (o bebe 2 tragos),true
+Tómate una selfie haciendo una cara graciosa y muéstrala a todos (o bebe 1 trago),true
+Actúa como tu personaje de película favorito por 1 minuto (o bebe 2 tragos),true
+Di el alfabeto al revés (o bebe 2 tragos),true
+Dale un cumplido a cada jugador (o bebe 1 trago),true
+Gira 10 veces y luego trata de caminar en línea recta (o bebe 2 tragos),true
+Todos deben contar su momento más vergonzoso (o bebe 3 tragos),false
