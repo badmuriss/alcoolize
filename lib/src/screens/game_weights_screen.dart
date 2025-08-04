@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'game_handler.dart';
-import 'localization/generated/app_localizations.dart';
+import '../utils/game_handler.dart';
+import '../localization/generated/app_localizations.dart';
 
 class GameWeightsScreen extends StatefulWidget {
   const GameWeightsScreen({super.key});
@@ -276,7 +276,7 @@ class GameWeightsScreenState extends State<GameWeightsScreen> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   '${(weights[gameName] ?? 1.0).toStringAsFixed(0)}%',
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white, fontSize: 16),
                                 ),
                               ),
                             ],

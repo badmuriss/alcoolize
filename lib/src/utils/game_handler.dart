@@ -1,15 +1,15 @@
 import 'dart:math';
-import 'package:alcoolize/src/cards_screen.dart';
+import 'package:alcoolize/src/screens/games/cards_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'localization/generated/app_localizations.dart';
-import 'paranoia_screen.dart';
-import 'most_likely_to_screen.dart';
-import 'never_have_i_ever_screen.dart';
-import 'medusa_screen.dart';
-import 'forbidden_word_screen.dart';
-import 'mystery_verb_screen.dart';
-import 'roulette_screen.dart';
+import '../localization/generated/app_localizations.dart';
+import '../screens/games/paranoia_screen.dart';
+import '../screens/games/most_likely_to_screen.dart';
+import '../screens/games/never_have_i_ever_screen.dart';
+import '../screens/games/medusa_screen.dart';
+import '../screens/games/forbidden_word_screen.dart';
+import '../screens/games/mystery_verb_screen.dart';
+import '../screens/games/roulette_screen.dart';
 
 class GameHandler {
   static bool _initialized = false;

@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'localization/generated/app_localizations.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class RouletteScreen extends BaseGameScreen {
   const RouletteScreen({super.key, required super.playersList});
@@ -17,10 +18,8 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
   late Animation<double> _animation;
   bool canSpinAgain = true;
   bool showFab = false;
-  static const rouletteColor = Colors.black;
-
   @override
-  Color get gameColor => rouletteColor;
+  Color get gameColor => GameColors.roulette;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.roulette;
@@ -46,7 +45,7 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
     _chooseRandomPlayer();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
+      duration: GameConstants.spinDuration,
     );
     _animation = Tween<double>(begin: 0, end: 0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut)
@@ -114,8 +113,8 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
             margin: const EdgeInsets.only(bottom: 20),
             child: FloatingActionButton(
               onPressed: nextRound,
-              backgroundColor: Colors.white,
-              foregroundColor: rouletteColor,
+              backgroundColor: GameColors.buttonBackground,
+              foregroundColor: GameColors.roulette,
               child: const Icon(Icons.arrow_forward),
             ),
           )
@@ -124,29 +123,40 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
 
   @override
   Widget buildGameContent() {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Calculate responsive wheel size
+    final maxWheelSize = (screenHeight * 0.35).clamp(200.0, 300.0);
+    final wheelSize = (screenWidth * 0.75).clamp(200.0, maxWheelSize);
+    final containerHeight = wheelSize + 100;
+    
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
               AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
-              style: const TextStyle(fontSize: 24, color: Colors.white),
+              style: TextStyle(
+                fontSize: (screenHeight * 0.028).clamp(18.0, 24.0), 
+                color: GameColors.gameText
+              ),
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: (screenHeight * 0.025).clamp(10.0, 20.0)),
           SizedBox(
-            width: 300,
-            height: 400,
+            width: wheelSize,
+            height: containerHeight,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Center(
                   child: SizedBox(
-                    height: 300,
-                    width: 300,
+                    height: wheelSize,
+                    width: wheelSize,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -154,16 +164,20 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
                           turns: _animation,
                           child: CustomPaint(
                             painter: RoletaPainter(options.length, options.reversed.toList()),
-                            child: const SizedBox(width: 300, height: 300),
+                            child: SizedBox(width: wheelSize, height: wheelSize),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   top: -5,
-                  child: Icon(Icons.arrow_drop_down, size: 100, color: Colors.white),
+                  child: Icon(
+                    Icons.arrow_drop_down, 
+                    size: (wheelSize * 0.33).clamp(60.0, 100.0), 
+                    color: GameColors.gameText
+                  ),
                 ),
               ],
             ),
@@ -172,12 +186,18 @@ class RouletteScreenState extends BaseGameScreenState<RouletteScreen> with Singl
               ? ElevatedButton(
                 onPressed: spinWheel,
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                  foregroundColor: GameColors.gameText, backgroundColor: GameColors.spinButtonBackground,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: (screenWidth * 0.1).clamp(20.0, 40.0), 
+                    vertical: (screenHeight * 0.025).clamp(15.0, 20.0)
+                  ),
                 ),
-                child: Text(AppLocalizations.of(context)!.spinRoulette, style: const TextStyle(fontSize: 18)),
+                child: Text(
+                  AppLocalizations.of(context)!.spinRoulette, 
+                  style: TextStyle(fontSize: (screenHeight * 0.021).clamp(14.0, 18.0))
+                ),
               )
-            : const SizedBox(height: 50),
+            : SizedBox(height: (screenHeight * 0.06).clamp(30.0, 50.0)),
         ],
       ),
     );
@@ -197,7 +217,7 @@ class RoletaPainter extends CustomPainter {
     final Paint paint = Paint();
 
     for (int i = 0; i < numOptions; i++) {
-      paint.color = i.isEven ? Colors.red : Colors.black;
+      paint.color = i.isEven ? GameColors.spinButtonBackground : GameColors.roulette;
       canvas.drawArc(
         Rect.fromCircle(center: Offset(radius, radius), radius: radius),
         i * anglePerSegment,
@@ -211,7 +231,7 @@ class RoletaPainter extends CustomPainter {
       final String optionText = options[i].toUpperCase();
       final TextSpan textSpan = TextSpan(
         text: optionText,
-        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        style: const TextStyle(color: GameColors.gameText, fontWeight: FontWeight.w700),
       );
 
       final TextPainter textPainter = TextPainter(
@@ -229,7 +249,7 @@ class RoletaPainter extends CustomPainter {
       final TextSpan adjustedTextSpan = TextSpan(
         text: optionText,
         style: TextStyle(
-          color: Colors.white,
+          color: GameColors.gameText,
           fontWeight: FontWeight.w700,
           fontSize: fontSize.clamp(10.0, maxFontSize),
         ),

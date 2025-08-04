@@ -1,6 +1,6 @@
-import 'package:alcoolize/src/game_handler.dart';
+import 'package:alcoolize/src/utils/game_handler.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../localization/generated/app_localizations.dart';
 
 class PlayersScreen extends StatefulWidget {
   const PlayersScreen({super.key});
@@ -40,6 +40,7 @@ class PlayersScreenState extends State<PlayersScreen> {
       appBar: AppBar(
         toolbarHeight: 40,
         leading: IconButton(
+          padding: EdgeInsets.symmetric(vertical: 20),
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context); // Return to initial screen
@@ -173,7 +174,7 @@ class PlayersScreenState extends State<PlayersScreen> {
                     foregroundColor: const Color(0xFF6A0DAD), 
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                   ),
                   child: Text(
                     AppLocalizations.of(context)!.startGame,

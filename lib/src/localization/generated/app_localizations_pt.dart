@@ -56,7 +56,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get canRepeat => 'Pode Repetir Jogos';
 
   @override
-  String get mysteryVerb => 'VERBO MISTERIOSO';
+  String get mysteryVerb => 'TIBITAR';
 
   @override
   String get neverHaveIEver => 'EU NUNCA';

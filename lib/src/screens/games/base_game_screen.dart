@@ -1,7 +1,8 @@
-import 'package:alcoolize/src/game_handler.dart';
-import 'package:alcoolize/src/home_screen.dart';
+import 'package:alcoolize/src/utils/game_handler.dart';
+import 'package:alcoolize/src/screens/home_screen.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 abstract class BaseGameScreen extends StatefulWidget {
   final List<String> playersList;
@@ -40,11 +41,18 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
         return AlertDialog(
           content: Text(
             gameInstructions,
-            style: const TextStyle(fontSize: 18),
+            style: const TextStyle(
+              fontSize: 18,
+              fontFamily: 'Mesmerize',
+              color: Color.fromARGB(255, 36, 36, 36)
+            ),
           ),
           actions: [
             TextButton(
-              child: Text(AppLocalizations.of(context)!.close),
+              child: Text(
+                AppLocalizations.of(context)!.close,
+                style: const TextStyle(fontFamily: 'Mesmerize'),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -59,12 +67,12 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
     return AppBar(
       backgroundColor: gameColor,
       leading: IconButton(
-        icon: const Icon(Icons.close, color: Colors.white, size: 33),
+        icon: Icon(Icons.close, color: Colors.white, size: GameSizes.appBarIconSize),
         onPressed: navigateToHome,
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.info, color: Colors.white, size: 33),
+          icon: Icon(Icons.info, color: Colors.white, size: GameSizes.appBarIconSize),
           onPressed: showInfoDialog,
         ),
       ],
@@ -81,12 +89,12 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
           children: [
             Text(
               gameTitle,
-              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(fontSize: GameSizes.gameHeaderFontSize, fontWeight: FontWeight.bold, color: Colors.white),
               textAlign: TextAlign.center,
             ),
             if (gameIcon != null) ...[  
               const SizedBox(height: 10),
-              Icon(gameIcon!, size: 80, color: Colors.white),
+              Icon(gameIcon!, size: GameSizes.gameIconSize, color: Colors.white),
             ],
           ],
         ),
@@ -110,12 +118,15 @@ abstract class BaseGameScreenState<T extends BaseGameScreen> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final offsetY = screenHeight/-14;
+    
     return Scaffold(
       backgroundColor: gameColor,
       appBar: buildAppBar(),
       body: Center( 
         child: Transform.translate(
-        offset: const Offset(0, -70), 
+        offset: Offset(0, offsetY), 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,  
           children: [

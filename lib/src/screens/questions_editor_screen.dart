@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'questions_manager.dart';
-import 'game_handler.dart';
-import 'localization/generated/app_localizations.dart';
+import '../utils/questions_manager.dart';
+import '../utils/game_handler.dart';
+import '../localization/generated/app_localizations.dart';
 
 class QuestionsEditorScreen extends StatefulWidget {
   final String gameName;
@@ -19,7 +19,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   final Color settingsColor = const Color(0xFF6A0DAD);
   List<String> questions = [];
   // For CARDS game, we store the question and type separately
-  List<Map<String, dynamic>> cardsQuestions = [];
+  List<Map<String, Object>> cardsQuestions = [];
   bool isLoading = true;
   bool hasChanges = false;
   
@@ -39,11 +39,11 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     setState(() {
       if (widget.gameName == 'CARDS') {
         // For CARDS, we parse the special format
-        cardsQuestions = loadedQuestions.map((q) {
+        cardsQuestions = loadedQuestions.map<Map<String, Object>>((q) {
           final parts = q.split(',');
           final questionText = parts[0];
           final isPersonal = parts.length > 1 ? parts[1].trim() == 'true' : false;
-          return {
+          return <String, Object>{
             'text': questionText,
             'isPersonal': isPersonal,
           };
@@ -58,7 +58,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   void _addNewQuestion() {
     setState(() {
       if (widget.gameName == 'CARDS') {
-        cardsQuestions.add({
+        cardsQuestions.add(<String, Object>{
           'text': '',
           'isPersonal': false,
         });
@@ -74,7 +74,10 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
       setState(() {
         if (widget.gameName == 'CARDS') {
           if (index < cardsQuestions.length) {
-            cardsQuestions[index]['text'] = newText;
+            cardsQuestions[index] = <String, Object>{
+              'text': newText,
+              'isPersonal': cardsQuestions[index]['isPersonal'] as bool,
+            };
           }
         } else {
           if (index < questions.length) {
@@ -89,7 +92,10 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
   void _updateCardQuestionType(int index, bool isPersonal) {
     if (index >= 0 && index < cardsQuestions.length) {
       setState(() {
-        cardsQuestions[index]['isPersonal'] = isPersonal;
+        cardsQuestions[index] = <String, Object>{
+          'text': cardsQuestions[index]['text'] as String,
+          'isPersonal': isPersonal,
+        };
         hasChanges = true;
       });
     }
@@ -120,8 +126,8 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
     if (widget.gameName == 'CARDS') {
       // Convert back to "question,boolean" format
       questionsToSave = cardsQuestions
-          .where((q) => q['text'].trim().isNotEmpty)
-          .map((q) => "${q['text']},${q['isPersonal']}")
+          .where((q) => (q['text'] as String).trim().isNotEmpty)
+          .map((q) => "${q['text'] as String},${q['isPersonal'] as bool}")
           .toList();
     } else {
       // Filter empty questions
@@ -238,7 +244,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: Text(AppLocalizations.of(context)!.unsavedChanges),
-                  content: Text(AppLocalizations.of(context)!.unsavedChangesMessage),
+                  content: Text(AppLocalizations.of(context)!.unsavedChangesMessage, style: const TextStyle(color: Color.fromARGB(255, 49, 49, 49), fontSize: 16),),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
@@ -343,7 +349,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                   ),
                   child: Text(
                     '${index + 1}',
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
                 const SizedBox(width: 15),
@@ -403,7 +409,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                       ),
                       child: Text(
                         '${index + 1}',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ),
                     const SizedBox(width: 15),
@@ -445,6 +451,7 @@ class QuestionsEditorScreenState extends State<QuestionsEditorScreen> {
                         style: TextStyle(
                           color: isPersonal ? Colors.orange : Colors.blue,
                           fontWeight: FontWeight.bold,
+                          fontSize: 18
                         ),
                       ),
                       const SizedBox(width: 16),

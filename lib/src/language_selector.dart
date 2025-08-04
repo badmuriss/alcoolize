@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'questions_manager.dart';
+import 'utils/questions_manager.dart';
 import 'app_wrapper.dart';
 import 'localization/generated/app_localizations.dart';
 
@@ -91,7 +91,7 @@ class LanguageSelectorState extends State<LanguageSelector> {
       icon: const Icon(
         Icons.language,
         color: Colors.white,
-        size: 28,
+        size: 36,
       ),
       onSelected: _changeLanguage,
       itemBuilder: (BuildContext context) {

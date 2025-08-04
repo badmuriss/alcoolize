@@ -1,6 +1,7 @@
-import 'package:alcoolize/src/base_game_screen.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class MedusaScreen extends BaseGameScreen {
   const MedusaScreen({super.key, required super.playersList});
@@ -10,10 +11,8 @@ class MedusaScreen extends BaseGameScreen {
 }
 
 class MedusaScreenState extends BaseGameScreenState<MedusaScreen> {
-  static const medusaColor = Color.fromARGB(255, 0, 64, 128);
-
   @override
-  Color get gameColor => medusaColor;
+  Color get gameColor => GameColors.medusa;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.medusa;
@@ -34,7 +33,7 @@ class MedusaScreenState extends BaseGameScreenState<MedusaScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Text(
               AppLocalizations.of(context)!.medusaGameText,
-              style: const TextStyle(fontSize: 28, color: Colors.white),
+              style: const TextStyle(fontSize: GameSizes.medusaTextFontSize, color: GameColors.gameText),
               textAlign: TextAlign.center,
             ),
           ),

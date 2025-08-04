@@ -1,7 +1,8 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class NeverHaveIEverScreen extends BaseGameScreen {
   const NeverHaveIEverScreen({super.key, required super.playersList});
@@ -12,10 +13,8 @@ class NeverHaveIEverScreen extends BaseGameScreen {
 
 class NeverHaveIEverScreenState extends BaseGameScreenState<NeverHaveIEverScreen> {
   String? question;
-  static const neverColor = Color.fromARGB(255, 85, 0, 0);
-
   @override
-  Color get gameColor => neverColor;
+  Color get gameColor => GameColors.neverHaveIEver;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.neverHaveIEver;
@@ -47,8 +46,8 @@ class NeverHaveIEverScreenState extends BaseGameScreenState<NeverHaveIEverScreen
       margin: const EdgeInsets.only(bottom: 20),
       child: FloatingActionButton(
         onPressed: question != null ? nextRound : null,
-        backgroundColor: Colors.white,
-        foregroundColor: neverColor,
+        backgroundColor: GameColors.buttonBackground,
+        foregroundColor: GameColors.neverHaveIEver,
         child: const Icon(Icons.arrow_forward),
       ),
     );
@@ -64,7 +63,7 @@ class NeverHaveIEverScreenState extends BaseGameScreenState<NeverHaveIEverScreen
             padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Text(
               question ?? AppLocalizations.of(context)!.loading,
-              style: const TextStyle(fontSize: 24, color: Colors.white),
+              style: const TextStyle(fontSize: GameSizes.gameSubtitleFontSize, color: GameColors.gameText),
               textAlign: TextAlign.center,
             ),
           ),

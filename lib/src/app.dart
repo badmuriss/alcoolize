@@ -1,4 +1,5 @@
-import 'package:alcoolize/src/home_screen.dart';
+import 'package:alcoolize/src/screens/home_screen.dart';
+import 'package:alcoolize/src/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,10 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Alcoolize',
-      theme: ThemeData(
-        fontFamily: 'Mesmerize', // Setting default font
-        primarySwatch: Colors.purple,
-      ),
+      theme: AppTheme.lightTheme,
       locale: Locale(currentLanguage),
       localizationsDelegates: const [
         AppLocalizations.delegate,

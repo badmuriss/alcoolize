@@ -1,8 +1,9 @@
-import 'package:alcoolize/src/players_screen.dart';
-import 'package:alcoolize/src/settings_screen.dart';
+import 'package:alcoolize/src/screens/players_screen.dart';
+import 'package:alcoolize/src/screens/settings_screen.dart';
 import 'package:alcoolize/src/language_selector.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../localization/generated/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   bool _isPressed = false;
-  static const homeColor = Color(0xFF6A0DAD);
+  static const homeColor = GameColors.home;
 
 
 
@@ -22,10 +23,12 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: homeColor, 
       appBar: AppBar(
-        backgroundColor: homeColor, 
+        backgroundColor: homeColor,
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 8.0),
+          child: LanguageSelector(),
+        ),
         actions: [
-          const LanguageSelector(),
-          const SizedBox(width: 8),
           IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             icon: const Icon(Icons.settings, size: 40, color: Colors.white,),
@@ -102,7 +105,7 @@ class HomeScreenState extends State<HomeScreen> {
                   });
                 },
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 70),
+                  duration: GameConstants.buttonAnimationDuration,
                   width: 250,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   decoration: BoxDecoration(

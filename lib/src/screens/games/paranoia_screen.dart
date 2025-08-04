@@ -1,8 +1,9 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class ParanoiaScreen extends BaseGameScreen {
   const ParanoiaScreen({super.key, required super.playersList});
@@ -14,10 +15,8 @@ class ParanoiaScreen extends BaseGameScreen {
 class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
   String? question;
   String? currentPlayer;
-  static const paranoiaColor = Color.fromARGB(255, 124, 0, 93);
-
   @override
-  Color get gameColor => paranoiaColor;
+  Color get gameColor => GameColors.paranoia;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.paranoia;
@@ -61,7 +60,7 @@ class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Text(
               AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
-              style: const TextStyle(fontSize: 24, color: Colors.white),
+              style: const TextStyle(fontSize: GameSizes.gameSubtitleFontSize, color: GameColors.gameText),
               textAlign: TextAlign.center,
             ),
           ),
@@ -74,7 +73,7 @@ class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       content: Text(question!, style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: GameSizes.gameContentFontSize,
                       ),),
                       actions: [
                         TextButton(
@@ -90,11 +89,11 @@ class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-              foregroundColor: paranoiaColor, backgroundColor: Colors.white,
+              foregroundColor: GameColors.paranoia, backgroundColor: GameColors.buttonBackground,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             ),
-            child: Text(AppLocalizations.of(context)!.revealQuestion, style: const TextStyle(fontSize: 18),),
+            child: Text(AppLocalizations.of(context)!.revealQuestion, style: const TextStyle(fontSize: GameSizes.buttonTextFontSize),),
           ),
         ],
       ),

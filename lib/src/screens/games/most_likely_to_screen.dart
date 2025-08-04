@@ -1,7 +1,8 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class MostLikelyToScreen extends BaseGameScreen {
   const MostLikelyToScreen({super.key, required super.playersList});
@@ -12,10 +13,8 @@ class MostLikelyToScreen extends BaseGameScreen {
 
 class MostLikelyToScreenState extends BaseGameScreenState<MostLikelyToScreen> {
   String? question;
-  static const likelyColor = Color.fromARGB(255, 49, 110, 51);
-
   @override
-  Color get gameColor => likelyColor;
+  Color get gameColor => GameColors.mostLikely;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.mostLikelyTitle;
@@ -52,7 +51,7 @@ class MostLikelyToScreenState extends BaseGameScreenState<MostLikelyToScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 60.0),
               child: Text(
                 question!,
-                style: const TextStyle(fontSize: 24, color: Colors.white),
+                style: const TextStyle(fontSize: GameSizes.gameSubtitleFontSize, color: GameColors.gameText),
                 textAlign: TextAlign.center,
               ),
             ),

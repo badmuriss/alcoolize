@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'questions_editor_screen.dart';
-import 'questions_manager.dart';
-import 'game_handler.dart';
-import 'localization/generated/app_localizations.dart';
+import '../utils/questions_manager.dart';
+import '../utils/game_handler.dart';
+import '../localization/generated/app_localizations.dart';
 
 class EditQuestionsScreen extends StatelessWidget {
   final Color settingsColor = const Color(0xFF6A0DAD);
@@ -45,7 +45,7 @@ class EditQuestionsScreen extends StatelessWidget {
             child: ListTile(
               leading: Icon(gameIcon, color: Colors.white),
               title: Text(GameHandler.getGameName(context, gameName), style: const TextStyle(color: Colors.white)),
-              subtitle: Text(subtitle, style: const TextStyle(color: Colors.white70)),
+              subtitle: Text(subtitle, style: const TextStyle(color: Colors.white70, fontSize: 16)),
               trailing: const Icon(Icons.edit, color: Colors.white),
               onTap: () async {
                 Navigator.push(

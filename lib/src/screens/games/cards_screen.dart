@@ -1,8 +1,9 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class CardsScreen extends BaseGameScreen {
   const CardsScreen({super.key, required super.playersList});
@@ -15,10 +16,8 @@ class CardsScreenState extends BaseGameScreenState<CardsScreen> {
   String? currentPlayer;
   String? challenge;
   bool? isSinglePlayerChallenge; // Indicates if the challenge is for a single player
-  static const cardsColor = Color.fromARGB(255, 0, 189, 196);
-
   @override
-  Color get gameColor => cardsColor;
+  Color get gameColor => GameColors.cards;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.cards;
@@ -64,6 +63,13 @@ class CardsScreenState extends BaseGameScreenState<CardsScreen> {
 
   @override
   Widget buildGameContent() {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Calculate responsive card size
+    final cardWidth = (screenWidth * 0.80).clamp(120.0, 320.0);
+    final cardHeight = (screenHeight * 0.5).clamp(300.0, 450.0);
+    
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -71,25 +77,31 @@ class CardsScreenState extends BaseGameScreenState<CardsScreen> {
           isSinglePlayerChallenge == true ? 
             Text(
               AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
-              style: const TextStyle(fontSize: 24, color: Colors.white),
+              style: TextStyle(
+                fontSize: (screenHeight * 0.028).clamp(18.0, 24.0), 
+                color: GameColors.gameText
+              ),
             ) : const SizedBox(height: 5),
-          const SizedBox(height: 20),
+          SizedBox(height: (screenHeight * 0.025).clamp(10.0, 20.0)),
           Container(
-            width: 280,
-            height: 420,
+            width: cardWidth,
+            height: cardHeight,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              color: GameColors.cardBackground,
+              borderRadius: BorderRadius.circular(GameSizes.cardBorderRadius),
               boxShadow: const [
-                BoxShadow(color: Colors.black26, blurRadius: 8, spreadRadius: 4)
+                BoxShadow(color: GameColors.shadowColor, blurRadius: GameSizes.shadowBlurRadius, spreadRadius: GameSizes.shadowSpreadRadius)
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all((cardWidth * 0.07).clamp(15.0, 25.0)),
               child: Text(
                 challenge ?? AppLocalizations.of(context)!.loading,
-                style: const TextStyle(fontSize: 24, color: cardsColor),
+                style: TextStyle(
+                  fontSize: (cardHeight * 0.055).clamp(18.0, 26.0), 
+                  color: GameColors.cards
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

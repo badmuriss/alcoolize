@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'src/game_handler.dart';
+import 'src/utils/game_handler.dart';
 
 import 'src/app_wrapper.dart';
 import 'src/settings/settings_controller.dart';

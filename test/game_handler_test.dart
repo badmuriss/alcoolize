@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:alcoolize/src/game_handler.dart';
+import 'package:alcoolize/src/utils/game_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {

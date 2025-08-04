@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {

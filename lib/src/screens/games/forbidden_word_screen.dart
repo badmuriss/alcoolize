@@ -1,8 +1,9 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/game_handler.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/game_handler.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class ForbiddenWordScreen extends BaseGameScreen {
   final List<String> usedWords;
@@ -16,10 +17,8 @@ class ForbiddenWordScreen extends BaseGameScreen {
 class ForbiddenWordScreenState extends BaseGameScreenState<ForbiddenWordScreen> {
   String? forbiddenWord;
   List<String>? remainingWords;
-  static const forbiddenColor = Color.fromARGB(255, 221, 15, 0);
-
   @override
-  Color get gameColor => forbiddenColor;
+  Color get gameColor => GameColors.forbiddenWord;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.forbiddenWord;
@@ -63,7 +62,7 @@ class ForbiddenWordScreenState extends BaseGameScreenState<ForbiddenWordScreen> 
               padding: const EdgeInsets.symmetric(horizontal: 60.0),
               child: Text(
                 AppLocalizations.of(context)!.newForbiddenWord(forbiddenWord!),
-                style: const TextStyle(fontSize: 24, color: Colors.white),
+                style: const TextStyle(fontSize: GameSizes.gameSubtitleFontSize, color: GameColors.gameText),
                 textAlign: TextAlign.center,
               ),
             ),

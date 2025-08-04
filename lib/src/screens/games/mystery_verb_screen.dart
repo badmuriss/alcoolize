@@ -1,8 +1,9 @@
-import 'package:alcoolize/src/base_game_screen.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/screens/games/base_game_screen.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'localization/generated/app_localizations.dart';
+import '../../localization/generated/app_localizations.dart';
 
 class MysteryVerbScreen extends BaseGameScreen {
   const MysteryVerbScreen({super.key, required super.playersList});
@@ -14,10 +15,8 @@ class MysteryVerbScreen extends BaseGameScreen {
 class MysteryVerbScreenState extends BaseGameScreenState<MysteryVerbScreen> {
   String? hiddenVerb;
   String? currentPlayer;
-  static const mysteryVerbColor = Colors.pink;
-
   @override
-  Color get gameColor => mysteryVerbColor;
+  Color get gameColor => GameColors.mysteryVerb;
 
   @override
   String get gameTitle => AppLocalizations.of(context)!.mysteryVerb;
@@ -62,7 +61,7 @@ class MysteryVerbScreenState extends BaseGameScreenState<MysteryVerbScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Text(
               AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
-              style: const TextStyle(fontSize: 24, color: Colors.white),
+              style: const TextStyle(fontSize: GameSizes.gameSubtitleFontSize, color: GameColors.gameText),
               textAlign: TextAlign.center,
             ),
           ),
@@ -77,7 +76,7 @@ class MysteryVerbScreenState extends BaseGameScreenState<MysteryVerbScreen> {
                       content: Text(
                         hiddenVerb!,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: GameSizes.gameContentFontSize,
                         ),
                       ),
                       actions: [
@@ -94,11 +93,11 @@ class MysteryVerbScreenState extends BaseGameScreenState<MysteryVerbScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-              foregroundColor: mysteryVerbColor, backgroundColor: Colors.white,
+              foregroundColor: GameColors.mysteryVerb, backgroundColor: GameColors.buttonBackground,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             ),
-            child: Text(AppLocalizations.of(context)!.revealVerb, style: const TextStyle(fontSize: 18)),
+            child: Text(AppLocalizations.of(context)!.revealVerb, style: const TextStyle(fontSize: GameSizes.buttonTextFontSize)),
           ),
         ],
       ),

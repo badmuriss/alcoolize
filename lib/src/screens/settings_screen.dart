@@ -1,9 +1,9 @@
-import 'package:alcoolize/src/edit_questions_screen.dart';
+import 'package:alcoolize/src/screens/edit_questions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'game_handler.dart';
+import '../utils/game_handler.dart';
 import 'game_weights_screen.dart';
-import 'localization/generated/app_localizations.dart';
+import '../localization/generated/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:alcoolize/src/questions_manager.dart';
+import 'package:alcoolize/src/utils/questions_manager.dart';
 
 void main() {
   group('Language-Specific Custom Questions', () {
@@ -78,9 +78,7 @@ void main() {
       expect(result, isTrue);
     });
 
-    test('should maintain separate caches per language', () async {
-      const gameName = 'PALAVRA PROIBIDA';
-      
+    test('should maintain separate caches per language', () async {      
       // This test verifies that the cache key includes language
       // so different languages don't interfere with each other
       SharedPreferences.setMockInitialValues({'selected_language': 'en'});
