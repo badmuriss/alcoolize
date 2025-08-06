@@ -281,7 +281,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get mysteryVerbGameInfo =>
-      'A roda deve fazer perguntas para o jogador sobre o verbo usando \"tibitar\" para substituí-lo. Exemplo: \"É fácil tibitar?\", \"Onde se tibita com frequência?\". Revele o verbo escondido ao final. A roda tem 3 chances de adivinhar o verbo, cada um que errar bebe uma dose, caso alguem acerte, o jogador da vez deve beber 1 dose.';
+      'A roda deve fazer perguntas para o jogador sobre o verbo usando \"tibitar\" para substituí-lo. Exemplo: \"É fácil tibitar?\", \"Onde se tibita com frequência?\". Cada jogador pode fazer uma pergunta de sim ou não, e no final todos juntos terão 3 tentativas. Se não acertarem, todos bebem. Se acertarem, quem tem o verbo bebe.';
 
   @override
   String get mostLikelyTitle => 'MAIS PROVÁVEL';

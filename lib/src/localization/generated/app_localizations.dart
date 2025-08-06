@@ -589,7 +589,7 @@ abstract class AppLocalizations {
   /// No description provided for @mysteryVerbGameInfo.
   ///
   /// In en, this message translates to:
-  /// **'The group should ask questions to the player about the verb using \"mystery verb\" to replace it. Example: \"Is it easy to do the mystery verb?\", \"Where do you do the mystery verb frequently?\". Reveal the hidden verb at the end. The group has 3 chances to guess the verb, each one who gets it wrong drinks a shot, if someone gets it right, the current player must drink 1 shot.'**
+  /// **'The group should ask questions to the player about the verb using \"mystery verb\" to replace it. Example: \"Is it easy to do the mystery verb?\", \"Where do you do the mystery verb frequently?\". Each player can make one yes or no question, and at the end everyone combined will have 3 guesses. If they don\'t get it, everyone drinks. If they get it, the one with the verb drinks.'**
   String get mysteryVerbGameInfo;
 
   /// No description provided for @mostLikelyTitle.

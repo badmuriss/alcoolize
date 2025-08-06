@@ -80,7 +80,7 @@
   "chooseSomeoneToDrink": "Elige a alguien para beber",
   "rouletteGameInfo": "Gira la ruleta y ve lo que el destino te depara.",
   "revealVerb": "Revelar Verbo",
-  "mysteryVerbGameInfo": "El grupo debe hacer preguntas al jugador sobre el verbo usando \"verbo misterioso\" para reemplazarlo. Ejemplo: \"¿Es fácil hacer el verbo misterioso?\", \"¿Dónde se hace el verbo misterioso con frecuencia?\". Revela el verbo oculto al final. El grupo tiene 3 oportunidades para adivinar el verbo, cada uno que se equivoque bebe un trago, si alguien acierta, el jugador actual debe beber 1 trago.",
+  "mysteryVerbGameInfo": "El grupo debe hacer preguntas al jugador sobre el verbo usando \"verbo misterioso\" para reemplazarlo. Ejemplo: \"¿Es fácil hacer el verbo misterioso?\", \"¿Dónde se hace el verbo misterioso con frecuencia?\". Cada jugador puede hacer una pregunta de sí o no, y al final todos juntos tendrán 3 intentos. Si no aciertan, todos beben. Si aciertan, quien tiene el verbo bebe.",
   "mostLikelyTitle": "MÁS PROBABLE",
   "mostLikelyGameInfo": "Para jugar Más Probable, el anfitrión debe leer la pregunta y todos deben señalar a quien creen que es la respuesta correcta, la persona más señalada bebe un trago, en caso de empate, ambos beben.",
   "systemTheme": "Tema del Sistema",

@@ -281,7 +281,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mysteryVerbGameInfo =>
-      'El grupo debe hacer preguntas al jugador sobre el verbo usando \"verbo misterioso\" para reemplazarlo. Ejemplo: \"¿Es fácil hacer el verbo misterioso?\", \"¿Dónde se hace el verbo misterioso con frecuencia?\". Revela el verbo oculto al final. El grupo tiene 3 oportunidades para adivinar el verbo, cada uno que se equivoque bebe un trago, si alguien acierta, el jugador actual debe beber 1 trago.';
+      'El grupo debe hacer preguntas al jugador sobre el verbo usando \"verbo misterioso\" para reemplazarlo. Ejemplo: \"¿Es fácil hacer el verbo misterioso?\", \"¿Dónde se hace el verbo misterioso con frecuencia?\". Cada jugador puede hacer una pregunta de sí o no, y al final todos juntos tendrán 3 intentos. Si no aciertan, todos beben. Si aciertan, quien tiene el verbo bebe.';
 
   @override
   String get mostLikelyTitle => 'MÁS PROBABLE';
