@@ -64,6 +64,8 @@ flutter:
     - assets/forbidden_word/words.txt
     - assets/mystery_verb/verbs.txt
     - assets/cards/challenges.txt
+    - assets/truth_or_dare/truths.txt
+    - assets/truth_or_dare/dares.txt
     # Multi-language asset files
     - assets/paranoia/pt/
     - assets/paranoia/en/
@@ -83,6 +85,9 @@ flutter:
     - assets/cards/pt/
     - assets/cards/en/
     - assets/cards/es/
+    - assets/truth_or_dare/pt/
+    - assets/truth_or_dare/en/
+    - assets/truth_or_dare/es/
 
   fonts:
     - family: RabbidHighwaySignII

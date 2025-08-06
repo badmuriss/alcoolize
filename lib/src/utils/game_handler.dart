@@ -10,6 +10,7 @@ import '../screens/games/medusa_screen.dart';
 import '../screens/games/forbidden_word_screen.dart';
 import '../screens/games/mystery_verb_screen.dart';
 import '../screens/games/roulette_screen.dart';
+import '../screens/games/truth_or_dare_screen.dart';
 
 class GameHandler {
   static bool _initialized = false;
@@ -26,6 +27,7 @@ class GameHandler {
     'MYSTERY_VERB': (context, players) => MysteryVerbScreen(playersList: players),
     'ROULETTE': (context, players) => RouletteScreen(playersList: players),
     'CARDS': (context, players) => CardsScreen(playersList: players),
+    'TRUTH_OR_DARE': (context, players) => TruthOrDareScreen(playersList: players),
   };
 
   // Game names and descriptions are now handled through localization
@@ -47,6 +49,12 @@ class GameHandler {
         return AppLocalizations.of(context)!.medusa;
       case 'CARDS':
         return AppLocalizations.of(context)!.cards;
+      case 'TRUTH_OR_DARE':
+        return AppLocalizations.of(context)!.truthOrDare;
+      case 'TRUTH_OR_DARE_TRUTHS':
+        return '${AppLocalizations.of(context)!.truthOrDare} - ${AppLocalizations.of(context)!.truth}';
+      case 'TRUTH_OR_DARE_DARES':
+        return '${AppLocalizations.of(context)!.truthOrDare} - ${AppLocalizations.of(context)!.dare}';
       default:
         return gameKey;
     }
@@ -70,6 +78,8 @@ class GameHandler {
         return AppLocalizations.of(context)!.medusaGameInfo;
       case 'CARDS':
         return AppLocalizations.of(context)!.cardsGameInfo;
+      case 'TRUTH_OR_DARE':
+        return AppLocalizations.of(context)!.truthOrDareGameInfo;
       default:
         return '';
     }
@@ -89,6 +99,7 @@ class GameHandler {
     'MYSTERY_VERB': 2.0,
     'ROULETTE': 12.0,
     'CARDS': 24.0,
+    'TRUTH_OR_DARE': 18.0,
   };
 
   // Weight of each game (this is the map that will be modified and saved)

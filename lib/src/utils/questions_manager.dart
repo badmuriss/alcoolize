@@ -9,6 +9,8 @@ class QuestionsManager {
     'MYSTERY_VERB': 'assets/mystery_verb/verbs.txt',
     'FORBIDDEN_WORD': 'assets/forbidden_word/words.txt',
     'CARDS': 'assets/cards/challenges.txt',
+    'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/truths.txt',
+    'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/dares.txt',
   };
 
   static final Map<String, Map<String, String>> languageGameFiles = {
@@ -19,6 +21,8 @@ class QuestionsManager {
       'MYSTERY_VERB': 'assets/mystery_verb/en/verbs.txt',
       'FORBIDDEN_WORD': 'assets/forbidden_word/en/words.txt',
       'CARDS': 'assets/cards/en/challenges.txt',
+      'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/en/truths.txt',
+      'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/en/dares.txt',
     },
     'pt': {
       'NEVER_HAVE_I_EVER': 'assets/never_have_i_ever/pt/questions.txt',
@@ -27,6 +31,8 @@ class QuestionsManager {
       'MYSTERY_VERB': 'assets/mystery_verb/pt/verbs.txt',
       'FORBIDDEN_WORD': 'assets/forbidden_word/pt/words.txt',
       'CARDS': 'assets/cards/pt/challenges.txt',
+      'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/pt/truths.txt',
+      'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/pt/dares.txt',
     },
     'es': {
       'NEVER_HAVE_I_EVER': 'assets/never_have_i_ever/es/questions.txt',
@@ -35,6 +41,8 @@ class QuestionsManager {
       'MYSTERY_VERB': 'assets/mystery_verb/es/verbs.txt',
       'FORBIDDEN_WORD': 'assets/forbidden_word/es/words.txt',
       'CARDS': 'assets/cards/es/challenges.txt',
+      'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/es/truths.txt',
+      'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/es/dares.txt',
     },
   };
 

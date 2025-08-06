@@ -238,6 +238,12 @@ abstract class AppLocalizations {
   /// **'CARDS'**
   String get cards;
 
+  /// No description provided for @truthOrDare.
+  ///
+  /// In en, this message translates to:
+  /// **'TRUTH OR DARE'**
+  String get truthOrDare;
+
   /// No description provided for @back.
   ///
   /// In en, this message translates to:
@@ -645,6 +651,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please restart the app to apply language changes'**
   String get restartRequired;
+
+  /// No description provided for @truth.
+  ///
+  /// In en, this message translates to:
+  /// **'TRUTH'**
+  String get truth;
+
+  /// No description provided for @dare.
+  ///
+  /// In en, this message translates to:
+  /// **'DARE'**
+  String get dare;
+
+  /// No description provided for @nextPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'NEXT PLAYER'**
+  String get nextPlayer;
+
+  /// No description provided for @truthOrDareChoosePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your challenge:'**
+  String get truthOrDareChoosePrompt;
+
+  /// No description provided for @truthOrDareGameInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot.'**
+  String get truthOrDareGameInfo;
 }
 
 class _AppLocalizationsDelegate

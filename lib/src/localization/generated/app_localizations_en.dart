@@ -80,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cards => 'CARDS';
 
   @override
+  String get truthOrDare => 'TRUTH OR DARE';
+
+  @override
   String get back => 'Back';
 
   @override
@@ -312,4 +315,20 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get restartRequired =>
       'Please restart the app to apply language changes';
+
+  @override
+  String get truth => 'TRUTH';
+
+  @override
+  String get dare => 'DARE';
+
+  @override
+  String get nextPlayer => 'NEXT PLAYER';
+
+  @override
+  String get truthOrDareChoosePrompt => 'Choose your challenge:';
+
+  @override
+  String get truthOrDareGameInfo =>
+      'In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot.';
 }

@@ -11,6 +11,7 @@ class GameColors {
   static const Color mysteryVerb = Colors.pink;
   static const Color forbiddenWord = Color.fromARGB(255, 221, 15, 0);
   static const Color medusa = Color.fromARGB(255, 0, 64, 128);
+  static const Color truthOrDare = Color.fromARGB(255, 177, 1, 1);
   
   // Common UI colors
   static const Color gameText = Colors.white;

@@ -22,6 +22,7 @@
   "forbiddenWord": "PALAVRA PROIBIDA",
   "medusa": "MEDUSA",
   "cards": "CARTAS",
+  "truthOrDare": "VERDADE OU DESAFIO",
   "back": "Voltar",
   "next": "PRÓXIMO",
   "save": "Salvar",
@@ -89,5 +90,10 @@
   "question": "pergunta",
   "restoreDefaultTooltip": "Restaurar padrão",
   "languageChanging": "Mudando para {language}...",
-  "restartRequired": "Por favor reinicie o aplicativo para aplicar as mudanças de idioma"
+  "restartRequired": "Por favor reinicie o aplicativo para aplicar as mudanças de idioma",
+  "truth": "VERDADE",
+  "dare": "DESAFIO",
+  "nextPlayer": "PRÓXIMO JOGADOR",
+  "truthOrDareChoosePrompt": "Escolha seu desafio:",
+  "truthOrDareGameInfo": "No Verdade ou Desafio, o jogador atual deve escolher entre responder uma pergunta pessoal ou executar um desafio divertido. Se a pessoa se recusar a responder a verdade ou completar o desafio, deve beber uma dose."
 }

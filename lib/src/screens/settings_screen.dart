@@ -35,6 +35,7 @@ class SettingsScreenState extends State<SettingsScreen> {
       'FORBIDDEN_WORD': true,
       'MEDUSA': true,
       'CARDS': true,
+      'TRUTH_OR_DARE': true,
     };
 
     await _loadGameSettings();

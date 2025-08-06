@@ -80,6 +80,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get cards => 'CARTAS';
 
   @override
+  String get truthOrDare => 'VERDADE OU DESAFIO';
+
+  @override
   String get back => 'Voltar';
 
   @override
@@ -313,4 +316,20 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get restartRequired =>
       'Por favor reinicie o aplicativo para aplicar as mudanças de idioma';
+
+  @override
+  String get truth => 'VERDADE';
+
+  @override
+  String get dare => 'DESAFIO';
+
+  @override
+  String get nextPlayer => 'PRÓXIMO JOGADOR';
+
+  @override
+  String get truthOrDareChoosePrompt => 'Escolha seu desafio:';
+
+  @override
+  String get truthOrDareGameInfo =>
+      'No Verdade ou Desafio, o jogador atual deve escolher entre responder uma pergunta pessoal ou executar um desafio divertido. Se a pessoa se recusar a responder a verdade ou completar o desafio, deve beber uma dose.';
 }

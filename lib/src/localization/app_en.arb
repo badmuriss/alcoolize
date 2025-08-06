@@ -22,6 +22,7 @@
   "forbiddenWord": "FORBIDDEN WORD",
   "medusa": "MEDUSA",
   "cards": "CARDS",
+  "truthOrDare": "TRUTH OR DARE",
   "back": "Back",
   "next": "NEXT",
   "save": "Save",
@@ -89,5 +90,10 @@
   "question": "question",
   "restoreDefaultTooltip": "Restore Default",
   "languageChanging": "Switching to {language}...",
-  "restartRequired": "Please restart the app to apply language changes"
+  "restartRequired": "Please restart the app to apply language changes",
+  "truth": "TRUTH",
+  "dare": "DARE",
+  "nextPlayer": "NEXT PLAYER",
+  "truthOrDareChoosePrompt": "Choose your challenge:",
+  "truthOrDareGameInfo": "In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot."
 }

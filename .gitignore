@@ -149,3 +149,5 @@ ios/Flutter/flutter_export_environment.sh
 
 # jks files
 *.jks
+
+CLAUDE.md
