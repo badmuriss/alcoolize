@@ -1,30 +1,33 @@
-bailar
-cantar
-saltar
-correr
-nadar
-volar
-cocinar
-comer
-beber
-dormir
-reír
-llorar
-abrazar
-besar
-caminar
-conducir
-leer
-escribir
-pintar
-dibujar
-jugar
-trabajar
-estudiar
-viajar
-comprar
-limpiar
-lavar
-cepillar
-peinar
-vestir
+Cepillarse los dientes
+Beber agua
+Comer pizza
+Lavarse la cara
+Abrazar a alguien
+Ponerse perfume
+Hacer una llamada telefónica
+Ducharse
+Ver televisión
+Andar en bicicleta
+Dormir en el sofá
+Besar a alguien
+Hacer una llamada
+Lavarse las manos
+Hablar por micrófono
+Lavar los platos
+Cambiarse de ropa
+Leer un libro
+Jugar con un animal
+Conducir un coche
+Atarse los zapatos
+Ir de compras
+Tomar café
+Planchar la ropa
+Jugar videojuegos
+Escuchar música
+Cortarse el pelo
+Ir al cine
+Viajar en avión
+Caminar por la playa
+Tomarse una selfie
+Enviar un mensaje
+Tomar una foto
