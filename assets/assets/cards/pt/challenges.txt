@@ -79,3 +79,6 @@ Todos que têm um apelido devem beber 1 dose,false
 Escolha 2 pessoas para fazerem um 'duelo de dança' (ou beba 2 doses),true
 Usuários de Iphone bebem,false
 Usuários de Android bebem,false
+Faça 10 flexões ou beba 2 goles,true
+Cante uma música (karaokê),true
+Imite alguém do grupo (se ninguém adivinhar você bebe),true
