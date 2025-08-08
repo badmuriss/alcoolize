@@ -186,7 +186,7 @@ class PlayersScreenState extends State<PlayersScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
             ],
           ),
         ),
