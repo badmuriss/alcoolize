@@ -95,5 +95,14 @@
   "dare": "DARE",
   "nextPlayer": "NEXT PLAYER",
   "truthOrDareChoosePrompt": "Choose your challenge:",
-  "truthOrDareGameInfo": "In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot."
+  "truthOrDareGameInfo": "In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot.",
+  "drunkTrivia": "DRUNK TRIVIA",
+  "revealAnswer": "REVEAL ANSWER",
+  "hideAnswer": "HIDE ANSWER",
+  "correctAnswer": "Correct Answer",
+  "drunkTriviaGameInfo": "In Drunk Trivia, the host reads a question and four options (A, B, C, D). Players must answer, then the host reveals the correct answer. Whoever gets it wrong must drink a shot.",
+  "scratchCard": "SCRATCH CARD",
+  "scratchCardChoosePrompt": "Choose a card and scratch it to reveal your fate!",
+  "scratchCardReset": "NEW CARDS",
+  "scratchCardGameInfo": "In Scratch Card, the current player chooses one of 4 cards and scratches it by sliding their finger to reveal a challenge. Only the first card scratched counts, but you can scratch others for fun."
 }

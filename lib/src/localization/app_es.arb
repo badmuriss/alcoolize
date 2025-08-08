@@ -95,5 +95,14 @@
   "dare": "RETO",
   "nextPlayer": "SIGUIENTE JUGADOR",
   "truthOrDareChoosePrompt": "Elige tu desafío:",
-  "truthOrDareGameInfo": "En Verdad o Reto, el jugador actual debe elegir entre responder una pregunta personal o realizar un desafío divertido. Si la persona se niega a responder la verdad o completar el reto, debe beber un trago."
+  "truthOrDareGameInfo": "En Verdad o Reto, el jugador actual debe elegir entre responder una pregunta personal o realizar un desafío divertido. Si la persona se niega a responder la verdad o completar el reto, debe beber un trago.",
+  "drunkTrivia": "TRIVIA BORRACHA",
+  "revealAnswer": "REVELAR RESPUESTA",
+  "hideAnswer": "OCULTAR RESPUESTA",
+  "correctAnswer": "Respuesta Correcta",
+  "drunkTriviaGameInfo": "En Trivia Borracha, el anfitrión lee una pregunta y cuatro opciones (A, B, C, D). Los jugadores deben responder, luego el anfitrión revela la respuesta correcta. Quien se equivoque debe beber un trago.",
+  "scratchCard": "RASCA Y GANA",
+  "scratchCardChoosePrompt": "¡Elige una carta y rasca para revelar tu destino!",
+  "scratchCardReset": "NUEVAS CARTAS",
+  "scratchCardGameInfo": "En Rasca y Gana, el jugador actual elige una de las 4 cartas y la rasca deslizando el dedo para revelar un desafío. Solo la primera carta rascada cuenta, pero puedes rascar otras por diversión."
 }

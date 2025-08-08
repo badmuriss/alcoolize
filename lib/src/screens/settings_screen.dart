@@ -36,6 +36,8 @@ class SettingsScreenState extends State<SettingsScreen> {
       'MEDUSA': true,
       'CARDS': true,
       'TRUTH_OR_DARE': true,
+      'DRUNK_TRIVIA': true,
+      'SCRATCH_CARD': true,
     };
 
     await _loadGameSettings();

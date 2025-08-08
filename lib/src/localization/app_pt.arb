@@ -95,5 +95,14 @@
   "dare": "DESAFIO",
   "nextPlayer": "PRÓXIMO JOGADOR",
   "truthOrDareChoosePrompt": "Escolha seu desafio:",
-  "truthOrDareGameInfo": "No Verdade ou Desafio, o jogador atual deve escolher entre responder uma pergunta pessoal ou executar um desafio divertido. Se a pessoa se recusar a responder a verdade ou completar o desafio, deve beber uma dose."
+  "truthOrDareGameInfo": "No Verdade ou Desafio, o jogador atual deve escolher entre responder uma pergunta pessoal ou executar um desafio divertido. Se a pessoa se recusar a responder a verdade ou completar o desafio, deve beber uma dose.",
+  "drunkTrivia": "ERROU, BEBEU",
+  "revealAnswer": "REVELAR RESPOSTA",
+  "hideAnswer": "ESCONDER RESPOSTA",
+  "correctAnswer": "Resposta Correta",
+  "drunkTriviaGameInfo": "No Errou, Bebeu, o host lê uma pergunta e quatro opções (A, B, C, D). Os jogadores devem responder, então o host revela a resposta correta. Quem errar deve beber uma dose.",
+  "scratchCard": "RASPADINHA",
+  "scratchCardChoosePrompt": "Escolha uma carta e raspe para revelar seu destino!",
+  "scratchCardReset": "NOVAS CARTAS",
+  "scratchCardGameInfo": "Na Raspadinha, o jogador atual escolhe uma das 4 cartas e a raspa deslizando o dedo para revelar um desafio. Apenas a primeira carta raspada conta, mas você pode raspar outras por diversão."
 }

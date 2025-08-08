@@ -332,4 +332,34 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get truthOrDareGameInfo =>
       'En Verdad o Reto, el jugador actual debe elegir entre responder una pregunta personal o realizar un desafío divertido. Si la persona se niega a responder la verdad o completar el reto, debe beber un trago.';
+
+  @override
+  String get drunkTrivia => 'TRIVIA BORRACHA';
+
+  @override
+  String get revealAnswer => 'REVELAR RESPUESTA';
+
+  @override
+  String get hideAnswer => 'OCULTAR RESPUESTA';
+
+  @override
+  String get correctAnswer => 'Respuesta Correcta';
+
+  @override
+  String get drunkTriviaGameInfo =>
+      'En Trivia Borracha, el anfitrión lee una pregunta y cuatro opciones (A, B, C, D). Los jugadores deben responder, luego el anfitrión revela la respuesta correcta. Quien se equivoque debe beber un trago.';
+
+  @override
+  String get scratchCard => 'RASCA Y GANA';
+
+  @override
+  String get scratchCardChoosePrompt =>
+      '¡Elige una carta y rasca para revelar tu destino!';
+
+  @override
+  String get scratchCardReset => 'NUEVAS CARTAS';
+
+  @override
+  String get scratchCardGameInfo =>
+      'En Rasca y Gana, el jugador actual elige una de las 4 cartas y la rasca deslizando el dedo para revelar un desafío. Solo la primera carta rascada cuenta, pero puedes rascar otras por diversión.';
 }

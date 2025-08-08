@@ -1,0 +1,53 @@
+¿Cuál es la capital de España?,Barcelona,Madrid,Valencia,Sevilla,1
+¿Qué planeta es conocido como el "Planeta Rojo"?,Venus,Marte,Júpiter,Saturno,1
+¿Quién dirigió la película "El Laberinto del Fauno"?,Pedro Almodóvar,Alejandro González Iñárritu,Guillermo del Toro,Luis Buñuel,2
+¿Cuál es el mamífero más grande del mundo?,Elefante,Ballena azul,Jirafa,Hipopótamo,1
+¿Cuál es el país más grande de América Latina?,Argentina,Brasil,México,Colombia,1
+¿Cuál es el símbolo químico del oro?,Go,Gd,Au,Ag,2
+¿Cuál es el plato típico de España más conocido?,Gazpacho,Paella,Tortilla,Jamón ibérico,1
+¿Qué actor español ganó el Oscar por "No Country for Old Men"?,Antonio Banderas,Penélope Cruz,Javier Bardem,Benicio del Toro,2
+¿En qué año ganó España su primera Copa Mundial de Fútbol?,2006,2008,2010,2012,2
+¿Cuál es la sustancia natural más dura de la Tierra?,Oro,Hierro,Diamante,Platino,2
+¿Quién cantó "Bésame Mucho"?,Manu Chao,Jesse Cook,Consuelo Velázquez,Shakira,2
+¿Cuál es el océano más grande del mundo?,Atlántico,Índico,Ártico,Pacífico,3
+¿Cuál es el ingrediente principal del guacamole?,Tomate,Cebolla,Aguacate,Pimiento,2
+¿Quién pintó "Guernica"?,Salvador Dalí,Pablo Picasso,Joan Miró,Francisco Goya,1
+¿Cuál es la ciudad más poblada de México?,Guadalajara,Monterrey,Ciudad de México,Tijuana,2
+¿Cuál es la moneda de Argentina?,Peso,Real,Dólar,Euro,0
+¿Cuál es el río más largo del mundo?,Amazonas,Nilo,Mississippi,Yangtsé,1
+¿Cuál es el país más pequeño del mundo?,Mónaco,Ciudad del Vaticano,San Marino,Liechtenstein,1
+¿Qué serie española fue exitosa en Netflix?,Elite,La Casa de Papel,Vis a Vis,Todas las anteriores,3
+¿Cuál es el baile típico de Argentina?,Salsa,Flamenco,Tango,Bachata,2
+¿Cuál es la playa más famosa de Brasil?,Ipanema,Copacabana,Leblon,Barra da Tijuca,1
+¿Qué significa "www" en internet?,World Wide Web,Web World Wide,Wide World Web,World Web Wide,0
+¿Cuál es el país más grande de España?,Andalucía,Castilla y León,Cataluña,Madrid,1
+¿Quién es conocido como "El Rey del Pop"?,Elvis Presley,Prince,Michael Jackson,Madonna,2
+¿Cuál es la bebida más consumida en el mundo después del agua?,Café,Té,Refresco,Cerveza,1
+¿Cuál es el postre español más conocido?,Flan,Churros,Crema catalana,Torrijas,1
+¿En qué ciudad está la Sagrada Familia?,Madrid,Valencia,Barcelona,Sevilla,2
+¿Cuál es la velocidad de la luz?,300.000 km/s,150.000 km/s,450.000 km/s,600.000 km/s,0
+¿Qué aplicación es famosa por videos cortos?,Instagram,Facebook,TikTok,Snapchat,2
+¿Cuál es el deporte más popular en España?,Baloncesto,Tenis,Fútbol,Balonmano,2
+¿Cuántas comunidades autónomas tiene España?,15,17,19,21,1
+¿Qué elemento tiene el símbolo "O"?,Oro,Plata,Hierro,Oxígeno,3
+¿Cuál es la especia más cara del mundo?,Cardamomo,Vainilla,Azafrán,Canela,2
+¿Quién es el CEO de Tesla?,Bill Gates,Elon Musk,Jeff Bezos,Mark Zuckerberg,1
+¿Cuál es la capital de Francia?,Londres,Berlín,París,Madrid,2
+¿Qué banda lanzó el álbum "Abbey Road"?,The Rolling Stones,Led Zeppelin,The Beatles,Queen,2
+¿Cuál es el desierto más grande del mundo?,Sahara,Gobi,Kalahari,Antártida,3
+¿Qué significa "GPS"?,Sistema de Posicionamiento Global,Sistema de Posición General,Servicio de Posición Global,Servicio de Posicionamiento General,0
+¿Cuál es la fiesta más importante en México?,Día de los Muertos,Cinco de Mayo,Independencia,Navidad,0
+¿Cuál es el ingrediente principal del pan?,Azúcar,Harina,Sal,Mantequilla,1
+¿Cuál es el ave nacional de México?,Quetzal,Águila,Colibrí,Cóndor,1
+¿Qué plataforma tiene "Narcos"?,HBO Max,Disney+,Netflix,Amazon Prime,2
+¿Cuál es la comida callejera más popular en México?,Hot dog,Tacos,Hamburguesa,Pizza,1
+¿Cuántos continentes existen?,5,6,7,8,2
+¿Cuál es el animal terrestre más rápido?,León,Guepardo,Leopardo,Tigre,1
+¿Cuál es el escritor español más famoso?,Miguel de Cervantes,García Lorca,Machado,Unamuno,0
+¿Cuál es el programa de TV más duradero de España?,Un, dos, tres,Sábado gigante,El hormiguero,Gran hermano,0
+¿Cuál es la bebida nacional de México?,Cerveza,Tequila,Vino,Whisky,1
+¿Cuál es el punto más alto de España?,Pico del Teide,Mulhacén,Aneto,Torre Cerredo,0
+¿Cuál es el festival de música más famoso de España?,Primavera Sound,FIB,Resurrection,Todos los anteriores,3
+¿Cuál es el estadio más grande de España?,Santiago Bernabéu,Camp Nou,Wanda Metropolitano,San Mamés,1
+¿Cuál es la ciudad más visitada de España?,Madrid,Barcelona,Sevilla,Valencia,1
+¿Qué cantante latina tiene más seguidores en Instagram?,Shakira,Jennifer López,Selena Gomez,Ariana Grande,2

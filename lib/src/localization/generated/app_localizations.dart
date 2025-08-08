@@ -681,6 +681,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot.'**
   String get truthOrDareGameInfo;
+
+  /// No description provided for @drunkTrivia.
+  ///
+  /// In en, this message translates to:
+  /// **'DRUNK TRIVIA'**
+  String get drunkTrivia;
+
+  /// No description provided for @revealAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'REVEAL ANSWER'**
+  String get revealAnswer;
+
+  /// No description provided for @hideAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'HIDE ANSWER'**
+  String get hideAnswer;
+
+  /// No description provided for @correctAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct Answer'**
+  String get correctAnswer;
+
+  /// No description provided for @drunkTriviaGameInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'In Drunk Trivia, the host reads a question and four options (A, B, C, D). Players must answer, then the host reveals the correct answer. Whoever gets it wrong must drink a shot.'**
+  String get drunkTriviaGameInfo;
+
+  /// No description provided for @scratchCard.
+  ///
+  /// In en, this message translates to:
+  /// **'SCRATCH CARD'**
+  String get scratchCard;
+
+  /// No description provided for @scratchCardChoosePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a card and scratch it to reveal your fate!'**
+  String get scratchCardChoosePrompt;
+
+  /// No description provided for @scratchCardReset.
+  ///
+  /// In en, this message translates to:
+  /// **'NEW CARDS'**
+  String get scratchCardReset;
+
+  /// No description provided for @scratchCardGameInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'In Scratch Card, the current player chooses one of 4 cards and scratches it by sliding their finger to reveal a challenge. Only the first card scratched counts, but you can scratch others for fun.'**
+  String get scratchCardGameInfo;
 }
 
 class _AppLocalizationsDelegate

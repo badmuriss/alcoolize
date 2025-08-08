@@ -16,7 +16,11 @@ void main() {
         'MOST_LIKELY_TO',
         'MYSTERY_VERB',
         'FORBIDDEN_WORD',
-        'CARDS'
+        'CARDS',
+        'TRUTH_OR_DARE_TRUTHS',
+        'TRUTH_OR_DARE_DARES',
+        'DRUNK_TRIVIA',
+        'SCRATCH_CARD'
       };
       
       expect(QuestionsManager.gameFiles.keys.toSet(), equals(expectedGames));
@@ -37,7 +41,11 @@ void main() {
         'MOST_LIKELY_TO',
         'MYSTERY_VERB',
         'FORBIDDEN_WORD',
-        'CARDS'
+        'CARDS',
+        'TRUTH_OR_DARE_TRUTHS',
+        'TRUTH_OR_DARE_DARES',
+        'DRUNK_TRIVIA',
+        'SCRATCH_CARD'
       };
       
       expect(QuestionsManager.languageGameFiles.keys.toSet(), equals(expectedLanguages));

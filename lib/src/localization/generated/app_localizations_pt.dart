@@ -332,4 +332,34 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get truthOrDareGameInfo =>
       'No Verdade ou Desafio, o jogador atual deve escolher entre responder uma pergunta pessoal ou executar um desafio divertido. Se a pessoa se recusar a responder a verdade ou completar o desafio, deve beber uma dose.';
+
+  @override
+  String get drunkTrivia => 'ERROU, BEBEU';
+
+  @override
+  String get revealAnswer => 'REVELAR RESPOSTA';
+
+  @override
+  String get hideAnswer => 'ESCONDER RESPOSTA';
+
+  @override
+  String get correctAnswer => 'Resposta Correta';
+
+  @override
+  String get drunkTriviaGameInfo =>
+      'No Errou, Bebeu, o host lê uma pergunta e quatro opções (A, B, C, D). Os jogadores devem responder, então o host revela a resposta correta. Quem errar deve beber uma dose.';
+
+  @override
+  String get scratchCard => 'RASPADINHA';
+
+  @override
+  String get scratchCardChoosePrompt =>
+      'Escolha uma carta e raspe para revelar seu destino!';
+
+  @override
+  String get scratchCardReset => 'NOVAS CARTAS';
+
+  @override
+  String get scratchCardGameInfo =>
+      'Na Raspadinha, o jogador atual escolhe uma das 4 cartas e a raspa deslizando o dedo para revelar um desafio. Apenas a primeira carta raspada conta, mas você pode raspar outras por diversão.';
 }

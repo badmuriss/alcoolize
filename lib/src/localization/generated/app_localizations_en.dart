@@ -331,4 +331,34 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get truthOrDareGameInfo =>
       'In Truth or Dare, the current player must choose between answering a personal truth question or performing a fun dare challenge. If the person refuses to answer the truth or complete the dare, they must drink a shot.';
+
+  @override
+  String get drunkTrivia => 'DRUNK TRIVIA';
+
+  @override
+  String get revealAnswer => 'REVEAL ANSWER';
+
+  @override
+  String get hideAnswer => 'HIDE ANSWER';
+
+  @override
+  String get correctAnswer => 'Correct Answer';
+
+  @override
+  String get drunkTriviaGameInfo =>
+      'In Drunk Trivia, the host reads a question and four options (A, B, C, D). Players must answer, then the host reveals the correct answer. Whoever gets it wrong must drink a shot.';
+
+  @override
+  String get scratchCard => 'SCRATCH CARD';
+
+  @override
+  String get scratchCardChoosePrompt =>
+      'Choose a card and scratch it to reveal your fate!';
+
+  @override
+  String get scratchCardReset => 'NEW CARDS';
+
+  @override
+  String get scratchCardGameInfo =>
+      'In Scratch Card, the current player chooses one of 4 cards and scratches it by sliding their finger to reveal a challenge. Only the first card scratched counts, but you can scratch others for fun.';
 }

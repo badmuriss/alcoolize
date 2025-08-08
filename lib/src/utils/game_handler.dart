@@ -11,6 +11,8 @@ import '../screens/games/forbidden_word_screen.dart';
 import '../screens/games/mystery_verb_screen.dart';
 import '../screens/games/roulette_screen.dart';
 import '../screens/games/truth_or_dare_screen.dart';
+import '../screens/games/drunk_trivia_screen.dart';
+import '../screens/games/scratch_card_screen.dart';
 
 class GameHandler {
   static bool _initialized = false;
@@ -28,6 +30,8 @@ class GameHandler {
     'ROULETTE': (context, players) => RouletteScreen(playersList: players),
     'CARDS': (context, players) => CardsScreen(playersList: players),
     'TRUTH_OR_DARE': (context, players) => TruthOrDareScreen(playersList: players),
+    'DRUNK_TRIVIA': (context, players) => DrunkTriviaScreen(playersList: players),
+    'SCRATCH_CARD': (context, players) => ScratchCardScreen(playersList: players),
   };
 
   // Game names and descriptions are now handled through localization
@@ -55,6 +59,10 @@ class GameHandler {
         return '${AppLocalizations.of(context)!.truthOrDare} - ${AppLocalizations.of(context)!.truth}';
       case 'TRUTH_OR_DARE_DARES':
         return '${AppLocalizations.of(context)!.truthOrDare} - ${AppLocalizations.of(context)!.dare}';
+      case 'DRUNK_TRIVIA':
+        return AppLocalizations.of(context)!.drunkTrivia;
+      case 'SCRATCH_CARD':
+        return AppLocalizations.of(context)!.scratchCard;
       default:
         return gameKey;
     }
@@ -80,6 +88,10 @@ class GameHandler {
         return AppLocalizations.of(context)!.cardsGameInfo;
       case 'TRUTH_OR_DARE':
         return AppLocalizations.of(context)!.truthOrDareGameInfo;
+      case 'DRUNK_TRIVIA':
+        return AppLocalizations.of(context)!.drunkTriviaGameInfo;
+      case 'SCRATCH_CARD':
+        return AppLocalizations.of(context)!.scratchCardGameInfo;
       default:
         return '';
     }
@@ -91,15 +103,17 @@ class GameHandler {
   // Define default weights for each game.
   // These are the values that will be used when probabilities are reset.
   static final Map<String, double> _defaultGameWeights = {
-    'PARANOIA': 9.0,
-    'MOST_LIKELY_TO': 21.0,
-    'NEVER_HAVE_I_EVER': 22.0,
-    'MEDUSA': 8.0,
-    'FORBIDDEN_WORD': 2.0,
+    'PARANOIA': 6.0,
+    'MOST_LIKELY_TO': 15.0,
+    'NEVER_HAVE_I_EVER': 15.0,
+    'MEDUSA': 5.0,
+    'FORBIDDEN_WORD': 4.0,
     'MYSTERY_VERB': 2.0,
-    'ROULETTE': 12.0,
-    'CARDS': 24.0,
-    'TRUTH_OR_DARE': 18.0,
+    'ROULETTE': 10.0,
+    'CARDS': 16.0,
+    'TRUTH_OR_DARE': 14.0,
+    'DRUNK_TRIVIA': 8.0,
+    'SCRATCH_CARD': 7.0,
   };
 
   // Weight of each game (this is the map that will be modified and saved)

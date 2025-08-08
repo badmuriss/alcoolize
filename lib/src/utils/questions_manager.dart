@@ -11,6 +11,8 @@ class QuestionsManager {
     'CARDS': 'assets/cards/challenges.txt',
     'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/truths.txt',
     'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/dares.txt',
+    'DRUNK_TRIVIA': 'assets/drunk_trivia/questions.txt',
+    'SCRATCH_CARD': 'assets/scratch_card/challenges.txt',
   };
 
   static final Map<String, Map<String, String>> languageGameFiles = {
@@ -23,6 +25,8 @@ class QuestionsManager {
       'CARDS': 'assets/cards/en/challenges.txt',
       'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/en/truths.txt',
       'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/en/dares.txt',
+      'DRUNK_TRIVIA': 'assets/drunk_trivia/en/questions.txt',
+      'SCRATCH_CARD': 'assets/scratch_card/en/challenges.txt',
     },
     'pt': {
       'NEVER_HAVE_I_EVER': 'assets/never_have_i_ever/pt/questions.txt',
@@ -33,6 +37,8 @@ class QuestionsManager {
       'CARDS': 'assets/cards/pt/challenges.txt',
       'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/pt/truths.txt',
       'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/pt/dares.txt',
+      'DRUNK_TRIVIA': 'assets/drunk_trivia/pt/questions.txt',
+      'SCRATCH_CARD': 'assets/scratch_card/pt/challenges.txt',
     },
     'es': {
       'NEVER_HAVE_I_EVER': 'assets/never_have_i_ever/es/questions.txt',
@@ -43,6 +49,8 @@ class QuestionsManager {
       'CARDS': 'assets/cards/es/challenges.txt',
       'TRUTH_OR_DARE_TRUTHS': 'assets/truth_or_dare/es/truths.txt',
       'TRUTH_OR_DARE_DARES': 'assets/truth_or_dare/es/dares.txt',
+      'DRUNK_TRIVIA': 'assets/drunk_trivia/es/questions.txt',
+      'SCRATCH_CARD': 'assets/scratch_card/es/challenges.txt',
     },
   };
 
