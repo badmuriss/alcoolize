@@ -99,8 +99,8 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
   Widget buildGameContent() {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth = (screenWidth * 0.7).clamp(320.0, 500.0);
-    final cardHeight = (screenHeight * 0.75).clamp(350.0, 450.0);
+    final cardWidth = (screenWidth * 0.85).clamp(300.0, 450.0);
+    final cardHeight = (screenHeight * 0.6).clamp(320.0, 400.0);
     
     if (currentQuestion == null) {
       return const Center(
@@ -108,20 +108,22 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
       );
     }
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
-            style: TextStyle(
-              fontSize: (screenHeight * 0.03).clamp(18.0, 24.0),
-              color: GameColors.gameText,
-              fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.currentPlayer(currentPlayer!),
+              style: TextStyle(
+                fontSize: (screenHeight * 0.025).clamp(16.0, 20.0),
+                color: GameColors.gameText,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: (screenHeight * 0.03).clamp(15.0, 25.0)),
+            SizedBox(height: (screenHeight * 0.02).clamp(10.0, 20.0)),
           Container(
             width: cardWidth,
             height: cardHeight,
@@ -142,19 +144,21 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
                 children: [
                   // Question
                   Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(12),
                     child: Text(
                       currentQuestion!.question,
                       style: TextStyle(
-                        fontSize: (cardHeight * 0.04).clamp(16.0, 20.0),
+                        fontSize: (cardHeight * 0.045).clamp(14.0, 18.0),
                         color: const Color.fromARGB(255, 60, 60, 60),
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   
-                  SizedBox(height: (cardHeight * 0.04).clamp(10.0, 20.0)),
+                  SizedBox(height: (cardHeight * 0.03).clamp(8.0, 15.0)),
                   
                   // Options
                   Expanded(
@@ -200,10 +204,12 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
                                       child: Text(
                                         currentQuestion!.options[i],
                                         style: TextStyle(
-                                          fontSize: (cardHeight * 0.032).clamp(13.0, 16.0),
+                                          fontSize: (cardHeight * 0.035).clamp(12.0, 15.0),
                                           color: const Color.fromARGB(255, 60, 60, 60),
                                           fontWeight: FontWeight.w500,
                                         ),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                   ],
@@ -215,12 +221,12 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
                     ),
                   ),
                   
-                  SizedBox(height: (cardHeight * 0.04).clamp(10.0, 15.0)),
+                  SizedBox(height: (cardHeight * 0.03).clamp(8.0, 12.0)),
                   
                   // Reveal/Hide Toggle Button
                   SizedBox(
                     width: double.infinity,
-                    height: 45,
+                    height: 40,
                     child: ElevatedButton(
                       onPressed: isAnswerRevealed ? _hideAnswer : _revealAnswer,
                       style: ElevatedButton.styleFrom(
@@ -246,7 +252,8 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
               ),
             ),
           ),
-        ],
+          ],
+        ),
       ),
     );
   }

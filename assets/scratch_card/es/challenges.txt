@@ -15,7 +15,6 @@ Elige a alguien para tomar dos tragos
 ¡Te jodiste! Rasca todas las cartas restantes
 Elige a dos personas para beber
 Rasca una carta más
-Todos rascan una carta
 Toma tres tragos
 Elige a alguien para terminar su bebida
 Tú y alguien más beban juntos

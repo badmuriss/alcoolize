@@ -149,11 +149,11 @@ class PlayersScreenState extends State<PlayersScreen> {
               ),
 
               // Add spacing between text fields and button
-              const SizedBox(height: 40), // Increase spacing above the button
+              const SizedBox(height: 20), // Reduce spacing above the button
 
-              // "Start Game" button aligned higher
+              // "Start Game" button positioned lower
               Align(
-                alignment: Alignment.bottomCenter, // Aligns the button at the bottom
+                alignment: Alignment.center, // Center align instead of bottom
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -186,7 +186,7 @@ class PlayersScreenState extends State<PlayersScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
             ],
           ),
         ),
