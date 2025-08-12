@@ -56,9 +56,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get canRepeat => 'Puede Repetir Juegos';
 
   @override
-  String get mysteryVerb => 'VERBO MISTERIOSO';
-
-  @override
   String get neverHaveIEver => 'YO NUNCA';
 
   @override
@@ -278,10 +275,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get revealVerb => 'Revelar Verbo';
-
-  @override
-  String get mysteryVerbGameInfo =>
-      'El grupo debe hacer preguntas al jugador sobre el verbo usando \"verbo misterioso\" para reemplazarlo. Ejemplo: \"¿Es fácil hacer el verbo misterioso?\", \"¿Dónde se hace el verbo misterioso con frecuencia?\". Cada jugador puede hacer una pregunta de sí o no, y al final todos juntos tendrán 3 intentos. Si no aciertan, todos beben. Si aciertan, quien tiene el verbo bebe.';
 
   @override
   String get mostLikelyTitle => 'MÁS PROBABLE';

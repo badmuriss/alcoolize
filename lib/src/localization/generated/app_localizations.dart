@@ -190,12 +190,6 @@ abstract class AppLocalizations {
   /// **'Can Repeat Games'**
   String get canRepeat;
 
-  /// No description provided for @mysteryVerb.
-  ///
-  /// In en, this message translates to:
-  /// **'MYSTERY VERB'**
-  String get mysteryVerb;
-
   /// No description provided for @neverHaveIEver.
   ///
   /// In en, this message translates to:
@@ -585,12 +579,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reveal Verb'**
   String get revealVerb;
-
-  /// No description provided for @mysteryVerbGameInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'The group should ask questions to the player about the verb using \"mystery verb\" to replace it. Example: \"Is it easy to do the mystery verb?\", \"Where do you do the mystery verb frequently?\". Each player can make one yes or no question, and at the end everyone combined will have 3 guesses. If they don\'t get it, everyone drinks. If they get it, the one with the verb drinks.'**
-  String get mysteryVerbGameInfo;
 
   /// No description provided for @mostLikelyTitle.
   ///

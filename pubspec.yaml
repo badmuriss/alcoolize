@@ -62,7 +62,6 @@ flutter:
     - assets/most_likely_to/questions.txt
     - assets/never_have_i_ever/questions.txt
     - assets/forbidden_word/words.txt
-    - assets/mystery_verb/verbs.txt
     - assets/cards/challenges.txt
     - assets/truth_or_dare/truths.txt
     - assets/truth_or_dare/dares.txt
@@ -81,9 +80,6 @@ flutter:
     - assets/forbidden_word/pt/
     - assets/forbidden_word/en/
     - assets/forbidden_word/es/
-    - assets/mystery_verb/pt/
-    - assets/mystery_verb/en/
-    - assets/mystery_verb/es/
     - assets/cards/pt/
     - assets/cards/en/
     - assets/cards/es/

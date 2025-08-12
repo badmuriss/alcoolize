@@ -56,9 +56,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get canRepeat => 'Pode Repetir Jogos';
 
   @override
-  String get mysteryVerb => 'TIBITAR';
-
-  @override
   String get neverHaveIEver => 'EU NUNCA';
 
   @override
@@ -278,10 +275,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get revealVerb => 'Revelar Verbo';
-
-  @override
-  String get mysteryVerbGameInfo =>
-      'A roda deve fazer perguntas para o jogador sobre o verbo usando \"tibitar\" para substituí-lo. Exemplo: \"É fácil tibitar?\", \"Onde se tibita com frequência?\". Cada jogador pode fazer uma pergunta de sim ou não, e no final todos juntos terão 3 tentativas. Se não acertarem, todos bebem. Se acertarem, quem tem o verbo bebe.';
 
   @override
   String get mostLikelyTitle => 'MAIS PROVÁVEL';

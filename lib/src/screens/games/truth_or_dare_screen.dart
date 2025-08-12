@@ -181,6 +181,7 @@ class TruthOrDareScreenState extends BaseGameScreenState<TruthOrDareScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(height: (cardHeight * 0.2).clamp(30.0, 50.0)),
                   ],
                 ),
               ),

@@ -8,7 +8,6 @@ import '../screens/games/most_likely_to_screen.dart';
 import '../screens/games/never_have_i_ever_screen.dart';
 import '../screens/games/medusa_screen.dart';
 import '../screens/games/forbidden_word_screen.dart';
-import '../screens/games/mystery_verb_screen.dart';
 import '../screens/games/roulette_screen.dart';
 import '../screens/games/truth_or_dare_screen.dart';
 import '../screens/games/drunk_trivia_screen.dart';
@@ -26,7 +25,6 @@ class GameHandler {
     'NEVER_HAVE_I_EVER': (context, players) => NeverHaveIEverScreen(playersList: players),
     'MEDUSA': (context, players) => MedusaScreen(playersList: players),
     'FORBIDDEN_WORD': (context, players) => ForbiddenWordScreen(playersList: players, usedWords: GameHandler.usedWords),
-    'MYSTERY_VERB': (context, players) => MysteryVerbScreen(playersList: players),
     'ROULETTE': (context, players) => RouletteScreen(playersList: players),
     'CARDS': (context, players) => CardsScreen(playersList: players),
     'TRUTH_OR_DARE': (context, players) => TruthOrDareScreen(playersList: players),
@@ -37,8 +35,6 @@ class GameHandler {
   // Game names and descriptions are now handled through localization
   static String getGameName(BuildContext context, String gameKey) {
     switch (gameKey) {
-      case 'MYSTERY_VERB':
-        return AppLocalizations.of(context)!.mysteryVerb;
       case 'NEVER_HAVE_I_EVER':
         return AppLocalizations.of(context)!.neverHaveIEver;
       case 'ROULETTE':
@@ -70,8 +66,6 @@ class GameHandler {
 
   static String getGameDescription(BuildContext context, String gameKey) {
     switch (gameKey) {
-      case 'MYSTERY_VERB':
-        return AppLocalizations.of(context)!.mysteryVerbGameInfo;
       case 'NEVER_HAVE_I_EVER':
         return AppLocalizations.of(context)!.neverHaveIEverGameInfo;
       case 'ROULETTE':
@@ -108,10 +102,9 @@ class GameHandler {
     'NEVER_HAVE_I_EVER': 15.0,
     'MEDUSA': 5.0,
     'FORBIDDEN_WORD': 4.0,
-    'MYSTERY_VERB': 2.0,
-    'ROULETTE': 10.0,
+    'ROULETTE': 11.0,
     'CARDS': 16.0,
-    'TRUTH_OR_DARE': 14.0,
+    'TRUTH_OR_DARE': 15.0,
     'DRUNK_TRIVIA': 8.0,
     'SCRATCH_CARD': 7.0,
   };

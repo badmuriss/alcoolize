@@ -27,7 +27,6 @@ class SettingsScreenState extends State<SettingsScreen> {
   Future<void> _initializeGamesEnabled() async {
     // Define default values here using English game keys
     gamesEnabled = {
-      'MYSTERY_VERB': true,
       'NEVER_HAVE_I_EVER': true,
       'ROULETTE': true,
       'PARANOIA': true,

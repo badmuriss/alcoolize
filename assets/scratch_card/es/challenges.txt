@@ -10,7 +10,7 @@ Termina toda tu bebida
 Toma un trago y rasca otra carta
 ¡No hagas nada, solo celebra!
 ¡Ganaste - todos los demás beben!
-Elige a alguien para rascar una carta y hacer el desafío
+Elige a alguien para rascar una carta
 Elige a alguien para tomar dos tragos
 ¡Te jodiste! Rasca todas las cartas restantes
 Elige a dos personas para beber

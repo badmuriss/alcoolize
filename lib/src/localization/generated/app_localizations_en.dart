@@ -56,9 +56,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get canRepeat => 'Can Repeat Games';
 
   @override
-  String get mysteryVerb => 'MYSTERY VERB';
-
-  @override
   String get neverHaveIEver => 'NEVER HAVE I EVER';
 
   @override
@@ -277,10 +274,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get revealVerb => 'Reveal Verb';
-
-  @override
-  String get mysteryVerbGameInfo =>
-      'The group should ask questions to the player about the verb using \"mystery verb\" to replace it. Example: \"Is it easy to do the mystery verb?\", \"Where do you do the mystery verb frequently?\". Each player can make one yes or no question, and at the end everyone combined will have 3 guesses. If they don\'t get it, everyone drinks. If they get it, the one with the verb drinks.';
 
   @override
   String get mostLikelyTitle => 'MOST LIKELY';

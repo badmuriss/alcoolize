@@ -23,7 +23,7 @@ Alcoolize is a **cross-platform Flutter app** featuring a curated collection of 
 
 ### ✨ Key Features
 
-- 🎲 **8 Different Games** - From classic "Never Have I Ever" to unique "Medusa" 
+- 🎲 **8 Different Games** - From classic "Never Have I Ever" to unique "Scratch Card" 
 - 🌍 **Multi-Language Support** - English, Spanish, Portuguese with automatic app restart
 - ⚙️ **Game Probability Control** - Adjust how often each game appears
 - ✏️ **Custom Content Editor** - Edit questions and words for each game
@@ -39,13 +39,15 @@ Alcoolize is a **cross-platform Flutter app** featuring a curated collection of 
 | Game | Description | Players |
 |------|-------------|---------|
 | 🃏 **Cards** | Challenge cards with individual or group tasks | 2+ |
+| 🧠 **Drunk Trivia** | Answer trivia questions or face the consequences | 2+ |
 | 🚫 **Forbidden Word** | Don't say the forbidden word during the round | 3+ |
 | 👁️ **Medusa** | Look up simultaneously - eye contact = drink! | 4+ |
 | 🙈 **Never Have I Ever** | Classic drinking game with custom questions | 3+ |
 | 🤔 **Paranoia** | Whispered questions with mysterious answers | 4+ |
 | 🎯 **Most Likely To** | Vote on who's most likely to... | 3+ |
 | 🔄 **Roulette** | Spin the wheel of fortune (and drinks) | 2+ |
-| 🔤 **Mystery Verb** | Guess the hidden verb through creative questions | 4+ |
+| 🎫 **Scratch Card** | Reveal hidden tasks and challenges | 2+ |
+| ✅ **Truth or Dare** | Classic choice between truth questions or dares | 2+ |
 
 ---
 

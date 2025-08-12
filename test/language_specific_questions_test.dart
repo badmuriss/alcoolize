@@ -70,7 +70,7 @@ void main() {
     test('should handle missing language gracefully', () async {
       SharedPreferences.setMockInitialValues({'selected_language': 'fr'}); // Unsupported language
       
-      const gameName = 'MYSTERY_VERB';
+      const gameName = 'FORBIDDEN_WORD';
       const questions = ['danser', 'chanter']; // French words
       
       // Should still work, falling back to default behavior

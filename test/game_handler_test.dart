@@ -16,13 +16,12 @@ void main() {
     });
 
     test('should have all expected games defined', () {
-      expect(GameHandler.allGames.length, equals(11));
+      expect(GameHandler.allGames.length, equals(10));
       expect(GameHandler.allGames.keys, contains('PARANOIA'));
       expect(GameHandler.allGames.keys, contains('MOST_LIKELY_TO'));
       expect(GameHandler.allGames.keys, contains('NEVER_HAVE_I_EVER'));
       expect(GameHandler.allGames.keys, contains('MEDUSA'));
       expect(GameHandler.allGames.keys, contains('FORBIDDEN_WORD'));
-      expect(GameHandler.allGames.keys, contains('MYSTERY_VERB'));
       expect(GameHandler.allGames.keys, contains('ROULETTE'));
       expect(GameHandler.allGames.keys, contains('CARDS'));
       expect(GameHandler.allGames.keys, contains('TRUTH_OR_DARE'));
@@ -33,7 +32,7 @@ void main() {
     // Game descriptions are now handled through localization
 
     test('should have default weights for all games', () {
-      expect(GameHandler.allGames.length, equals(11));
+      expect(GameHandler.allGames.length, equals(10));
       
       // GameHandler needs to be initialized to load default weights
       // This test checks that the structure exists for weight management

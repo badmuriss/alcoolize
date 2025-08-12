@@ -31,7 +31,7 @@ class EditQuestionsScreen extends StatelessWidget {
           String subtitle;
           
           // Define icon and subtitle based on game type
-          if (gameName == 'MYSTERY_VERB' || gameName == 'FORBIDDEN_WORD') {
+          if (gameName == 'FORBIDDEN_WORD') {
             gameIcon = Icons.text_fields;
             subtitle = AppLocalizations.of(context)!.editWords;
           } else {
