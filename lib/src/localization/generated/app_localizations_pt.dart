@@ -152,9 +152,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String totalItems(Object count, Object itemLabel) {
-    return 'Total: $count ${itemLabel}s';
-  }
+  String get totalItems => 'Total de Itens';
 
   @override
   String typeItemHere(Object itemLabel) {
@@ -355,4 +353,62 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get scratchCardGameInfo =>
       'Na Raspadinha, o jogador atual escolhe uma das 4 cartas e a raspa deslizando o dedo para revelar um desafio. Apenas a primeira carta raspada conta, mas você pode raspar outras por diversão.';
+
+  @override
+  String get managePacks => 'Gerenciar Packs de Conteúdo';
+
+  @override
+  String get enabled => 'Habilitados';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get noPacksAvailable => 'Nenhum pack disponível';
+
+  @override
+  String get items => 'itens';
+
+  @override
+  String get version => 'Versão';
+
+  @override
+  String get spiceLevel => 'Nível Picante';
+
+  @override
+  String get gamesIncluded => 'Jogos Incluídos:';
+
+  @override
+  String get contentPacks => 'Packs de Conteúdo';
+
+  @override
+  String get contentPacksDescription =>
+      'Os packs de conteúdo permitem personalizar sua experiência com diferentes conjuntos de perguntas e desafios.';
+
+  @override
+  String get spiceLevels => 'Níveis de Picante:';
+
+  @override
+  String get spiceLevelsDescription =>
+      '• Suave: Conteúdo para família\n• Médio: Ambiente de festa\n• Picante: Mais ousado\n• Quente: Apenas adultos';
+
+  @override
+  String get enablePacksInfo =>
+      'Habilite os packs que deseja usar nos seus jogos.';
+
+  @override
+  String get understood => 'Entendi';
+
+  @override
+  String get retry => 'Tentar Novamente';
+
+  @override
+  String failedToLoadPacks(Object error) {
+    return 'Falha ao carregar packs: $error';
+  }
+
+  @override
+  String errorLoadingData(Object error) {
+    return 'Erro ao carregar dados: $error';
+  }
 }

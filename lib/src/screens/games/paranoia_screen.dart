@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -27,6 +28,18 @@ class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
   @override
   String get gameInstructions => AppLocalizations.of(context)!.paranoiaGameInfo;
 
+  Future<List<String>> _loadFromRepository(String gameType) async {
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems(gameType.toLowerCase(), locale);
+      return items.map((item) => item.getText()).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -35,7 +48,7 @@ class ParanoiaScreenState extends BaseGameScreenState<ParanoiaScreen> {
   }
 
   Future<void> getQuestion() async {
-    List<String> questions = await QuestionsManager.loadQuestions('PARANOIA');
+    List<String> questions = await _loadFromRepository('PARANOIA');
     if (questions.isNotEmpty) {
       setState(() {
         question = (questions..shuffle()).first;

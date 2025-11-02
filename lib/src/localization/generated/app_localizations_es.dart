@@ -152,9 +152,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String totalItems(Object count, Object itemLabel) {
-    return 'Total: $count ${itemLabel}s';
-  }
+  String get totalItems => 'Total de Ítems';
 
   @override
   String typeItemHere(Object itemLabel) {
@@ -355,4 +353,62 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get scratchCardGameInfo =>
       'En Rasca y Gana, el jugador actual elige una de las 4 cartas y la rasca deslizando el dedo para revelar un desafío. Solo la primera carta rascada cuenta, pero puedes rascar otras por diversión.';
+
+  @override
+  String get managePacks => 'Administrar Packs de Contenido';
+
+  @override
+  String get enabled => 'Habilitados';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get noPacksAvailable => 'No hay packs disponibles';
+
+  @override
+  String get items => 'ítems';
+
+  @override
+  String get version => 'Versión';
+
+  @override
+  String get spiceLevel => 'Nivel Picante';
+
+  @override
+  String get gamesIncluded => 'Juegos Incluidos:';
+
+  @override
+  String get contentPacks => 'Packs de Contenido';
+
+  @override
+  String get contentPacksDescription =>
+      'Los packs de contenido te permiten personalizar tu experiencia con diferentes conjuntos de preguntas y desafíos.';
+
+  @override
+  String get spiceLevels => 'Niveles Picantes:';
+
+  @override
+  String get spiceLevelsDescription =>
+      '• Suave: Contenido familiar\n• Medio: Ambiente de fiesta\n• Picante: Más atrevido\n• Caliente: Solo adultos';
+
+  @override
+  String get enablePacksInfo =>
+      'Habilita los packs que deseas usar en tus juegos.';
+
+  @override
+  String get understood => 'Entendido';
+
+  @override
+  String get retry => 'Reintentar';
+
+  @override
+  String failedToLoadPacks(Object error) {
+    return 'Error al cargar packs: $error';
+  }
+
+  @override
+  String errorLoadingData(Object error) {
+    return 'Error al cargar datos: $error';
+  }
 }

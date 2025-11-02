@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'utils/questions_manager.dart';
 import 'app_wrapper.dart';
 import 'localization/generated/app_localizations.dart';
 
@@ -41,7 +40,6 @@ class LanguageSelectorState extends State<LanguageSelector> {
     });
     
     // Clear questions cache to force reload with new language
-    QuestionsManager.clearCache();
     
     // Trigger app restart
     if (mounted) {

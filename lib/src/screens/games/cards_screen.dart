@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -36,14 +37,22 @@ class CardsScreenState extends BaseGameScreenState<CardsScreen> {
   }
 
   Future<List<Map<String, dynamic>>> loadChallenges() async {
-    List<String> questions = await QuestionsManager.loadQuestions('CARDS');
-    return questions.map((line) {
-      var parts = line.split(',');
-      return {
-        'challenge': parts[0],
-        'isSinglePlayer': parts[1].trim() == 'true',
-      };
-    }).toList();
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems('cards', locale);
+
+      return items.map((item) {
+        final data = item.data as Map<String, dynamic>;
+        return {
+          'challenge': data['challenge'] ?? '',
+          'isSinglePlayer': data['isPersonal'] ?? false,
+        };
+      }).toList();
+    } catch (e) {
+      return [];
+    }
   }
 
   Future<void> getChallenge() async {

@@ -1,7 +1,8 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math';
 import '../../localization/generated/app_localizations.dart';
 
@@ -50,19 +51,26 @@ class TruthOrDareScreenState extends BaseGameScreenState<TruthOrDareScreen> {
   }
 
   Future<void> _loadQuestion(String choice) async {
-    List<String> questions;
-    
-    if (choice == 'truth') {
-      questions = await QuestionsManager.loadQuestions('TRUTH_OR_DARE_TRUTHS');
-    } else {
-      questions = await QuestionsManager.loadQuestions('TRUTH_OR_DARE_DARES');
-    }
-    
-    if (questions.isNotEmpty) {
-      setState(() {
-        currentQuestion = questions[Random().nextInt(questions.length)];
-        isShowingQuestion = true;
-      });
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems('truth_or_dare', locale);
+
+      // Filter based on choice
+      final filteredItems = items.where((item) {
+        final data = item.data;
+        return data is Map && data['kind'] == choice;
+      }).map((item) => item.getText()).toList();
+
+      if (filteredItems.isNotEmpty) {
+        setState(() {
+          currentQuestion = filteredItems[Random().nextInt(filteredItems.length)];
+          isShowingQuestion = true;
+        });
+      }
+    } catch (e) {
+      // Handle error silently
     }
   }
 

@@ -24,6 +24,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
+  build_runner: ^2.4.8
 
   flutter_lints: ^6.0.0
 
@@ -55,43 +57,8 @@ flutter:
   generate: true
 
   assets:
-    # Add assets from the images directory to the application.
     - assets/images/
-    # Original Portuguese files (maintained for compatibility)
-    - assets/paranoia/questions.txt
-    - assets/most_likely_to/questions.txt
-    - assets/never_have_i_ever/questions.txt
-    - assets/forbidden_word/words.txt
-    - assets/cards/challenges.txt
-    - assets/truth_or_dare/truths.txt
-    - assets/truth_or_dare/dares.txt
-    - assets/drunk_trivia/questions.txt
-    - assets/scratch_card/challenges.txt
-    # Multi-language asset files
-    - assets/paranoia/pt/
-    - assets/paranoia/en/
-    - assets/paranoia/es/
-    - assets/most_likely_to/pt/
-    - assets/most_likely_to/en/
-    - assets/most_likely_to/es/
-    - assets/never_have_i_ever/pt/
-    - assets/never_have_i_ever/en/
-    - assets/never_have_i_ever/es/
-    - assets/forbidden_word/pt/
-    - assets/forbidden_word/en/
-    - assets/forbidden_word/es/
-    - assets/cards/pt/
-    - assets/cards/en/
-    - assets/cards/es/
-    - assets/truth_or_dare/pt/
-    - assets/truth_or_dare/en/
-    - assets/truth_or_dare/es/
-    - assets/drunk_trivia/pt/
-    - assets/drunk_trivia/en/
-    - assets/drunk_trivia/es/
-    - assets/scratch_card/pt/
-    - assets/scratch_card/en/
-    - assets/scratch_card/es/
+    - assets/packs/
 
   fonts:
     - family: RabbidHighwaySignII

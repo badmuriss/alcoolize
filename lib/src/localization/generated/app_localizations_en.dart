@@ -151,9 +151,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String totalItems(Object count, Object itemLabel) {
-    return 'Total: $count ${itemLabel}s';
-  }
+  String get totalItems => 'Total Items';
 
   @override
   String typeItemHere(Object itemLabel) {
@@ -354,4 +352,62 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get scratchCardGameInfo =>
       'In Scratch Card, the current player chooses one of 4 cards and scratches it by sliding their finger to reveal a challenge. Only the first card scratched counts, but you can scratch others for fun.';
+
+  @override
+  String get managePacks => 'Manage Content Packs';
+
+  @override
+  String get enabled => 'Enabled';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get noPacksAvailable => 'No packs available';
+
+  @override
+  String get items => 'items';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get spiceLevel => 'Spice Level';
+
+  @override
+  String get gamesIncluded => 'Games Included:';
+
+  @override
+  String get contentPacks => 'Content Packs';
+
+  @override
+  String get contentPacksDescription =>
+      'Content packs allow you to customize your experience with different sets of questions and challenges.';
+
+  @override
+  String get spiceLevels => 'Spice Levels:';
+
+  @override
+  String get spiceLevelsDescription =>
+      '• Mild: Family-friendly content\n• Medium: Party atmosphere\n• Spicy: Bolder content\n• Hot: Adults only';
+
+  @override
+  String get enablePacksInfo =>
+      'Enable the packs you want to use in your games.';
+
+  @override
+  String get understood => 'Got it';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String failedToLoadPacks(Object error) {
+    return 'Failed to load packs: $error';
+  }
+
+  @override
+  String errorLoadingData(Object error) {
+    return 'Error loading data: $error';
+  }
 }

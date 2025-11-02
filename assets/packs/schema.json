@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alcoolize Universal Pack Schema",
+  "description": "Schema for universal game packs containing all game types",
+  "version": "2.0.0",
+  "type": "object",
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/localizedString",
+          "description": "Pack name in different languages"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Pack version (semantic versioning)"
+        },
+        "premium": {
+          "type": "boolean",
+          "description": "Whether this pack requires premium access"
+        },
+        "spice": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3,
+          "description": "Spice level: 0=mild, 1=medium, 2=spicy, 3=hot"
+        },
+        "description": {
+          "$ref": "#/definitions/localizedString",
+          "description": "Pack description in different languages"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for categorization and discovery"
+        }
+      },
+      "required": ["name", "version", "premium", "spice"]
+    },
+    "games": {
+      "type": "object",
+      "properties": {
+        "truth_or_dare": {
+          "$ref": "#/definitions/truthOrDareGame"
+        },
+        "drunk_trivia": {
+          "$ref": "#/definitions/drunkTriviaGame"
+        },
+        "cards": {
+          "$ref": "#/definitions/cardsGame"
+        },
+        "never_have_i_ever": {
+          "$ref": "#/definitions/neverHaveIEverGame"
+        },
+        "most_likely_to": {
+          "$ref": "#/definitions/mostLikelyToGame"
+        },
+        "paranoia": {
+          "$ref": "#/definitions/paranoiaGame"
+        },
+        "forbidden_word": {
+          "$ref": "#/definitions/forbiddenWordGame"
+        },
+        "scratch_card": {
+          "$ref": "#/definitions/scratchCardGame"
+        }
+      },
+      "description": "Game content organized by game type"
+    }
+  },
+  "required": ["manifest", "games"],
+  "definitions": {
+    "localizedString": {
+      "type": "object",
+      "properties": {
+        "pt": { "type": "string" },
+        "en": { "type": "string" },
+        "es": { "type": "string" }
+      },
+      "required": ["pt"],
+      "additionalProperties": false
+    },
+    "localizedArray": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "en": {
+          "type": "array", 
+          "items": { "type": "string" }
+        },
+        "es": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["pt"],
+      "additionalProperties": false
+    },
+    "truthOrDareGame": {
+      "type": "object",
+      "properties": {
+        "truths": {
+          "$ref": "#/definitions/localizedArray"
+        },
+        "dares": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    },
+    "drunkTriviaGame": {
+      "type": "object",
+      "properties": {
+        "questions": {
+          "type": "object",
+          "properties": {
+            "pt": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/triviaQuestion" }
+            },
+            "en": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/triviaQuestion" }
+            },
+            "es": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/triviaQuestion" }
+            }
+          },
+          "required": ["pt"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "triviaQuestion": {
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 2,
+          "maxItems": 6
+        },
+        "correct": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["question", "options", "correct"]
+    },
+    "cardsGame": {
+      "type": "object",
+      "properties": {
+        "challenges": {
+          "type": "object",
+          "properties": {
+            "pt": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/cardChallenge" }
+            },
+            "en": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/cardChallenge" }
+            },
+            "es": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/cardChallenge" }
+            }
+          },
+          "required": ["pt"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "cardChallenge": {
+      "type": "object",
+      "properties": {
+        "challenge": { "type": "string" },
+        "isPersonal": { "type": "boolean" }
+      },
+      "required": ["challenge"]
+    },
+    "neverHaveIEverGame": {
+      "type": "object",
+      "properties": {
+        "statements": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    },
+    "mostLikelyToGame": {
+      "type": "object",
+      "properties": {
+        "questions": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    },
+    "paranoiaGame": {
+      "type": "object",
+      "properties": {
+        "questions": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    },
+    "forbiddenWordGame": {
+      "type": "object",
+      "properties": {
+        "words": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scratchCardGame": {
+      "type": "object",
+      "properties": {
+        "challenges": {
+          "$ref": "#/definitions/localizedArray"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
