@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -28,11 +29,19 @@ class TriviaQuestion {
     if (parts.length < 6) {
       throw Exception('Invalid question format');
     }
-    
+
     return TriviaQuestion(
       question: parts[0].trim(),
       options: [parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4].trim()],
       correctAnswer: int.parse(parts[5].trim()),
+    );
+  }
+
+  factory TriviaQuestion.fromJson(Map<String, dynamic> json) {
+    return TriviaQuestion(
+      question: json['question'] ?? '',
+      options: List<String>.from(json['options'] ?? []),
+      correctAnswer: json['correct'] ?? 0,
     );
   }
 }
@@ -63,18 +72,23 @@ class DrunkTriviaScreenState extends BaseGameScreenState<DrunkTriviaScreen> {
   }
 
   Future<void> _loadRandomQuestion() async {
-    final questions = await QuestionsManager.loadQuestions('DRUNK_TRIVIA');
-    
-    if (questions.isNotEmpty) {
-      final randomQuestion = questions[Random().nextInt(questions.length)];
-      try {
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems('drunk_trivia', locale);
+
+      if (items.isNotEmpty) {
+        final randomItem = items[Random().nextInt(items.length)];
+        final data = randomItem.data as Map<String, dynamic>;
+
         setState(() {
-          currentQuestion = TriviaQuestion.fromString(randomQuestion);
+          currentQuestion = TriviaQuestion.fromJson(data);
           isAnswerRevealed = false;
         });
-      } catch (e) {
-        // Handle error silently
       }
+    } catch (e) {
+      // Handle error silently
     }
   }
 

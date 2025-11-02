@@ -1,6 +1,7 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
 import 'package:alcoolize/src/utils/game_handler.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import '../../localization/generated/app_localizations.dart';
@@ -35,13 +36,25 @@ class ForbiddenWordScreenState extends BaseGameScreenState<ForbiddenWordScreen> 
     getWord();
   }
 
+  Future<List<String>> _loadFromRepository(String gameType) async {
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems(gameType.toLowerCase(), locale);
+      return items.map((item) => item.getText()).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   Future<void> getWord() async {
-    remainingWords = await QuestionsManager.loadQuestions('FORBIDDEN_WORD');
+    remainingWords = await _loadFromRepository('FORBIDDEN_WORD');
     remainingWords?.removeWhere((item) => widget.usedWords.contains(item));
 
     if(remainingWords!.isEmpty){
       GameHandler.resetUsedWords();
-      remainingWords = await QuestionsManager.loadQuestions('FORBIDDEN_WORD');
+      remainingWords = await _loadFromRepository('FORBIDDEN_WORD');
     }
 
     setState(() {

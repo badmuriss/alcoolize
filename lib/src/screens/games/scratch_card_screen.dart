@@ -1,5 +1,6 @@
 import 'package:alcoolize/src/screens/games/base_game_screen.dart';
-import 'package:alcoolize/src/utils/questions_manager.dart';
+import 'package:alcoolize/src/services/game_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:alcoolize/src/constants/game_constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -48,15 +49,24 @@ class ScratchCardScreenState extends BaseGameScreenState<ScratchCardScreen> {
   }
 
   Future<void> _loadChallenges() async {
-    final challenges = await QuestionsManager.loadQuestions('SCRATCH_CARD');
-    
-    if (challenges.isNotEmpty) {
-      setState(() {
-        scratchCards = List.generate(4, (index) {
-          final randomChallenge = challenges[Random().nextInt(challenges.length)];
-          return ScratchCard(challenge: randomChallenge);
+    try {
+      final repository = await GameRepository.create();
+      final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('selected_language') ?? 'pt';
+      final items = await repository.getGameItems('scratch_card', locale);
+
+      final challenges = items.map((item) => item.getText()).toList();
+
+      if (challenges.isNotEmpty) {
+        setState(() {
+          scratchCards = List.generate(4, (index) {
+            final randomChallenge = challenges[Random().nextInt(challenges.length)];
+            return ScratchCard(challenge: randomChallenge);
+          });
         });
-      });
+      }
+    } catch (e) {
+      // Handle error silently
     }
   }
 

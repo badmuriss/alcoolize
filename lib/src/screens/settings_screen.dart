@@ -1,4 +1,4 @@
-import 'package:alcoolize/src/screens/edit_questions_screen.dart';
+import 'package:alcoolize/src/screens/pack_manager_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/game_handler.dart';
@@ -187,13 +187,13 @@ class SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          // Edit questions button (your existing code)
+          // Manage Content Packs button
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton.icon(
-              icon: const Icon(Icons.edit_note, color: Color(0xFF6A0DAD)),
+              icon: const Icon(Icons.inventory, color: Color(0xFF6A0DAD)),
               label: Text(
-                AppLocalizations.of(context)!.editQuestions,
+                AppLocalizations.of(context)!.managePacks,
                 style: TextStyle(color: Color(0xFF6A0DAD)),
               ),
               style: ElevatedButton.styleFrom(
@@ -207,7 +207,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const EditQuestionsScreen(),
+                    builder: (context) => const PackManagerScreen(),
                   ),
                 );
               },

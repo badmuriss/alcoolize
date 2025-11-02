@@ -367,8 +367,8 @@ abstract class AppLocalizations {
   /// No description provided for @totalItems.
   ///
   /// In en, this message translates to:
-  /// **'Total: {count} {itemLabel}s'**
-  String totalItems(Object count, Object itemLabel);
+  /// **'Total Items'**
+  String get totalItems;
 
   /// No description provided for @typeItemHere.
   ///
@@ -723,6 +723,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'In Scratch Card, the current player chooses one of 4 cards and scratches it by sliding their finger to reveal a challenge. Only the first card scratched counts, but you can scratch others for fun.'**
   String get scratchCardGameInfo;
+
+  /// No description provided for @managePacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Content Packs'**
+  String get managePacks;
+
+  /// No description provided for @enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get enabled;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @noPacksAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No packs available'**
+  String get noPacksAvailable;
+
+  /// No description provided for @items.
+  ///
+  /// In en, this message translates to:
+  /// **'items'**
+  String get items;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @spiceLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Spice Level'**
+  String get spiceLevel;
+
+  /// No description provided for @gamesIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Games Included:'**
+  String get gamesIncluded;
+
+  /// No description provided for @contentPacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Content Packs'**
+  String get contentPacks;
+
+  /// No description provided for @contentPacksDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Content packs allow you to customize your experience with different sets of questions and challenges.'**
+  String get contentPacksDescription;
+
+  /// No description provided for @spiceLevels.
+  ///
+  /// In en, this message translates to:
+  /// **'Spice Levels:'**
+  String get spiceLevels;
+
+  /// No description provided for @spiceLevelsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'• Mild: Family-friendly content\n• Medium: Party atmosphere\n• Spicy: Bolder content\n• Hot: Adults only'**
+  String get spiceLevelsDescription;
+
+  /// No description provided for @enablePacksInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable the packs you want to use in your games.'**
+  String get enablePacksInfo;
+
+  /// No description provided for @understood.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get understood;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @failedToLoadPacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load packs: {error}'**
+  String failedToLoadPacks(Object error);
+
+  /// No description provided for @errorLoadingData.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading data: {error}'**
+  String errorLoadingData(Object error);
 }
 
 class _AppLocalizationsDelegate
